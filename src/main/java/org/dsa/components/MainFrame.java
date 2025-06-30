@@ -13,8 +13,8 @@ public class MainFrame extends JFrame
     public MainFrame(String txt){
         setTitle(txt);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(new Dimension(1200, 600));
-        setMinimumSize(new Dimension(900, 400));
+        setPreferredSize(new Dimension(900, 600));
+        setMinimumSize(new Dimension(700, 400));
         setLocationRelativeTo(null);
         add(cardPanel);
         setVisible(true);
@@ -32,4 +32,5 @@ public class MainFrame extends JFrame
         repaint();
         revalidate();
     }
+
 }
