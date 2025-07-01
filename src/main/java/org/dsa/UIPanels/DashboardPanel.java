@@ -1,6 +1,6 @@
-package org.dsa.components;
+package org.dsa.UIPanels;
 
-import org.dsa.Styles;
+import org.dsa.Constants.Styles;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

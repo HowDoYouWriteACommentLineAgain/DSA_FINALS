@@ -1,4 +1,4 @@
-package org.dsa;
+package org.dsa.Constants;
 
 import javax.swing.JComponent;
 import javax.swing.border.Border;

@@ -1,7 +1,7 @@
 package org.dsa.components;
 
 import org.dsa.Main;
-import org.dsa.Styles;
+import org.dsa.Constants.Styles;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;

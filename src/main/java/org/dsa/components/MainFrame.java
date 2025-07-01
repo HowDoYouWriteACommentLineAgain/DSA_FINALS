@@ -1,11 +1,13 @@
 package org.dsa.components;
 
+import org.dsa.components.interfaces.screenNavigation;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
-public class MainFrame extends JFrame
+public class MainFrame extends JFrame implements screenNavigation
 {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel cardPanel = new JPanel(cardLayout);

@@ -1,13 +1,16 @@
-package org.dsa.components;
+package org.dsa.UIPanels;
 
+import org.dsa.Constants.Screen;
 import org.dsa.Main;
-import org.dsa.Styles;
-import org.dsa.components.interfaces.UIPanels;
+import org.dsa.Constants.Styles;
+import org.dsa.components.LabeledInputField;
+import org.dsa.components.MainFrame;
+import org.dsa.components.interfaces.screenNavigation;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginPanel extends JPanel implements UIPanels
+public class LoginPanel extends JPanel
 {
     JLabel title = new JLabel("Financial Tracker");
     LabeledInputField usernameGroup = new LabeledInputField("Username", false);
@@ -41,7 +44,6 @@ public class LoginPanel extends JPanel implements UIPanels
         setVisible(true);
     }
 
-    @Override
     public void implementStyles() {
         title.setFont(Styles.TITLE_FONT);
         Styles.setStaticSize(title, Styles.LARGE_TEXT_DIM);
@@ -57,15 +59,14 @@ public class LoginPanel extends JPanel implements UIPanels
         }
     }
 
-    @Override
     public void setInnerLayout() {
         setLayout(new GridBagLayout());
     }
 
-    @Override
-    public void handleNavigation(MainFrame mainFrame)
+
+    public void handleNavigation(screenNavigation navigator)
     {
-        loginButton.addActionListener(e->mainFrame.showScreen("Dashboard"));
+        loginButton.addActionListener(e->navigator.showScreen(Screen.DASHBOARD));
     }
 
 }
