@@ -20,7 +20,6 @@ public class LoginPanel extends JPanel
 
     public LoginPanel(MainFrame mainFrame)
     {
-
         handleNavigation(mainFrame);
         implementStyles();
         setInnerLayout();
@@ -62,7 +61,6 @@ public class LoginPanel extends JPanel
     public void setInnerLayout() {
         setLayout(new GridBagLayout());
     }
-
 
     public void handleNavigation(screenNavigation navigator)
     {

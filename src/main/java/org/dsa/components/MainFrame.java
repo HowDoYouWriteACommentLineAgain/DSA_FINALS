@@ -3,6 +3,7 @@ package org.dsa.components;
 import org.dsa.components.interfaces.screenNavigation;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -11,6 +12,7 @@ public class MainFrame extends JFrame implements screenNavigation
 {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel cardPanel = new JPanel(cardLayout);
+    private final JMenuBar menuBar = new JMenuBar();
 
     public MainFrame(String txt){
         setTitle(txt);

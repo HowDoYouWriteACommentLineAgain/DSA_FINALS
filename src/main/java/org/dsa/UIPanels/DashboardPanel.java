@@ -11,7 +11,7 @@ import java.awt.GridLayout;
 public class DashboardPanel extends JPanel{
     public DashboardPanel()
     {
-        super(new GridLayout(1,0));
+        super(new GridLayout());
         JLabel title = new JLabel("Dashboard");
         title.setFont(Styles.TITLE_FONT);
         Styles.setStaticSize(title, Styles.LARGE_TEXT_DIM);
