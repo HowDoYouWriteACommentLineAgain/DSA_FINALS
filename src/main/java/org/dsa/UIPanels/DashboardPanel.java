@@ -1,8 +1,6 @@
 package org.dsa.UIPanels;
 
 import org.dsa.Styles;
-import org.dsa.UIPanels.components.NavigationBar;
-import org.dsa.UIPanels.components.interfaces.ScreenNavigation;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;

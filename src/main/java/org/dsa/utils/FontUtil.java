@@ -9,7 +9,7 @@ public class FontUtil
 
     public static Font getTitleFont()
     {
-        return base.deriveFont(Font.BOLD, base.getSize() + 8f);
+        return base.deriveFont(Font.BOLD, base.getSize() + 24f);
     }
 
     public static Font getHeadingFont()
@@ -22,7 +22,7 @@ public class FontUtil
         return base.deriveFont(Font.PLAIN, base.getSize());
     }
 
-    public static Font getFieldLabel()
+    public static Font getFieldFont()
     {
         return base.deriveFont(Font.BOLD, base.getSize());
     }

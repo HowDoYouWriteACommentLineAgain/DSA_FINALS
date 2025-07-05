@@ -10,7 +10,7 @@ import java.awt.Font;
 public final class Styles {
     public static final Font TITLE_FONT = FontUtil.getTitleFont();
     public static final Font HEADER_FONT = FontUtil.getHeadingFont();
-    public static final Font FIELD_FONT = FontUtil.getBodyFont();
+    public static final Font FIELD_FONT = FontUtil.getFieldFont();
     public static final Font TEXT_FONT = FontUtil.getBodyFont();
 
     public static final Color PRIMARY_COLOR = new Color(0xE81A1A);

@@ -23,7 +23,7 @@ public class SimpleDataPanel extends JPanel {
         // Filter panel (top)
         JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         filterPanel.add(new JLabel("Filter:"));
-        filterPanel.add(new JTextField(15));
+        filterPanel.add(new JTextField(30));
         add(filterPanel, BorderLayout.NORTH);
 
         // Table panel (center)
