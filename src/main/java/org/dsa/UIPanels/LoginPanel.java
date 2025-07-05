@@ -1,11 +1,11 @@
 package org.dsa.UIPanels;
 
-import org.dsa.Constants.Screen;
+import org.dsa.utils.Constants.Screens;
 import org.dsa.Main;
-import org.dsa.Constants.Styles;
-import org.dsa.components.LabeledInputField;
-import org.dsa.components.MainFrame;
-import org.dsa.components.interfaces.screenNavigation;
+import org.dsa.Styles;
+import org.dsa.UIPanels.components.LabeledInputField;
+import org.dsa.UIPanels.components.MainFrame;
+import org.dsa.UIPanels.components.interfaces.ScreenNavigation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,7 @@ public class LoginPanel extends JPanel
     public LoginPanel(MainFrame mainFrame)
     {
         handleNavigation(mainFrame);
-        implementStyles();
+        setStyles();
         setInnerLayout();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridwidth = 4;
@@ -43,10 +43,8 @@ public class LoginPanel extends JPanel
         setVisible(true);
     }
 
-    public void implementStyles() {
+    public void setStyles() {
         title.setFont(Styles.TITLE_FONT);
-        Styles.setStaticSize(title, Styles.LARGE_TEXT_DIM);
-        Styles.setStaticSize(loginButton, Styles.SLIM_CONTAINER);
 
         if (Main.debugColors)
         {
@@ -62,9 +60,14 @@ public class LoginPanel extends JPanel
         setLayout(new GridBagLayout());
     }
 
-    public void handleNavigation(screenNavigation navigator)
+    public void handleNavigation(ScreenNavigation navigator)
     {
-        loginButton.addActionListener(e->navigator.showScreen(Screen.DASHBOARD));
+        loginButton.addActionListener(e->{
+            navigator.authLogin();
+            navigator.showScreen(Screens.DASHBOARD);
+            navigator.showNavigationBar();
+        });
+
     }
 
 }

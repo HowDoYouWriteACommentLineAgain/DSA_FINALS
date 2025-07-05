@@ -1,7 +1,7 @@
-package org.dsa.components;
+package org.dsa.UIPanels.components;
 
 import org.dsa.Main;
-import org.dsa.Constants.Styles;
+import org.dsa.Styles;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -27,10 +27,6 @@ public class LabeledInputField extends JPanel {
     public LabeledInputField(String txt, int colWidth, boolean isHorizontal) {
         final JLabel label = new JLabel(txt);
         final JTextField field = new JTextField(colWidth);
-
-        Styles.setStaticSize(field, Styles.LONG_CONTAINER);
-        Styles.setStaticSize(label, Styles.LONG_CONTAINER);
-        Styles.setStaticSize(this, Styles.SMALL_CONTAINER);
 
         if (Main.debugColors) setBorder(Styles.debugBorder0);
         if (Main.debugColors) field.setBorder(Styles.debugBorder1);

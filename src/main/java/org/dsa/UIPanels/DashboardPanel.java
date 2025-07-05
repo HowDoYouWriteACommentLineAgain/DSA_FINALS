@@ -1,31 +1,39 @@
 package org.dsa.UIPanels;
 
-import org.dsa.Constants.Styles;
+import org.dsa.Styles;
+import org.dsa.UIPanels.components.NavigationBar;
+import org.dsa.UIPanels.components.interfaces.ScreenNavigation;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 public class DashboardPanel extends JPanel{
     public DashboardPanel()
     {
-        super(new GridLayout());
-        JLabel title = new JLabel("Dashboard");
-        title.setFont(Styles.TITLE_FONT);
-        Styles.setStaticSize(title, Styles.LARGE_TEXT_DIM);
-        add(title);
+        super();
+        setStyles();
 
         final JTable table = getJTable();
-        table.setPreferredScrollableViewportSize(Styles.LARGE_CONTAINER);
+        table.setPreferredScrollableViewportSize(table.getPreferredSize());
         table.setFillsViewportHeight(true);
 
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
-
-        //Add the scroll pane to this panel.
+        //Add the scroll pane to this panel
         add(scrollPane);
+    }
+
+    private void setStyles()
+    {
+        setLayout(new GridLayout());
+        JLabel title = new JLabel("Dashboard");
+        title.setFont(Styles.TITLE_FONT);
+        add(title);
     }
 
     private static JTable getJTable() {
