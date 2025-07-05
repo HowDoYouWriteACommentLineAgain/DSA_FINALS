@@ -1,13 +1,11 @@
 package org.dsa.UIPanels;
 
-import org.dsa.Styles;
+import org.dsa.utils.FontsUtil;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 public class DashboardPanel extends JPanel{
@@ -30,7 +28,7 @@ public class DashboardPanel extends JPanel{
     {
         setLayout(new GridLayout());
         JLabel title = new JLabel("Dashboard");
-        title.setFont(Styles.TITLE_FONT);
+        title.setFont(FontsUtil.TITLE_FONT);
         add(title);
     }
 

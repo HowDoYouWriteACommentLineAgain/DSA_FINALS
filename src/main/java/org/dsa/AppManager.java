@@ -1,6 +1,7 @@
 package org.dsa;
 
 import org.dsa.UIPanels.components.NavigationBar;
+import org.dsa.UIPanels.components.interfaces.FrameController;
 import org.dsa.utils.Constants.Screens;
 import org.dsa.UIPanels.DashboardPanel;
 import org.dsa.UIPanels.LoginPanel;
@@ -18,18 +19,17 @@ import java.sql.Connection;
 
 public class AppManager {
     private final Connection conn = DatabaseConnectionManager.getConnection();
-    final MainFrame mf = new MainFrame("Aiuto: Financial Tracker");
-
 
     public void start()
     {
+        final MainFrame mf = new MainFrame("Aiuto: Financial Tracker");
+        new NavigationBar(mf);
+
         var loginPanel = new LoginPanel(mf);
         var dashboardPanel = new DashboardPanel();
         var transactionPanel = new SimpleDataPanel();
         var budgetPanel = new SimpleDataPanel();
         var goalsPanel = new SimpleDataPanel();
-
-//        var navigationBar = new NavigationBar(mf);
 
         mf.addScreen(Screens.LOGIN, loginPanel);
         mf.addScreen(Screens.DASHBOARD, dashboardPanel);

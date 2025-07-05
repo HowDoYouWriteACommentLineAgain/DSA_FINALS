@@ -1,17 +1,9 @@
-package org.dsa;
-
-import org.dsa.utils.FontUtil;
-import org.dsa.utils.UtilDebugBorder;
+package org.dsa.utils;
 
 import javax.swing.border.Border;
 import java.awt.Color;
-import java.awt.Font;
 
-public final class Styles {
-    public static final Font TITLE_FONT = FontUtil.getTitleFont();
-    public static final Font HEADER_FONT = FontUtil.getHeadingFont();
-    public static final Font FIELD_FONT = FontUtil.getFieldFont();
-    public static final Font TEXT_FONT = FontUtil.getBodyFont();
+public final class ColorUtil {
 
     public static final Color PRIMARY_COLOR = new Color(0xE81A1A);
     public static final Color SECONDARY_COLOR = new Color(0x1A73E8);
@@ -31,5 +23,5 @@ public final class Styles {
     public static final Border debugBorder2 = UtilDebugBorder.debugBorder(TERTIARY_COLOR);
 
 
-    private Styles(){};
+    private ColorUtil(){};
 }

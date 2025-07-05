@@ -1,8 +1,9 @@
 package org.dsa.UIPanels.components;
 
 import org.dsa.Main;
-import org.dsa.Styles;
-import org.dsa.utils.LayoutUtil;
+import org.dsa.utils.ColorUtil;
+import org.dsa.utils.FontsUtil;
+import org.dsa.utils.SizesUtil;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -30,12 +31,15 @@ public class LabeledInputField extends JPanel {
 
     private void setStyles()
     {
-        setPreferredSize(new Dimension(200, 50));
-        setMaximumSize(new Dimension(220, 50));
-        setMinimumSize(new Dimension(200, 50));
-        if (Main.debugColors) setBorder(Styles.debugBorder0);
-        if (Main.debugColors) field.setBorder(Styles.debugBorder1);
-        if (Main.debugColors) label.setBorder(Styles.debugBorder1);
+        label.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);
+        label.setMinimumSize(SizesUtil.DEFAULT_FIELD_SIZE);
+        field.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);
+        field.setMinimumSize(SizesUtil.DEFAULT_FIELD_SIZE);
+
+//        setMinimumSize(new Dimension(200, 80));
+        if (Main.debugColors) setBorder(ColorUtil.debugBorder0);
+        if (Main.debugColors) field.setBorder(ColorUtil.debugBorder1);
+        if (Main.debugColors) label.setBorder(ColorUtil.debugBorder1);
 
         setLayout(isHori ? horizontal : vertical);
 
@@ -46,8 +50,8 @@ public class LabeledInputField extends JPanel {
         if (isHori) add(rigidBox);
         add(field);
 
-        label.setFont(Styles.FIELD_FONT);
-        field.setFont(Styles.FIELD_FONT);
+        label.setFont(FontsUtil.FIELD_FONT);
+        field.setFont(FontsUtil.FIELD_FONT);
     }
 
 

@@ -13,6 +13,7 @@ public class NavigationBar extends JPanel {
 
     public NavigationBar(FrameController controller)
     {
+        controller.setNavbar(this);
         setLayout(new FlowLayout(FlowLayout.LEFT));
         int index = 0;
         for (String screenName : screens)

@@ -7,4 +7,5 @@ public interface FrameController {
     void authLogout();
     void showScreen(String name);
     void showNavigationBar();
+    void setNavbar(NavigationBar navbar);
 }

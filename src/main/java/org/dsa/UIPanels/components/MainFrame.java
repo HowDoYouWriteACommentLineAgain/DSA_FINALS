@@ -1,6 +1,7 @@
 package org.dsa.UIPanels.components;
 
 import org.dsa.UIPanels.components.interfaces.FrameController;
+import org.dsa.utils.SizesUtil;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,12 +14,9 @@ public class MainFrame extends JFrame implements FrameController
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel cardPanel = new JPanel(cardLayout);
     private boolean isLoggedIn = false;
-//    private final NavigationBar navbar = new NavigationBar(this);
-    private final NavigationBar navbar;
+    private NavigationBar navbar;
 
-    public MainFrame(String txt, NavigationBar navbar){
-        this.navbar = navbar;
-
+    public MainFrame(String txt){
         setupFrame(txt);
         getContentPane().setLayout(new BorderLayout());
         showNavigationBar();
@@ -29,11 +27,15 @@ public class MainFrame extends JFrame implements FrameController
     {
         setTitle(txt);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(900, 600));
-        setMinimumSize(new Dimension(700, 400));
+        setPreferredSize(SizesUtil.DEFAULT_WINDOW_SIZE);
+        setMinimumSize(SizesUtil.DEFAULT_WINDOW_SIZE);
         setLocationRelativeTo(null);
     }
 
+    public void setNavbar(NavigationBar navbar)
+    {
+        this.navbar = navbar;
+    }
     public void addScreen(String name, JPanel panel)
     {
         cardPanel.add(panel, name);
@@ -49,6 +51,9 @@ public class MainFrame extends JFrame implements FrameController
 
     public void showNavigationBar()
     {
+        if(navbar == null)
+            new NavigationBar(this);
+
         if (isLoggedIn)
         {
             getContentPane().add(navbar, BorderLayout.PAGE_START);

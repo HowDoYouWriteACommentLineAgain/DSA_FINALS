@@ -3,9 +3,10 @@ package org.dsa.UIPanels;
 import org.dsa.UIPanels.components.interfaces.FrameController;
 import org.dsa.utils.Constants.Screens;
 import org.dsa.Main;
-import org.dsa.Styles;
+import org.dsa.utils.ColorUtil;
 import org.dsa.UIPanels.components.LabeledInputField;
-import org.dsa.UIPanels.components.MainFrame;
+import org.dsa.utils.FontsUtil;
+import org.dsa.utils.SizesUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class LoginPanel extends JPanel
     LayoutManager gridBagLayout = new GridBagLayout();
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public LoginPanel(MainFrame mainFrame)
+    public LoginPanel(FrameController mainFrame)
     {
         setStyles();
         addY(title);
@@ -38,20 +39,27 @@ public class LoginPanel extends JPanel
         setLayout(gridBagLayout);
         setGBC();
         setAlignmentY(CENTER_ALIGNMENT);
-        title.setFont(Styles.TITLE_FONT);
+        title.setFont(FontsUtil.TITLE_FONT);
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        loginButton.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
+        loginButton.setMinimumSize(SizesUtil.DEFAULT_BUTTON_SIZE);
+        setMaximumSize(SizesUtil.DEFAULT_WINDOW_SIZE);
+        setMinimumSize(SizesUtil.DEFAULT_WINDOW_SIZE);
+//        usernameGroup.setPreferredSize(new Dimension(200, SizesUtil.HEADER_SIZE));
+//        passwordGroup.setPreferredSize(new Dimension(200, SizesUtil.HEADER_SIZE));
         if (Main.debugColors)
         {
-            setBorder(Styles.debugBorder0);
-            title.setBorder(Styles.debugBorder1);
-            usernameGroup.setBorder(Styles.debugBorder1);
-            passwordGroup.setBorder(Styles.debugBorder1);
-            loginButton.setBorder(Styles.debugBorder1);
+            setBorder(ColorUtil.debugBorder0);
+            title.setBorder(ColorUtil.debugBorder1);
+            usernameGroup.setBorder(ColorUtil.debugBorder1);
+            passwordGroup.setBorder(ColorUtil.debugBorder1);
+            loginButton.setBorder(ColorUtil.debugBorder1);
         }
     }
 
     public void setGBC(){
         gbc.insets = new Insets(10,10,10,10);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -68,7 +76,7 @@ public class LoginPanel extends JPanel
     public void addLastItem(Component comp)
     {
         gbc.fill = GridBagConstraints.NONE;
-        gbc.weightx = 0;
+        gbc.weightx = 0.3f;
         gbc.gridwidth = 1;
         add(comp, gbc);
     }
