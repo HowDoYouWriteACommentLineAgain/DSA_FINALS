@@ -1,7 +1,6 @@
 package org.dsa.dao;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public abstract class DAOAbstractClass {
     protected Connection conn;
@@ -19,8 +18,10 @@ public abstract class DAOAbstractClass {
     }
 
     public abstract Object getAll();
-    public abstract Object getByUser(int id);
-    public abstract Object getKeys();
+    public abstract Object getByUser(int userId);
+    public abstract Object getOneById(int id);
+    public abstract Object getColumns();
+    public abstract boolean delete(int id);
 //    public abstract boolean insert(Object object) throws SQLException;
 
 }

@@ -1,7 +1,4 @@
-package org.dsa.UIPanels.components;
-
-import org.dsa.interfaces.Service;
-import org.dsa.models.objects.Transaction;
+package org.dsa.UIPanels.TabularPanels;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -11,30 +8,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.MouseInputAdapter;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class SimpleDataPanel extends JPanel {
+public abstract class SimpleDataPanel extends JPanel {
     JTable table;
-    DefaultTableModel model;
     JPanel filterPanel;
     JDialog editPanel;
     JTextField[] fields;
-//    MainFrame mf;
-    public SimpleDataPanel() {
+    protected AbstractTableModel model;
 
+    public SimpleDataPanel(AbstractTableModel model) {
+        this.model = model;
 
         setLayout(new BorderLayout());
         setUpFilterPanel();
         setupTable();
         setupEditPanel();
-
-        generateEditFields(); // Initial generation
+        generateEditFields(model.getColumnCount()); // Initial generation
         setupSelectionListener();
     }
 
@@ -48,26 +41,7 @@ public class SimpleDataPanel extends JPanel {
 
     private void setupTable()
     {
-        model = new DefaultTableModel(12,0);
         table = new JTable(model);
-
-//        table.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e)
-//            {
-//                int row = table.rowAtPoint(e.getPoint());
-//                if (row >= 0)
-//                {
-//                    String[] data = new String[service.retrieveColNames().length];
-//
-//                    for (String col : data)
-//                    {
-//                        //haven't add the rest yet
-//                    }
-//                }
-//            }
-//        });
-
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
@@ -81,17 +55,16 @@ public class SimpleDataPanel extends JPanel {
 //        add(editPanel);
     }
 
-    private void generateEditFields() {
+    private void generateEditFields(int cols) {
         editPanel.removeAll();
-////        int cols = model.getColumnCount();
-//        fields = new JTextField[cols];
-//
-//        for (int i = 0; i < cols; i++) {
-//            editPanel.add(new JLabel(model.getColumnName(i)));
-//            JTextField field = new JTextField();
-//            fields[i] = field;
-//            editPanel.add(field);
-//        }
+        fields = new JTextField[cols];
+
+        for (int i = 0; i < cols; i++) {
+            editPanel.add(new JLabel(model.getColumnName(i)));
+            JTextField field = new JTextField();
+            fields[i] = field;
+            editPanel.add(field);
+        }
 
         revalidate();
         repaint();
