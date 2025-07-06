@@ -1,4 +1,4 @@
-package org.dsa.UIPanels.components.interfaces;
+package org.dsa.interfaces;
 
 import org.dsa.UIPanels.components.NavigationBar;
 

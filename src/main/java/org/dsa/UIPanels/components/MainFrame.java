@@ -1,13 +1,12 @@
 package org.dsa.UIPanels.components;
 
-import org.dsa.UIPanels.components.interfaces.FrameController;
+import org.dsa.interfaces.FrameController;
 import org.dsa.utils.SizesUtil;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Dimension;
 
 public class MainFrame extends JFrame implements FrameController
 {

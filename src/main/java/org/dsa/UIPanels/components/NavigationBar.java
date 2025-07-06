@@ -1,16 +1,18 @@
 package org.dsa.UIPanels.components;
 
-import org.dsa.UIPanels.components.interfaces.FrameController;
+import org.dsa.interfaces.FrameController;
 import org.dsa.utils.Constants.Screens;
+import org.dsa.utils.SizesUtil;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
 
 public class NavigationBar extends JPanel {
     String[] screens = Screens.getScreens();
     JButton[] buttons = new JButton[screens.length];
-
+    JLabel welcomeMessage = new JLabel("Welcome: User");
     public NavigationBar(FrameController controller)
     {
         controller.setNavbar(this);
@@ -19,6 +21,7 @@ public class NavigationBar extends JPanel {
         for (String screenName : screens)
         {
             JButton btn = new JButton(screenName);
+            btn.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
             buttons[index++] = btn;
             if(screenName.equals(Screens.LOGIN))
                 btn.addActionListener(e->controller.authLogout());
@@ -26,6 +29,8 @@ public class NavigationBar extends JPanel {
             btn.addActionListener(e -> controller.showScreen(screenName));
             add(btn);
         }
+        welcomeMessage.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);
+        add(welcomeMessage);
     }
 
     public void toggleBtnInvisible(String name)

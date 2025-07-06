@@ -1,62 +1,97 @@
 package org.dsa.UIPanels.components;
 
+import org.dsa.interfaces.Service;
+import org.dsa.models.objects.Transaction;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SimpleDataPanel extends JPanel {
     JTable table;
     DefaultTableModel model;
-    JPanel editPanel;
+    JPanel filterPanel;
+    JDialog editPanel;
     JTextField[] fields;
-
+//    MainFrame mf;
     public SimpleDataPanel() {
+
+
         setLayout(new BorderLayout());
-
-        // Filter panel (top)
-        JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        filterPanel.add(new JLabel("Filter:"));
-        filterPanel.add(new JTextField(30));
-        add(filterPanel, BorderLayout.NORTH);
-
-        // Table panel (center)
-        String[] columns = {"ID", "Name", "Email"};
-        Object[][] data = {
-                {1, "Alice", "alice@example.com"},
-                {2, "Bob", "bob@example.com"}
-        };
-
-        model = new DefaultTableModel(data, columns);
-        table = new JTable(model);
-        add(new JScrollPane(table), BorderLayout.CENTER);
-
-        // Edit panel (bottom)
-        editPanel = new JPanel();
-        editPanel.setLayout(new GridLayout(0, 2)); // 2 cols: label + input
-        add(editPanel, BorderLayout.SOUTH);
+        setUpFilterPanel();
+        setupTable();
+        setupEditPanel();
 
         generateEditFields(); // Initial generation
         setupSelectionListener();
     }
 
+    private void setUpFilterPanel()
+    {
+        filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        filterPanel.add(new JLabel("Filter:"));
+        filterPanel.add(new JTextField(30));
+        add(filterPanel, BorderLayout.NORTH);
+    }
+
+    private void setupTable()
+    {
+        model = new DefaultTableModel(12,0);
+        table = new JTable(model);
+
+//        table.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e)
+//            {
+//                int row = table.rowAtPoint(e.getPoint());
+//                if (row >= 0)
+//                {
+//                    String[] data = new String[service.retrieveColNames().length];
+//
+//                    for (String col : data)
+//                    {
+//                        //haven't add the rest yet
+//                    }
+//                }
+//            }
+//        });
+
+        add(new JScrollPane(table), BorderLayout.CENTER);
+    }
+
+    private void setupEditPanel()
+    {
+        JFrame frame = (JFrame)this.getTopLevelAncestor();
+        editPanel = new JDialog(frame, "Please Insert into Fields", true);
+        editPanel.setLocationRelativeTo(frame);
+        editPanel.setLayout(new GridLayout(0, 2)); // 2 cols: label + input
+        editPanel.setVisible(false);
+//        add(editPanel);
+    }
+
     private void generateEditFields() {
         editPanel.removeAll();
-        int cols = model.getColumnCount();
-        fields = new JTextField[cols];
-
-        for (int i = 0; i < cols; i++) {
-            editPanel.add(new JLabel(model.getColumnName(i)));
-            JTextField field = new JTextField();
-            fields[i] = field;
-            editPanel.add(field);
-        }
+////        int cols = model.getColumnCount();
+//        fields = new JTextField[cols];
+//
+//        for (int i = 0; i < cols; i++) {
+//            editPanel.add(new JLabel(model.getColumnName(i)));
+//            JTextField field = new JTextField();
+//            fields[i] = field;
+//            editPanel.add(field);
+//        }
 
         revalidate();
         repaint();

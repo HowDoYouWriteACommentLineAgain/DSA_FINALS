@@ -1,6 +1,6 @@
 package org.dsa.UIPanels;
 
-import org.dsa.UIPanels.components.interfaces.FrameController;
+import org.dsa.interfaces.FrameController;
 import org.dsa.utils.Constants.Screens;
 import org.dsa.Main;
 import org.dsa.utils.ColorUtil;
