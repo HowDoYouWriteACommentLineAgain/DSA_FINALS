@@ -1,6 +1,6 @@
 package org.dsa.UIPanels.components;
 
-import org.dsa.interfaces.FrameController;
+import org.dsa.AppManager;
 import org.dsa.utils.Constants.Screens;
 import org.dsa.utils.SizesUtil;
 
@@ -13,9 +13,8 @@ public class NavigationBar extends JPanel {
     String[] screens = Screens.getScreens();
     JButton[] buttons = new JButton[screens.length];
     JLabel welcomeMessage = new JLabel("Welcome: User");
-    public NavigationBar(FrameController controller)
+    public NavigationBar()
     {
-        controller.setNavbar(this);
         setLayout(new FlowLayout(FlowLayout.LEFT));
         int index = 0;
         for (String screenName : screens)
@@ -24,9 +23,9 @@ public class NavigationBar extends JPanel {
             btn.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
             buttons[index++] = btn;
             if(screenName.equals(Screens.LOGIN))
-                btn.addActionListener(e->controller.authLogout());
+                btn.addActionListener(e-> AppManager.getInstance().handleLogout());
 
-            btn.addActionListener(e -> controller.showScreen(screenName));
+            btn.addActionListener(e -> AppManager.getInstance().handleNavigation(screenName));
             add(btn);
         }
         welcomeMessage.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);

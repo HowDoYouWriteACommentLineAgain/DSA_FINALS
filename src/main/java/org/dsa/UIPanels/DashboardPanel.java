@@ -1,54 +1,49 @@
 package org.dsa.UIPanels;
 
+import org.dsa.Session;
+import org.dsa.models.tableModels.TransactionTableModel;
+import org.dsa.services.TransactionService;
+import org.dsa.utils.DatabaseConnectionManager;
 import org.dsa.utils.FontsUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 public class DashboardPanel extends JPanel{
+
+    private final TransactionService service = new TransactionService(DatabaseConnectionManager.getConnection());
+    private final TransactionTableModel model = new TransactionTableModel(service.getAllByUser(Session.getCurrentUserId()));
     public DashboardPanel()
     {
         super();
         setStyles();
-
-        final JTable table = getJTable();
-        table.setPreferredScrollableViewportSize(table.getPreferredSize());
-        table.setFillsViewportHeight(true);
-
-        //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(table);
-        //Add the scroll pane to this panel
-        add(scrollPane);
+        setupTables();
+        setupTables();
+        load();
     }
 
     private void setStyles()
     {
-        setLayout(new GridLayout());
+        setLayout(new GridLayout(2,4,10,10));
         JLabel title = new JLabel("Dashboard");
         title.setFont(FontsUtil.TITLE_FONT);
         add(title);
     }
 
-    private static JTable getJTable() {
-        String[] columnNames = {
-                "First Name",
-                "Last Name",
-                "Sport",
-                "# of Years",
-                "Vegetarian"
-        };
+    private void setupTables() {
+        JTable table = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(table);
 
-        Object[][] data = {
-                {"Kathy", "Smith", "Snowboarding", 5, false},
-                {"John", "Doe","Rowing", 3, true},
-                {"Sue", "Black", "Knitting", 2, false},
-                {"Jane", "White", "Speed reading", 20, true},
-                {"Joe", "Brown", "Pool", 10, false}
-        };
-
-        return new JTable(data, columnNames);
+        table.setPreferredScrollableViewportSize(table.getPreferredSize());
+        table.setFillsViewportHeight(true);
+        add(scrollPane, BorderLayout.CENTER);
     }
+
+    private void load() {service.getAllByUser(Session.getCurrentUserId());}
+
+    public void refresh(){load();}
 }

@@ -1,8 +1,11 @@
 package org.dsa.models.objects;
 
+import org.dsa.abstractions.objectModel;
+
+import java.sql.Date;
 import java.time.LocalDate;
 
-public class Transaction {
+public class Transaction implements objectModel {
     private int id;
     private String name;
     private int UserId;
@@ -10,16 +13,15 @@ public class Transaction {
     private int refId;
     private double amount;
     private String note;
-    private LocalDate t_date;
+    private Date t_date;
 
     public Transaction(){}
 
     public boolean validate()
     {
-        if (t_type == null || (!t_type.equals("income") && !t_type.equals("expense"))) return false;
+        if (t_type == null || (!t_type.equalsIgnoreCase("income") && !t_type.equalsIgnoreCase("expense"))) return false;
         if (amount <= 0) return false;
-        if (t_date == null) return false;
-        return true;
+        return t_date != null;
     }
 
     public int getId() {
@@ -70,11 +72,11 @@ public class Transaction {
         this.note = note;
     }
 
-    public LocalDate getT_date() {
+    public Date getT_date() {
         return t_date;
     }
 
-    public void setT_date(LocalDate t_date) {
+    public void setT_date(Date t_date) {
         this.t_date = t_date;
     }
 

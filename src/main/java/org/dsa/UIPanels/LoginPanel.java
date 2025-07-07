@@ -1,7 +1,5 @@
 package org.dsa.UIPanels;
 
-import org.dsa.interfaces.FrameController;
-import org.dsa.utils.Constants.Screens;
 import org.dsa.Main;
 import org.dsa.utils.ColorUtil;
 import org.dsa.UIPanels.components.LabeledInputField;
@@ -20,7 +18,7 @@ public class LoginPanel extends JPanel
     LayoutManager gridBagLayout = new GridBagLayout();
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public LoginPanel(FrameController mainFrame)
+    public LoginPanel()
     {
         setStyles();
         addY(title);
@@ -30,8 +28,6 @@ public class LoginPanel extends JPanel
         addY(passwordGroup);
         addY(Box.createVerticalStrut(4));
         addLastItem(loginButton);
-
-        handleNavigation(mainFrame);
         setVisible(true);
     }
 
@@ -79,15 +75,6 @@ public class LoginPanel extends JPanel
         gbc.weightx = 0.3f;
         gbc.gridwidth = 1;
         add(comp, gbc);
-    }
-
-    public void handleNavigation(FrameController authenticator)
-    {
-        loginButton.addActionListener(e->{
-            authenticator.authLogin();
-            authenticator.showScreen(Screens.DASHBOARD);
-            authenticator.showNavigationBar();
-        });
     }
 
 }

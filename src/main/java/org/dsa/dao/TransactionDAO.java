@@ -1,5 +1,6 @@
 package org.dsa.dao;
 
+import org.dsa.abstractions.GenericDAO;
 import org.dsa.models.objects.Transaction;
 
 import java.sql.Connection;
@@ -10,35 +11,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TransactionDAO extends DAOAbstractClass{
+public class TransactionDAO extends GenericDAO<Transaction> {
     public TransactionDAO(Connection conn)
     {
         super(conn);
     }
 
-    public boolean insert(Transaction transaction) throws SQLException
-    {
-        String sql = "INSERT INTO transactions (userId, t_type, refId, amount, note, t_date, name) values (?,?,?,?,?,?,?);";
-
-        try (PreparedStatement ps = conn.prepareStatement(sql))
-        {
-            ps.setInt(1, transaction.getUserId());
-            ps.setString(2, transaction.getT_type());
-            ps.setInt(3, transaction.getRefId());
-            ps.setDouble(4, transaction.getAmount());
-            ps.setString(5, transaction.getNote());
-            ps.setDate(6, Date.valueOf(transaction.getT_date()));
-            ps.setString(7, transaction.getName());
-
-            return ps.executeUpdate() == 1;
-
-        } catch (SQLException e) {
-            throw new SQLException(e);
-        }
-    }
-
     @Override
-    public ArrayList<Transaction> getAll()
+    public ArrayList<Transaction> getAll() throws SQLException
     {
         String sql = "SELECT * FROM transactions";
 
@@ -56,17 +36,17 @@ public class TransactionDAO extends DAOAbstractClass{
                 t.setT_type(rs.getString("t_type"));
                 t.setAmount(rs.getDouble("amount"));
                 t.setNote(rs.getString("note"));
-                t.setT_date(rs.getDate("t_date").toLocalDate());
+                t.setT_date(rs.getDate("t_date"));
                 transactions.add(t);
             }
             return transactions;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
     }
 
     @Override
-    public ArrayList<Transaction> getByUser(int userId) {
+    public ArrayList<Transaction> getByUser(int userId) throws SQLException{
         String sql = "SELECT * FROM transactions WHERE userId = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(sql))
@@ -85,7 +65,7 @@ public class TransactionDAO extends DAOAbstractClass{
                 t.setT_type(rs.getString("t_type"));
                 t.setAmount(rs.getDouble("amount"));
                 t.setNote(rs.getString("note"));
-                t.setT_date(rs.getDate("t_date").toLocalDate());
+                t.setT_date(rs.getDate("t_date"));
                 transactions.add(t);
             }
             return transactions;
@@ -95,7 +75,7 @@ public class TransactionDAO extends DAOAbstractClass{
     }
 
     @Override
-    public Transaction getOneById(int id)
+    public Transaction getOneById(int id) throws SQLException
     {
         String sql = "SELECT * FROM transactions WHERE id = ?";
 
@@ -114,14 +94,14 @@ public class TransactionDAO extends DAOAbstractClass{
                 transaction.setT_type(rs.getString("t_type"));
                 transaction.setAmount(rs.getDouble("amount"));
                 transaction.setNote(rs.getString("note"));
-                transaction.setT_date(rs.getDate("t_date").toLocalDate());
+                transaction.setT_date(rs.getDate("t_date"));
 
                 return transaction;
             } else {
                 return null;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error fetching by id" + e.getMessage(), e);
         }
     }
 
@@ -148,16 +128,55 @@ public class TransactionDAO extends DAOAbstractClass{
     }
 
     @Override
-    public boolean delete(int id)
+    public boolean updateById(int id, Transaction transaction) throws SQLException {
+        String sql = "UPDATE transactions SET t_type = ?, refId = ?, amount = ?, note = ?, t_date = ?, name = ? WHERE id = ?";
+        try(PreparedStatement ps = conn.prepareStatement(sql))
+        {
+            ps.setString(1, transaction.getT_type());
+            ps.setInt(2, transaction.getRefId());
+            ps.setDouble(3, transaction.getAmount());
+            ps.setString(4, transaction.getNote());
+            ps.setDate(5, transaction.getT_date());
+            ps.setString(6, transaction.getName());
+            ps.setInt(7, id);
+
+            return ps.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new SQLException("Error Updating Transaction" + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void delete(int id) throws SQLException
     {
         String sql = "DELETE FROM transactions WHERE id = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1,id);
 
-            return ps.executeUpdate() == 1;
+            ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new SQLException("Error Deleting Transaction", e);
+        }
+    }
+
+    @Override
+    public void insert(Transaction transaction) throws SQLException {
+        String sql = "INSERT INTO transactions (userId, t_type, refId, amount, note, t_date, name) values (?,?,?,?,?,?,?);";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql))
+        {
+            ps.setInt(1, transaction.getUserId());
+            ps.setString(2, transaction.getT_type());
+            ps.setInt(3, transaction.getRefId());
+            ps.setDouble(4, transaction.getAmount());
+            ps.setString(5, transaction.getNote());
+            ps.setDate(6, transaction.getT_date());
+            ps.setString(7, transaction.getName());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error inserting transaction", e);
         }
     }
 

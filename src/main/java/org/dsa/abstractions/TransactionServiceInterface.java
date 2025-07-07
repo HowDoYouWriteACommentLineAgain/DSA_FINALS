@@ -1,4 +1,4 @@
-package org.dsa.interfaces;
+package org.dsa.abstractions;
 
 import org.dsa.models.objects.Transaction;
 

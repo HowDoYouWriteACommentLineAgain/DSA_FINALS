@@ -1,14 +1,27 @@
 package org.dsa.models.objects;
 
+import org.dsa.abstractions.objectModel;
+
 public class User {
     private int id;
     private String username;
     private String passwordHash;
-    private String email;
     private boolean isLoggedIn;
+
+    public User()
+    {
+        this.id = 1;
+        this.username = "test";
+        this.passwordHash = "ing";
+        this.isLoggedIn = true;
+    }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -27,14 +40,6 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public boolean isLoggedIn() {
         return isLoggedIn;
     }
@@ -42,5 +47,6 @@ public class User {
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
     }
+
 }
 

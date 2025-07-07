@@ -1,10 +1,8 @@
-package org.dsa.interfaces;
+package org.dsa.abstractions;
 
 import org.dsa.UIPanels.components.NavigationBar;
 
-public interface FrameController {
-    void authLogin();
-    void authLogout();
+public interface FrameNavigator {
     void showScreen(String name);
     void showNavigationBar();
     void setNavbar(NavigationBar navbar);

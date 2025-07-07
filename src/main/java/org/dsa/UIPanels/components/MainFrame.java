@@ -1,6 +1,6 @@
 package org.dsa.UIPanels.components;
 
-import org.dsa.interfaces.FrameController;
+import org.dsa.AppManager;
 import org.dsa.utils.SizesUtil;
 
 import javax.swing.JFrame;
@@ -8,17 +8,15 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
-public class MainFrame extends JFrame implements FrameController
+public class MainFrame extends JFrame
 {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel cardPanel = new JPanel(cardLayout);
-    private boolean isLoggedIn = false;
     private NavigationBar navbar;
 
     public MainFrame(String txt){
         setupFrame(txt);
         getContentPane().setLayout(new BorderLayout());
-        showNavigationBar();
         getContentPane().add(cardPanel);
     }
 
@@ -31,10 +29,6 @@ public class MainFrame extends JFrame implements FrameController
         setLocationRelativeTo(null);
     }
 
-    public void setNavbar(NavigationBar navbar)
-    {
-        this.navbar = navbar;
-    }
     public void addScreen(String name, JPanel panel)
     {
         cardPanel.add(panel, name);
@@ -48,35 +42,18 @@ public class MainFrame extends JFrame implements FrameController
         setVisible(true);
     }
 
-    public void showNavigationBar()
+    public void addNavbar(NavigationBar navbar)
     {
-        if(navbar == null)
-            new NavigationBar(this);
-
-        if (isLoggedIn)
-        {
-            getContentPane().add(navbar, BorderLayout.PAGE_START);
-        }
+        this.navbar = navbar;
+        getContentPane().add(navbar, BorderLayout.PAGE_START);
     }
 
-    public boolean getLoginStatus()
+    public void updateUI()
     {
-        return isLoggedIn;
+        removeNavbar();
     }
 
-    public void authLogin()
-    {
-        // add code authentication later
-        isLoggedIn = true;
-    }
-    public void authLogout()
-    {
-        // add code logout later
-        isLoggedIn = false;
-        updateUIOnAuthChange();
-    }
-
-    private void updateUIOnAuthChange()
+    public void removeNavbar()
     {
         getContentPane().remove(navbar);
     }
