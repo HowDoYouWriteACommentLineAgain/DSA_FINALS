@@ -1,5 +1,6 @@
 package org.dsa.UIPanels.TabularPanels;
 
+import org.dsa.abstractions.AbstractTablePanel;
 import org.dsa.models.objects.Transaction;
 import org.dsa.models.tableModels.TransactionTableModel;
 import org.dsa.Session;
@@ -10,60 +11,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class TransactionUI extends JPanel {
-    private JTable table;
-    private final TransactionTableModel model;
+public class TransactionUI extends AbstractTablePanel<Transaction> {
     private final TransactionService service;
 
     public TransactionUI(TransactionService service) {
+        super(new TransactionTableModel(service.getAllByUser(Session.getCurrentUserId())));
+
+        System.out.println("User ID in TransactionUI constructor: " + Session.getCurrentUserId());
+        if (service == null)
+            throw new IllegalArgumentException("TransactionService cannot be null in TransactionUI");
+
+
         this.service = service;
-        this.model = new TransactionTableModel(new ArrayList<>());
-
-        setLayout(new BorderLayout());
-        setupTable();
-        setupControls();
-        loadData();
     }
 
-    private void setupTable() {
-        table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane, BorderLayout.CENTER);
-    }
-
-    private void setupControls() {
-        JButton refreshButton = new JButton("Refresh");
-        refreshButton.addActionListener(e -> loadData());
-
-        JButton addButton = new JButton("Add");
-        addButton.addActionListener(e -> openEditDialog(null));
-
-        JButton deleteButton = new JButton("Delete");
-        deleteButton.addActionListener(e -> promptDelete(getSelectedRowObject()));
-
-        JButton editButton = new JButton("Edit");
-        editButton.addActionListener(e -> openEditDialog(getSelectedRowObject()));
-
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.add(refreshButton);
-        buttonPanel.add(addButton);
-        buttonPanel.add(editButton);
-        buttonPanel.add(deleteButton);
-        add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    private void promptDelete(Transaction tx) {
+    @Override
+    public void delete() {
+        Transaction tx = getSelectedRowObject();
         if(tx != null)
             if (JOptionPane.showConfirmDialog(this, "Delete \""+tx.getName()+"\" permanently?", "Confirm deletion",JOptionPane.YES_NO_OPTION) == 0)
                 service.delete(tx.getId());
         loadData();
     }
-
     public void refresh() {loadData();}
 
-
-
-    private void openEditDialog(Transaction tx) {
+    @Override
+    public void edit() {
+        Transaction tx = getSelectedRowObject();
         boolean isNew = (tx == null);
         JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), isNew ? "Add Transaction" : "Edit Transaction", true);
         dialog.setLayout(new GridLayout(0, 2));
@@ -134,7 +108,15 @@ public class TransactionUI extends JPanel {
         dialog.setVisible(true);
     }
 
-    private void loadData() {
+    @Override
+    public void loadData() {
+        System.out.println("loadData called, service = " + service);
+
+        if (service == null) {
+            System.err.println("TransactionService is null during loadData()");
+            return;
+        }
+
         ArrayList<Transaction> data = service.getAllByUser(Session.getCurrentUserId());
         model.setData(data);
         revalidate();
@@ -181,18 +163,5 @@ public class TransactionUI extends JPanel {
         }
 
         return valid;
-    }
-
-    private Transaction getSelectedRowObject()
-    {
-        int row = table.getSelectedRow();
-        if (row>= 0)
-        {
-            return model.getAt(row);
-
-        }else{
-            JOptionPane.showMessageDialog(this, "Please select a row first");
-            return null;
-        }
     }
 }

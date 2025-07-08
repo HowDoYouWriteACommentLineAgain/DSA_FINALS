@@ -1,54 +1,22 @@
 package org.dsa.models.tableModels;
 
+import org.dsa.abstractions.GenericTableModel;
 import org.dsa.models.objects.Transaction;
-
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-public class TransactionTableModel extends AbstractTableModel {
-    private final String[] columns = {"date", "name", "type", "amount","note"};
-    private final ArrayList<Transaction> transactions;
+public class TransactionTableModel extends GenericTableModel<Transaction> {
 
 
     public TransactionTableModel(ArrayList<Transaction> transactions)
     {
-        this.transactions = transactions;
-        new DefaultTableModel();
+        super(transactions);
+        String[] columns = {"date", "name", "type", "amount", "note"};
+        super.setColumns(columns);
     }
-
-    public void setData(ArrayList<Transaction> data)
-    {
-        this.transactions.clear();
-        this.transactions.addAll(data);
-        fireTableDataChanged();
-    }
-
-    @Override
-    public int getRowCount() {
-        return transactions.size();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return columns.length;
-    }
-
-    @Override
-    public String getColumnName(int column)
-    {
-        return this.columns[column];
-    }
-
-    public Transaction getAt(int rowIndex)
-    {
-        return transactions.get(rowIndex);
-    }
-
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Transaction t = transactions.get(rowIndex);
+        Transaction t = super.objList.get(rowIndex);
         return switch (columnIndex)
         {
             case 0 -> t.getT_date();

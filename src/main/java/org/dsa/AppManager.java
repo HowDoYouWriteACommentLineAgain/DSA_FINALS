@@ -1,175 +1,174 @@
-    package org.dsa;
-    
-    import org.dsa.UIPanels.LoginPanel;
-    import org.dsa.UIPanels.TabularPanels.TransactionUI;
-    import org.dsa.UIPanels.components.NavigationBar;
-    import org.dsa.models.objects.User;
-    import org.dsa.services.TransactionService;
-    import org.dsa.utils.Constants.Screens;
-    import org.dsa.UIPanels.DashboardPanel;
-    import org.dsa.UIPanels.components.MainFrame;
-    import org.dsa.utils.DatabaseConnectionManager;
+        package org.dsa;
 
-    import javax.swing.JOptionPane;
-    import java.sql.Connection;
-    
-    /*TODOS:
-    * Add more panels
-    *
-    *
-    * */
-    
-    public class AppManager {
+        import org.dsa.UIPanels.LoginPanel;
+        import org.dsa.UIPanels.TabularPanels.TransactionUI;
+        import org.dsa.UIPanels.components.NavigationBar;
+        import org.dsa.models.objects.User;
+        import org.dsa.services.TransactionService;
+        import org.dsa.utils.Constants.Screens;
+        import org.dsa.UIPanels.DashboardPanel;
+        import org.dsa.UIPanels.components.MainFrame;
+        import org.dsa.utils.DatabaseConnectionManager;
 
-        private final Connection conn;
-        private final TransactionService txSer;
-        private final MainFrame mainFrame;
-        private final NavigationBar navbar;
+        import javax.swing.JOptionPane;
+        import java.sql.Connection;
 
-        private LoginPanel loginPanel;
-        private TransactionUI transactionUI;
-        private DashboardPanel dashboardPanel;
+        /*TODOS:
+        * Add more panels
+        *
+        *
+        * */
 
-        private static AppManager instance;
-        public static AppManager getInstance()
-        {
-            if (instance == null) instance = new AppManager();
-            return instance;
-        }
+        public class AppManager {
 
-        private AppManager(){
-            conn = DatabaseConnectionManager.getConnection();
-            txSer = new TransactionService(conn);
+            private final Connection conn;
+            private final TransactionService txSer;
+            private final MainFrame mainFrame;
+            private final NavigationBar navbar;
 
-            mainFrame = new MainFrame("Financial Assistant");
-            navbar = new NavigationBar();
+            private LoginPanel loginPanel;
+            private TransactionUI transactionUI;
+            private DashboardPanel dashboardPanel;
 
-
-        }
-
-        public void start(){
-
-            if(!Session.isLoggedIn()) Session.setCurrentUser(new User());//test because I have removed login in
-
-            //go to login if session is blank
-
-            if(Session.isLoggedIn())
+            private static final AppManager instance = new AppManager();
+            public static AppManager getInstance()
             {
-                buildAfterSessionConnection();
+                return instance;
             }
 
-            mainFrame.showScreen(Screens.DASHBOARD);
-            refreshAll();
-            mainFrame.pack();
-            mainFrame.setVisible(true);
-        }
+            private AppManager(){
+                conn = DatabaseConnectionManager.getConnection();
+                txSer = new TransactionService(conn);
 
-        private void buildAfterSessionConnection()
-        {
-            transactionUI = new TransactionUI(txSer);
-            dashboardPanel = new DashboardPanel();
+                mainFrame = new MainFrame("Financial Assistant");
+                navbar = new NavigationBar();
+            }
 
-            mainFrame.addNavbar(navbar);
-            mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
-            mainFrame.addScreen(Screens.TRANSACTION, transactionUI);
-            refreshAll();
-        }
+            public void start(){
 
-        public void handleLogin()
-        {
-            mainFrame.removeNavbar();
-            mainFrame.addNavbar(navbar);
-            mainFrame.showScreen(Screens.DASHBOARD);
-            refreshAll();
-        }
+                if(!Session.isLoggedIn()) Session.setCurrentUser(new User());//test because I have removed login in
 
-        public void handleLogout()
-        {
-            if(loginPanel != null)
+                //go to login if session is blank
+
+                if(Session.isLoggedIn())
+                {
+                    buildAfterSessionConnection();
+                }
+
+                mainFrame.showScreen(Screens.DASHBOARD);
+                mainFrame.pack();
+                mainFrame.setVisible(true);
+            }
+
+            private void buildAfterSessionConnection()
             {
-                mainFrame.removeNavbar();
-                mainFrame.showScreen(Screens.LOGIN);
+                transactionUI = new TransactionUI(txSer);
+                dashboardPanel = new DashboardPanel(txSer);
+
+                mainFrame.addNavbar(navbar);
+                mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
+                mainFrame.addScreen(Screens.TRANSACTION, transactionUI);
                 refreshAll();
             }
-        }
 
-        private void shutdown()
-        {
-            int i = JOptionPane.showConfirmDialog(mainFrame,"Confirm Exit", "Exit", JOptionPane.YES_NO_OPTION);
-            if(i == 0)
-                System.exit(0);
-        }
-
-        public void handleNavigation(String screenName)
-        {
-            if(!Session.isLoggedIn())
+            public void handleLogin()
             {
-                mainFrame.updateUI();
-                return;
+                mainFrame.removeNavbar();
+                mainFrame.addNavbar(navbar);
+                mainFrame.showScreen(Screens.DASHBOARD);
+                refreshAll();
             }
 
-            mainFrame.showScreen(screenName);
+            public void handleLogout()
+            {
+                if(loginPanel != null)
+                {
+                    mainFrame.removeNavbar();
+                    mainFrame.showScreen(Screens.LOGIN);
+                    refreshAll();
+                }
+            }
+
+            private void shutdown()
+            {
+                int i = JOptionPane.showConfirmDialog(mainFrame,"Confirm Exit", "Exit", JOptionPane.YES_NO_OPTION);
+                if(i == 0)
+                {
+                    System.exit(0);
+                }
+
+            }
+
+            public void handleNavigation(String screenName)
+            {
+                if(!Session.isLoggedIn())
+                {
+                    mainFrame.updateUI();
+                    return;
+                }
+                refreshAll();
+                mainFrame.showScreen(screenName);
+            }
+
+            private void refreshAll()
+            {
+                dashboardPanel.refresh();
+                transactionUI.refresh();;
+            }
         }
+    /*
+    *
+            private static AppManager instance;
+            public static AppManager getInstance()
+            {
+                if (instance == null) instance = new AppManager();
+                return instance;
+            }
 
-        private void refreshAll()
-        {
-            dashboardPanel.refresh();
-            transactionUI.refresh();;
-        }
-    }
-/*
-*
-        private static AppManager instance;
-        public static AppManager getInstance()
-        {
-            if (instance == null) instance = new AppManager();
-            return instance;
-        }
+            private final Connection conn = DatabaseConnectionManager.getConnection();
+            private final TransactionService transactionService = new TransactionService(conn);
+            final MainFrame mf = new MainFrame("Financial Tracker");
 
-        private final Connection conn = DatabaseConnectionManager.getConnection();
-        private final TransactionService transactionService = new TransactionService(conn);
-        final MainFrame mf = new MainFrame("Financial Tracker");
+            public void start()
+            {
 
-        public void start()
-        {
+                if(!Session.isLoggedIn())
+                    Session.setCurrentUser(new User());
 
-            if(!Session.isLoggedIn())
-                Session.setCurrentUser(new User());
+    //            var loginPanel = new LoginPanel(mf, this);
+    //            mf.addScreen(Screens.LOGIN, loginPanel);
+    //            mf.showScreen(Screens.LOGIN);
 
-//            var loginPanel = new LoginPanel(mf, this);
-//            mf.addScreen(Screens.LOGIN, loginPanel);
-//            mf.showScreen(Screens.LOGIN);
+                mf.showNavigationBar();
+                buildAfterLogin();
+                mf.pack();
+                mf.setVisible(true);
+            }
 
-            mf.showNavigationBar();
-            buildAfterLogin();
-            mf.pack();
-            mf.setVisible(true);
-        }
+            public void buildAfterLogin(){
 
-        public void buildAfterLogin(){
-
-            var dashboardPanel = new DashboardPanel();
-            var transactionPanel = new TransactionUI(transactionService);
-            //        var incomePanel = new SimpleDataPanel();
-            //        var expensePanel = new SimpleDataPanel();
-            //        var budgetPanel = new SimpleDataPanel();
-            //        var goalsPanel = new SimpleDataPanel();
+                var dashboardPanel = new DashboardPanel();
+                var transactionPanel = new TransactionUI(transactionService);
+                //        var incomePanel = new SimpleDataPanel();
+                //        var expensePanel = new SimpleDataPanel();
+                //        var budgetPanel = new SimpleDataPanel();
+                //        var goalsPanel = new SimpleDataPanel();
 
 
 
 
-            mf.addScreen(Screens.DASHBOARD, dashboardPanel);
-            mf.addScreen(Screens.TRANSACTION, transactionPanel);
-            //        mf.addScreen(Screens.INCOME, incomePanel);
-            //        mf.addScreen(Screens.EXPENSE,expensePanel);
-            //        mf.addScreen(Screens.BUDGET, budgetPanel);
-            //        mf.addScreen(Screens.GOALS, goalsPanel);
+                mf.addScreen(Screens.DASHBOARD, dashboardPanel);
+                mf.addScreen(Screens.TRANSACTION, transactionPanel);
+                //        mf.addScreen(Screens.INCOME, incomePanel);
+                //        mf.addScreen(Screens.EXPENSE,expensePanel);
+                //        mf.addScreen(Screens.BUDGET, budgetPanel);
+                //        mf.addScreen(Screens.GOALS, goalsPanel);
 
-        }
+            }
 
-        public void handleLogout()
-        {
+            public void handleLogout()
+            {
 
-        }
-*
-* */
+            }
+    *
+    * */
