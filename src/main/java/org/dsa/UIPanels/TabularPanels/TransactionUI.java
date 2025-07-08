@@ -38,7 +38,16 @@ public class TransactionUI extends AbstractTablePanel<Transaction> {
     @Override
     public void edit() {
         Transaction tx = getSelectedRowObject();
-        boolean isNew = (tx == null);
+        if (tx != null)
+            showDialog(tx, false);
+    }
+
+    public void add() {
+        showDialog(new Transaction(), true);
+    }
+
+    @Override
+    public void showDialog(Transaction tx, boolean isNew){
         JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), isNew ? "Add Transaction" : "Edit Transaction", true);
         dialog.setLayout(new GridLayout(0, 2));
 
@@ -48,17 +57,11 @@ public class TransactionUI extends AbstractTablePanel<Transaction> {
         JTextField amountField = new JTextField(isNew ? "" : String.valueOf(tx.getAmount()));
         JTextField noteField = new JTextField(isNew ? "" : tx.getNote());
 
-
-        dialog.add(new JLabel("Date:(YYYY-MM-DD)"));
-        dialog.add(dateField);
-        dialog.add(new JLabel("Name:"));
-        dialog.add(nameField);
-        dialog.add(new JLabel("Amount:"));
-        dialog.add(amountField);
-        dialog.add(new JLabel("Type:"));
-        dialog.add(typeField);
-        dialog.add(new JLabel("Note:"));
-        dialog.add(noteField);
+        dialog.add(new JLabel("Date:(YYYY-MM-DD)")); dialog.add(dateField);
+        dialog.add(new JLabel("Name:")); dialog.add(nameField);
+        dialog.add(new JLabel("Amount:")); dialog.add(amountField);
+        dialog.add(new JLabel("Type:")); dialog.add(typeField);
+        dialog.add(new JLabel("Note:")); dialog.add(noteField);
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
@@ -107,6 +110,7 @@ public class TransactionUI extends AbstractTablePanel<Transaction> {
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }
+
 
     @Override
     public void loadData() {
