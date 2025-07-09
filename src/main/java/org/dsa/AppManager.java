@@ -86,6 +86,8 @@
                     mainFrame.removeNavbar();
                     mainFrame.showScreen(Screens.LOGIN);
                     refreshAll();
+                }else{
+                    shutdown();
                 }
             }
 
