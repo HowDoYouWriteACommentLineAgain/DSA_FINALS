@@ -48,13 +48,4 @@ public class MainFrame extends JFrame
         getContentPane().add(navbar, BorderLayout.PAGE_START);
     }
 
-    public void updateUI()
-    {
-        removeNavbar();
-    }
-
-    public void removeNavbar()
-    {
-        getContentPane().remove(navbar);
-    }
 }

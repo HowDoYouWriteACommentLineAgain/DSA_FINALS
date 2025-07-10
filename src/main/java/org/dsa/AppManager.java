@@ -1,10 +1,10 @@
         package org.dsa;
 
-        import org.dsa.UIPanels.LoginPanel;
-        import org.dsa.UIPanels.TabularPanels.TransactionUI;
+        import org.dsa.UIPanels.TabularPanels.IncomeTablePanel;
         import org.dsa.UIPanels.components.NavigationBar;
-        import org.dsa.models.objects.User;
-        import org.dsa.services.TransactionService;
+        import org.dsa.abstractions.GenericService;
+        import org.dsa.dao.IncomeDAO;
+        import org.dsa.models.objects.Income;
         import org.dsa.utils.Constants.Screens;
         import org.dsa.UIPanels.DashboardPanel;
         import org.dsa.UIPanels.components.MainFrame;
@@ -22,13 +22,16 @@
         public class AppManager {
 
             private final Connection conn;
-            private final TransactionService txSer;
+
             private final MainFrame mainFrame;
             private final NavigationBar navbar;
 
-            private LoginPanel loginPanel;
-            private TransactionUI transactionUI;
             private DashboardPanel dashboardPanel;
+
+            private final GenericService<Income, IncomeDAO> inSer;
+            private IncomeTablePanel incomeUIPanel;
+
+//            private final GenericService
 
             private static final AppManager instance = new AppManager();
             public static AppManager getInstance()
@@ -38,57 +41,39 @@
 
             private AppManager(){
                 conn = DatabaseConnectionManager.getConnection();
-                txSer = new TransactionService(conn);
+                inSer = new GenericService<>(new IncomeDAO(conn));
 
+//                loginPanel = new LoginPanel();
                 mainFrame = new MainFrame("Financial Assistant");
                 navbar = new NavigationBar();
             }
 
             public void start(){
 
-                if(!Session.isLoggedIn()) Session.setCurrentUser(new User());//test because I have removed login in
-
-                //go to login if session is blank
-
-                if(Session.isLoggedIn())
-                {
-                    buildAfterSessionConnection();
-                }
+                build();
 
                 mainFrame.showScreen(Screens.DASHBOARD);
                 mainFrame.pack();
                 mainFrame.setVisible(true);
+
+                System.out.print(inSer.getAll());
+                incomeUIPanel.refresh();
             }
 
-            private void buildAfterSessionConnection()
+            private void build()
             {
-                transactionUI = new TransactionUI(txSer);
-                dashboardPanel = new DashboardPanel(txSer);
+                incomeUIPanel = new IncomeTablePanel(inSer);
+                dashboardPanel = new DashboardPanel(inSer);
 
                 mainFrame.addNavbar(navbar);
                 mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
-                mainFrame.addScreen(Screens.TRANSACTION, transactionUI);
-                refreshAll();
-            }
-
-            public void handleLogin()
-            {
-                mainFrame.removeNavbar();
-                mainFrame.addNavbar(navbar);
-                mainFrame.showScreen(Screens.DASHBOARD);
+                mainFrame.addScreen(Screens.INCOME, incomeUIPanel);
                 refreshAll();
             }
 
             public void handleLogout()
             {
-                if(loginPanel != null)
-                {
-                    mainFrame.removeNavbar();
-                    mainFrame.showScreen(Screens.LOGIN);
-                    refreshAll();
-                }else{
-                    shutdown();
-                }
+                shutdown();
             }
 
             private void shutdown()
@@ -98,16 +83,10 @@
                 {
                     System.exit(0);
                 }
-
             }
 
             public void handleNavigation(String screenName)
             {
-                if(!Session.isLoggedIn())
-                {
-                    mainFrame.updateUI();
-                    return;
-                }
                 refreshAll();
                 mainFrame.showScreen(screenName);
             }
@@ -115,7 +94,7 @@
             private void refreshAll()
             {
                 dashboardPanel.refresh();
-                transactionUI.refresh();;
+                incomeUIPanel.refresh();
             }
         }
     /*

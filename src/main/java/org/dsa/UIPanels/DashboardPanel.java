@@ -1,25 +1,27 @@
 package org.dsa.UIPanels;
 
-import org.dsa.Session;
-import org.dsa.models.tableModels.TransactionTableModel;
-import org.dsa.services.TransactionService;
+import org.dsa.abstractions.GenericDAO;
+import org.dsa.abstractions.GenericService;
+import org.dsa.models.objects.Income;
+import org.dsa.models.tableModels.IncomeTableModel;
+import org.dsa.utils.Constants.Screens;
 import org.dsa.utils.FontsUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class DashboardPanel extends JPanel{
 
-    private final TransactionService service;
-    private final TransactionTableModel model;
+    private final GenericService<Income, ? extends GenericDAO<Income>> service;
+    private final IncomeTableModel model;
 
-    public DashboardPanel(TransactionService service)
+    public DashboardPanel(GenericService<Income, ? extends GenericDAO<Income>> service)
     {
         super();
 
@@ -27,18 +29,17 @@ public class DashboardPanel extends JPanel{
             throw new IllegalArgumentException("TransactionService cannot be null");
 
         this.service = service;
-        this.model = new TransactionTableModel(service.getAllByUser(Session.getCurrentUserId()));
+        this.model = new IncomeTableModel();
         setStyles();
-        setupTables();
         setupTables();
     }
 
     private void setStyles()
     {
-        setLayout(new GridLayout(2,4,10,10));
-        JLabel title = new JLabel("Dashboard");
+        setLayout(new BorderLayout());
+        JLabel title = new JLabel(Screens.DASHBOARD);
         title.setFont(FontsUtil.TITLE_FONT);
-        add(title);
+        add(title, BorderLayout.NORTH);
     }
 
     private void setupTables() {
@@ -50,7 +51,14 @@ public class DashboardPanel extends JPanel{
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void load() {service.getAllByUser(Session.getCurrentUserId());}
+    private void load() {
+        var data = service.getAll();
+        System.out.println("Dashboard says: Data = " + data);
+
+        Map<Integer, String> income_map = service.getIncomeCatMap();
+        model.setCategoryMap(income_map);
+        model.setData(data);
+    }
 
     public void refresh(){load();}
 }

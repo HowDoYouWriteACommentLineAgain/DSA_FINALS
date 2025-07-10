@@ -1,63 +1,12 @@
 package org.dsa.models.objects;
 
-import org.dsa.models.enums.BudgetCategory;
-import java.time.LocalDate;
+import org.dsa.abstractions.objectModel;
 
-public class Budget {
-    private int id;
-    private int userId;
-    private BudgetCategory cat;
-    private float limit;
-    private float spent;
-    private LocalDate timeLimit;
+import java.sql.Date;
 
-    public int getId() {
-        return id;
+public record Budget (int id,  int expense_cat, double max_amount, double goal_amount, Date start_date, Date end_date) implements objectModel{
+    @Override
+    public boolean validate() {
+        return false;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public BudgetCategory getCat() {
-        return cat;
-    }
-
-    public void setCat(BudgetCategory cat) {
-        this.cat = cat;
-    }
-
-    public float getLimit() {
-        return limit;
-    }
-
-    public void setLimit(float limit) {
-        this.limit = limit;
-    }
-
-    public float getSpent() {
-        return spent;
-    }
-
-    public void setSpent(float spent) {
-        this.spent = spent;
-    }
-
-    public LocalDate getTimeLimit() {
-        return timeLimit;
-    }
-
-    public void setTimeLimit(LocalDate timeLimit) {
-        this.timeLimit = timeLimit;
-    }
-
-    Budget(){};
 }

@@ -5,15 +5,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.Map;
 
 public abstract class AbstractTablePanel<O> extends JPanel {
     protected JTable table;
-    protected GenericTableModel<O> model;
+    protected GenericTableModel<O> tableModel;
 
-    public AbstractTablePanel(GenericTableModel<O> model) {
-        this.model = model;
+    protected ArrayList<JTextField> textFields;
+
+    public AbstractTablePanel(GenericTableModel<O> tableModel) {
+        this.tableModel = tableModel;
         setLayout(new BorderLayout());
         setupTable();
         setupControls();
@@ -27,10 +32,12 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
     public abstract void delete();
 
+    public void refresh() {loadData();}
+
     protected abstract void showDialog(O obj, boolean isNew);
 
     protected void setupTable() {
-        table = new JTable(model);
+        table = new JTable(tableModel);
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
@@ -49,11 +56,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
         editButton.addActionListener(e -> {
             int row = table.getSelectedRow();
-            if (row >= 0) {
+            if (row >= 0)
                 edit();
-            } else {
-                JOptionPane.showMessageDialog(this, "Select a Row to edit");
-            }
         });
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -65,7 +69,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     }
 
     protected O getAt(int row) {
-        return model.getAt(row);
+        return tableModel.getAt(row);
     }
 
     protected O getSelectedRowObject() {
@@ -78,4 +82,9 @@ public abstract class AbstractTablePanel<O> extends JPanel {
             return null;
         }
     }
+
+//    protected boolean validateDateField()
+//    {
+//
+//    }
 }

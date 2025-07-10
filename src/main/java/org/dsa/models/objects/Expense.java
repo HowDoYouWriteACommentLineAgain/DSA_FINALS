@@ -1,44 +1,18 @@
 package org.dsa.models.objects;
 
-public class Expense {
-    private int id;
-    private String tag;//if persona business essential etc
-    private String category;//if commute rent food
-    private String frequency;
+import org.dsa.abstractions.objectModel;
 
-    public Expense(String tag) {
-        this.tag = tag;
-    }
+import java.sql.Date;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(String frequency) {
-        this.frequency = frequency;
+public record Expense (
+        int id,
+        String name,
+        int expense_cat,
+        double amount,
+        String note,
+        Date date) implements objectModel {
+    @Override
+    public boolean validate() {
+        return (expense_cat != 0 && amount > 0) ;
     }
 }

@@ -1,13 +1,19 @@
 package org.dsa.abstractions;
 
+import java.sql.Array;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public abstract class GenericService<O extends objectModel, D extends GenericDAO<O>>{
+public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
+    public DAO dao;
 
-    public D dao;
-
-    public abstract ArrayList<O> getAllByUser(int id);
+    public GenericService(DAO dao){
+        this.dao = dao;
+    }
 
     public O getById(int id) {
         try {
@@ -19,13 +25,27 @@ public abstract class GenericService<O extends objectModel, D extends GenericDAO
         }
     }
 
+    public ArrayList<O> getAll() {
+        try {
+            return dao.getAll();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException("Failed to fetch records" + e.getMessage(), e);
+        }
+    }
+
     public boolean edit(int id, O obj)
     {
+
+        if(id < 0)
+            throw new IllegalArgumentException("id invalid");
+
         if(obj.validate() == false)
             throw new IllegalArgumentException("Invalid transaction arguments");
 
         try {
-            return dao.updateById(id, obj);
+            return dao.update(id, obj);
         }
         catch (SQLException e)
         {
@@ -34,6 +54,10 @@ public abstract class GenericService<O extends objectModel, D extends GenericDAO
     }
 
     public void delete(int id) {
+
+        if(id < 0)
+            throw new IllegalArgumentException("id invalid");
+
         try {
             dao.delete(id);
         }catch (SQLException e)
@@ -45,13 +69,32 @@ public abstract class GenericService<O extends objectModel, D extends GenericDAO
     public void insert(O obj){
         if(obj.validate() == false)
             throw new IllegalArgumentException("Invalid transaction arguments ");
-
         try{
             dao.insert(obj);
         }
         catch (SQLException e)
         {
             throw new RuntimeException("Failed to save record:" + e.getMessage(), e);
+        }
+    }
+
+    public Map<Integer, String> getIncomeCatMap(){
+        try{
+            return dao.getIncomeCatMap();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
+        }
+    }
+
+    public Map<Integer, String> getExpenseCatsMap(){
+        try{
+            return dao.getExpenseCatsMap();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
     }
 }

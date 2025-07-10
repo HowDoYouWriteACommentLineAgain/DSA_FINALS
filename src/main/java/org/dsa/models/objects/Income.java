@@ -1,31 +1,21 @@
 package org.dsa.models.objects;
 
-public class Income {
-    private int id;
-    private String source;
-    private String frequency;
+import org.dsa.abstractions.objectModel;
 
-    public int getId() {
-        return id;
-    }
+import java.sql.Date;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+public record Income (
+        int id,
+        String name,
+        int income_cat,
+        double amount,
+        String note,
+        Date date
+) implements objectModel {
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(String frequency) {
-        this.frequency = frequency;
+    @Override
+    public boolean validate() {
+        return (income_cat != 0 && amount > 0) ;
     }
 }
+

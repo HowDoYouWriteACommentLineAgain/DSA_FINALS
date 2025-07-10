@@ -3,16 +3,24 @@ package org.dsa.abstractions;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class GenericTableModel<O> extends AbstractTableModel {
 
     protected ArrayList<String> columns = new ArrayList<>();
     protected final ArrayList<O> objList;
 
+    protected Map<Integer, String> categoryMap = new HashMap<>();
+
+    public void setCategoryMap(Map<Integer, String> categoryMap) {
+        this.categoryMap = categoryMap;
+    }
+
     public GenericTableModel(ArrayList<O> objList)
     {
         this.objList = objList;
+        setColumns();
         new DefaultTableModel();
     }
 
@@ -21,11 +29,13 @@ public abstract class GenericTableModel<O> extends AbstractTableModel {
         this.objList.clear();
         this.objList.addAll(data);
         fireTableDataChanged();
+        System.out.println("Set Data Called.");
+        System.out.println("fireTableDataChanged fired in setData GenericTableModel.");
     }
 
-    public void setColumns(String[] columnNames){
-        Collections.addAll(columns, columnNames);
-    }
+    public abstract ArrayList<String> returnColumnNames();
+
+    public void setColumns(){columns.addAll(returnColumnNames());}
 
     public O getAt(int rowIndex)
     {
