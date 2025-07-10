@@ -26,7 +26,8 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
     @Override
     public void delete() {
         Income obj = getSelectedRowObject();
-        if (obj != null && JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (obj == null) return;
+        if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             service.delete(obj.id());
             loadData();
         }
@@ -35,7 +36,8 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
     @Override
     public void edit() {
         Income obj = getSelectedRowObject();
-        if (obj != null) showDialog(obj, false);
+        if (obj == null) return; // prevent double-triggered calls
+        showDialog(obj, false);
     }
 
     @Override
@@ -48,28 +50,33 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         dialog.setLayout(new GridLayout(0, 2));
 
         JTextField nameField = new JTextField(isNew || obj.name() == null? "" : obj.name());
-        JTextField incomeCatField = new JTextField(isNew ? "" : String.valueOf(obj.income_cat()));
+        JComboBox<String> incomeCatSelect = new JComboBox<>(service.getNameIdIncomeCatMap().keySet().toArray(new String[0]));
         JTextField amountField = new JTextField(isNew ? "" : String.valueOf(obj.amount()));
         JTextField noteField = new JTextField(isNew || obj.note().isEmpty() ? "" : obj.note());
         JTextField dateField = new JTextField(isNew || obj.date() == null ? "" : obj.date().toString());
 
+
+
+
         dialog.add(new JLabel("Name:")); dialog.add(nameField);
-        dialog.add(new JLabel("Income Category ID:")); dialog.add(incomeCatField);
+        dialog.add(new JLabel("Category:")); dialog.add(incomeCatSelect);
         dialog.add(new JLabel("Amount:")); dialog.add(amountField);
         dialog.add(new JLabel("Note:")); dialog.add(noteField);
         dialog.add(new JLabel("Date (YYYY-MM-DD):")); dialog.add(dateField);
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
-            if (!validateFields(nameField, incomeCatField, amountField, noteField, dateField)) {
+            if (!validateFields(nameField, incomeCatSelect, amountField, noteField, dateField)) {
                 JOptionPane.showMessageDialog(dialog, "Please correct the highlighted fields.");
                 return;
             }
             try {
+                System.out.println("IncomeCatBox:" + incomeCatSelect.getSelectedItem());
+                System.out.println("Equivalent to db:" + service.getNameIdIncomeCatMap().get(incomeCatSelect.getSelectedItem()));
                 Income newIncome = new Income(
                         0, // ID is managed by the DB
                         nameField.getText().trim(),
-                        Integer.parseInt(incomeCatField.getText().trim()),
+                        service.getNameIdIncomeCatMap().get(incomeCatSelect.getSelectedItem()),
                         Double.parseDouble(amountField.getText().trim()),
                         noteField.getText().trim(),
                         Date.valueOf(dateField.getText().trim())
@@ -94,6 +101,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
 
     @Override
     public void loadData() {
+
         if (service == null) {
             System.err.println("Service is null during loadData()");
             return;
@@ -101,18 +109,20 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
 
         ArrayList<Income> data = service.getAll();
 
-        Map<Integer, String> income_map = service.getIncomeCatMap();
+        Map<Integer, String> income_map = service.getIdNameIncomeCatMap();
 
         System.out.println("INCOMETABLEPANEL: Service returned as incomeMap: " + income_map);
 
         tableModel.setCategoryMap(income_map);
 
         tableModel.setData(data);
+
+        table.clearSelection();
         revalidate();
         repaint();
     }
 
-    private boolean validateFields(JTextField name, JTextField cat, JTextField amt, JTextField note, JTextField date) {
+    private boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, JTextField date) {
         boolean valid = true;
         name.setBackground(ColorUtil.BACKGROUND_COLOR);
         cat.setBackground(ColorUtil.BACKGROUND_COLOR);
@@ -124,8 +134,12 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
             name.setBackground(ColorUtil.WARNING_COLOR); valid = false;
         }
 
-        try { Integer.parseInt(cat.getText().trim()); }
-        catch (Exception e) { cat.setBackground(ColorUtil.WARNING_COLOR); valid = false; }
+        try {
+            if (service.getNameIdIncomeCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
+        } catch (Exception e) {
+            cat.setBackground(ColorUtil.WARNING_COLOR);
+            valid = false;
+        }
 
         try {
             double value = Double.parseDouble(amt.getText().trim());

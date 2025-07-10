@@ -54,12 +54,6 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         JButton editButton = new JButton("Edit");
         editButton.addActionListener(e -> edit());
 
-        editButton.addActionListener(e -> {
-            int row = table.getSelectedRow();
-            if (row >= 0)
-                edit();
-        });
-
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panel.add(refresh);
         panel.add(addButton);
@@ -74,10 +68,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
     protected O getSelectedRowObject() {
         int row = table.getSelectedRow();
-        if (row >= 0) {
-            return getAt(row);
-
-        } else {
+        if (row >= 0) return getAt(row);
+        else {
             JOptionPane.showMessageDialog(this, "Please select a row first");
             return null;
         }

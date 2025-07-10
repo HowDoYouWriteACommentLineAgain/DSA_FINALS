@@ -1,8 +1,5 @@
 package org.dsa.abstractions;
 
-import java.sql.Array;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +75,7 @@ public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
         }
     }
 
-    public Map<Integer, String> getIncomeCatMap(){
+    public Map<Integer, String> getIdNameIncomeCatMap(){
         try{
             return dao.getIncomeCatMap();
         }
@@ -86,6 +83,21 @@ public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
         {
             throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
+    }
+
+    public Map<String, Integer> getNameIdIncomeCatMap() {
+        try{
+            Map<Integer, String> idToName;
+            Map<String, Integer> nameToId = new HashMap<>();
+
+            idToName = dao.getIncomeCatMap();
+
+            for (Map.Entry<Integer, String> entry : idToName.entrySet()) {
+                nameToId.put(entry.getValue(), entry.getKey());
+            }
+            return nameToId;
+        }
+        catch (SQLException e) {throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);}
     }
 
     public Map<Integer, String> getExpenseCatsMap(){
@@ -97,4 +109,6 @@ public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
             throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
     }
+
+
 }

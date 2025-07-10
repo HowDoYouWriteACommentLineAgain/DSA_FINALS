@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class DashboardPanel extends JPanel{
@@ -55,7 +53,7 @@ public class DashboardPanel extends JPanel{
         var data = service.getAll();
         System.out.println("Dashboard says: Data = " + data);
 
-        Map<Integer, String> income_map = service.getIncomeCatMap();
+        Map<Integer, String> income_map = service.getIdNameIncomeCatMap();
         model.setCategoryMap(income_map);
         model.setData(data);
     }
