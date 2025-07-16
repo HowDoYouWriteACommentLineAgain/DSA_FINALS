@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ExpenseDAO extends GenericDAO<Expense> {
-
-
     public ExpenseDAO(Connection conn) {
         super(conn);
     }

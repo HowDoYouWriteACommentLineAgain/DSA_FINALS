@@ -10,7 +10,7 @@ import java.util.Map;
 public class IncomeTableModel extends GenericTableModel<Income> {
 
     public IncomeTableModel() {
-        super(new ArrayList<Income>());
+        super(new ArrayList<>());
     }
 
     @Override

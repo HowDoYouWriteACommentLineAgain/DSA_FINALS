@@ -44,23 +44,23 @@ public abstract class GenericDAO<T> {
             return incomeCats;
 
         } catch (SQLException e) {
-            throw new SQLException("Error Deleting from "+ getTableName(), e);
+            throw new SQLException("Error  from "+ getTableName(), e);
         }
     }
 
-    public Map<Integer, String> getExpenseCatsMap() throws SQLException{
-        String sql = "Select name from income_cat";
+    public Map<Integer, String> getExpenseCatMap() throws SQLException{
+        String sql = "Select id, name from expense_cat";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            Map<Integer, String> incomeCats = new HashMap<>();
+            Map<Integer, String> expenseCats = new HashMap<>();
 
             while(rs.next())
-                incomeCats.put(rs.getInt("id"), rs.getString("name"));
-            return incomeCats;
+                expenseCats.put(rs.getInt("id"), rs.getString("name"));
+            return expenseCats;
 
         } catch (SQLException e) {
-            throw new SQLException("Error Deleting from "+ getTableName(), e);
+            throw new SQLException(e);
         }
     }
 

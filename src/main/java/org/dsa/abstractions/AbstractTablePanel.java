@@ -1,6 +1,7 @@
 package org.dsa.abstractions;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,17 +25,17 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         setupControls();
     }
 
-    protected abstract void edit();
-
     protected abstract void add();
 
     protected abstract void loadData();
 
+    protected abstract void edit();
+
     public abstract void delete();
 
-    public void refresh() {loadData();}
-
     protected abstract void showDialog(O obj, boolean isNew);
+
+    public void refresh() {loadData();}
 
     protected void setupTable() {
         table = new JTable(tableModel);
@@ -75,6 +76,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         }
     }
 
+//    protected abstract boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, JTextField date);
+//    protected abstract boolean validateFields(JComboBox cat, JTextField goalAmt, JTextField maxAmt, JTextField startDate, JTextField endDate);
 //    protected boolean validateDateField()
 //    {
 //

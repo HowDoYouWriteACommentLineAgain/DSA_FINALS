@@ -1,4 +1,4 @@
-package org.dsa.UIPanels.TabularPanels;
+package org.dsa.UIPanels.components;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

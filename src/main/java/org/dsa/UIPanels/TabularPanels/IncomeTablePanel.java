@@ -122,7 +122,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         repaint();
     }
 
-    private boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, JTextField date) {
+    public boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, JTextField date) {
         boolean valid = true;
         name.setBackground(ColorUtil.BACKGROUND_COLOR);
         cat.setBackground(ColorUtil.BACKGROUND_COLOR);

@@ -100,9 +100,9 @@ public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
         catch (SQLException e) {throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);}
     }
 
-    public Map<Integer, String> getExpenseCatsMap(){
+    public Map<Integer, String> getIdNameExpenseCatMap(){
         try{
-            return dao.getExpenseCatsMap();
+            return dao.getExpenseCatMap();
         }
         catch (SQLException e)
         {
@@ -110,5 +110,19 @@ public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
         }
     }
 
+    public Map<String, Integer> getNameIdExpenseCatMap() {
+        try{
+            Map<Integer, String> idToName;
+            Map<String, Integer> nameToId = new HashMap<>();
+
+            idToName = dao.getExpenseCatMap();
+
+            for (Map.Entry<Integer, String> entry : idToName.entrySet()) {
+                nameToId.put(entry.getValue(), entry.getKey());
+            }
+            return nameToId;
+        }
+        catch (SQLException e) {throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);}
+    }
 
 }

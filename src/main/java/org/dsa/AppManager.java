@@ -1,9 +1,15 @@
         package org.dsa;
 
+        import org.dsa.UIPanels.TabularPanels.BudgetTablePanel;
+        import org.dsa.UIPanels.TabularPanels.ExpenseTablePanel;
         import org.dsa.UIPanels.TabularPanels.IncomeTablePanel;
         import org.dsa.UIPanels.components.NavigationBar;
         import org.dsa.abstractions.GenericService;
+        import org.dsa.dao.BudgetDAO;
+        import org.dsa.dao.ExpenseDAO;
         import org.dsa.dao.IncomeDAO;
+        import org.dsa.models.objects.Budget;
+        import org.dsa.models.objects.Expense;
         import org.dsa.models.objects.Income;
         import org.dsa.utils.Constants.Screens;
         import org.dsa.UIPanels.DashboardPanel;
@@ -29,9 +35,12 @@
             private DashboardPanel dashboardPanel;
 
             private final GenericService<Income, IncomeDAO> inSer;
+            private final GenericService<Expense, ExpenseDAO> exSer;
+            private final GenericService<Budget, BudgetDAO> buSer;
             private IncomeTablePanel incomeUIPanel;
+            private ExpenseTablePanel expenseUIPanel;
+            private BudgetTablePanel budgetUIPanel;
 
-//            private final GenericService
 
             private static final AppManager instance = new AppManager();
             public static AppManager getInstance()
@@ -39,9 +48,14 @@
                 return instance;
             }
 
+            /*
+             * static constants of the singleton App Manager
+             */
             private AppManager(){
                 conn = DatabaseConnectionManager.getConnection();
                 inSer = new GenericService<>(new IncomeDAO(conn));
+                exSer = new GenericService<>(new ExpenseDAO(conn));
+                buSer = new GenericService<>(new BudgetDAO(conn));
 
 //                loginPanel = new LoginPanel();
                 mainFrame = new MainFrame("Financial Assistant");
@@ -52,23 +66,28 @@
 
                 build();
 
+                //starting screens after building
                 mainFrame.showScreen(Screens.DASHBOARD);
                 mainFrame.pack();
                 mainFrame.setVisible(true);
 
-                System.out.print(inSer.getAll());
-                incomeUIPanel.refresh();
+                System.out.print(exSer.getAll());
+                refreshAll();
             }
 
             private void build()
             {
                 incomeUIPanel = new IncomeTablePanel(inSer);
+                expenseUIPanel = new ExpenseTablePanel(exSer);
+                budgetUIPanel = new BudgetTablePanel(buSer);
+
                 dashboardPanel = new DashboardPanel(inSer);
 
                 mainFrame.addNavbar(navbar);
                 mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
                 mainFrame.addScreen(Screens.INCOME, incomeUIPanel);
-                refreshAll();
+                mainFrame.addScreen(Screens.EXPENSE, expenseUIPanel);
+                mainFrame.addScreen(Screens.BUDGET, budgetUIPanel);
             }
 
             public void handleLogout()
@@ -78,11 +97,8 @@
 
             private void shutdown()
             {
-                int i = JOptionPane.showConfirmDialog(mainFrame,"Confirm Exit", "Exit", JOptionPane.YES_NO_OPTION);
-                if(i == 0)
-                {
-                    System.exit(0);
-                }
+                int i = JOptionPane.showConfirmDialog(mainFrame,"Are you sure?", "Exiting", JOptionPane.YES_NO_OPTION);
+                if(i == 0) System.exit(0);
             }
 
             public void handleNavigation(String screenName)
@@ -95,6 +111,8 @@
             {
                 dashboardPanel.refresh();
                 incomeUIPanel.refresh();
+                expenseUIPanel.refresh();
+                budgetUIPanel.refresh();
             }
         }
     /*

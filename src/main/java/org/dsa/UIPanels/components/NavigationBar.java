@@ -12,7 +12,7 @@ import java.awt.FlowLayout;
 public class NavigationBar extends JPanel {
     String[] screens = Screens.getScreens();
     JButton[] buttons = new JButton[screens.length];
-    JLabel welcomeMessage = new JLabel("Welcome: User");
+//    JLabel welcomeMessage = new JLabel("Welcome: User");
     public NavigationBar()
     {
         setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -28,17 +28,17 @@ public class NavigationBar extends JPanel {
             btn.addActionListener(e -> AppManager.getInstance().handleNavigation(screenName));
             add(btn);
         }
-        welcomeMessage.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);
-        add(welcomeMessage);
+//        welcomeMessage.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);
+//        add(welcomeMessage);
     }
 
     public void toggleBtnInvisible(String name)
     {
         for(JButton button : buttons)
         {
-            button.setVisible(true);
+            button.setEnabled(true);
             if(button.getText().equals(name))
-                button.setVisible(false);
+                button.setEnabled(false);
         }
     }
 }

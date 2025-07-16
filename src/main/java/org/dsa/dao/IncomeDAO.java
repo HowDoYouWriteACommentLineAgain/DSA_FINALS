@@ -124,6 +124,4 @@ public class IncomeDAO extends GenericDAO<Income> {
         return "Incomes";
     }
 
-
-
 }

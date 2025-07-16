@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class MainFrame extends JFrame
 {
@@ -23,10 +26,17 @@ public class MainFrame extends JFrame
     public void setupFrame(String txt)
     {
         setTitle(txt);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(SizesUtil.DEFAULT_WINDOW_SIZE);
         setMinimumSize(SizesUtil.DEFAULT_WINDOW_SIZE);
         setLocationRelativeTo(null);
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                AppManager.getInstance().handleLogout();
+            }
+        });
     }
 
     public void addScreen(String name, JPanel panel)
