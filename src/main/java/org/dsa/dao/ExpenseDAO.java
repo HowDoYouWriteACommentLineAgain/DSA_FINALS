@@ -89,7 +89,7 @@ public class ExpenseDAO extends GenericDAO<Expense> {
 
     @Override
     public void insert(Expense obj) throws SQLException {
-        String sql = "INSERT INTO incomes (expense_cat, name, amount, note, date) values (?,?,?,?,?);";
+        String sql = "INSERT INTO expenses (expense_cat, name, amount, note, date) values (?,?,?,?,?);";
 
         try (PreparedStatement ps = conn.prepareStatement(sql))
         {

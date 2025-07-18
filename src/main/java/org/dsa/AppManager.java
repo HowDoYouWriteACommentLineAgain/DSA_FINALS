@@ -79,7 +79,7 @@
             {
                 incomeUIPanel = new IncomeTablePanel(inSer);
                 expenseUIPanel = new ExpenseTablePanel(exSer);
-                budgetUIPanel = new BudgetTablePanel(buSer);
+                budgetUIPanel = new BudgetTablePanel(buSer, exSer);
 
                 dashboardPanel = new DashboardPanel(inSer);
 

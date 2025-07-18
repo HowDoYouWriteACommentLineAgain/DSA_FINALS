@@ -20,7 +20,7 @@ public class MainFrame extends JFrame
     public MainFrame(String txt){
         setupFrame(txt);
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(cardPanel);
+        getContentPane().add(cardPanel, BorderLayout.CENTER);
     }
 
     public void setupFrame(String txt)
@@ -55,7 +55,7 @@ public class MainFrame extends JFrame
     public void addNavbar(NavigationBar navbar)
     {
         this.navbar = navbar;
-        getContentPane().add(navbar, BorderLayout.PAGE_START);
+        getContentPane().add(navbar, BorderLayout.NORTH);
     }
 
 }

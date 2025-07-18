@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
+public class GenericService<O extends ObjectModel, DAO extends GenericDAO<O>>{
     public DAO dao;
 
     public GenericService(DAO dao){
@@ -76,6 +76,7 @@ public class GenericService<O extends objectModel, DAO extends GenericDAO<O>>{
     }
 
     public Map<Integer, String> getIdNameIncomeCatMap(){
+
         try{
             return dao.getIncomeCatMap();
         }

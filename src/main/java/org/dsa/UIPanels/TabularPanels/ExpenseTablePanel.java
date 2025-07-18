@@ -18,6 +18,7 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
@@ -125,6 +126,11 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         dialog.pack();
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+    }
+
+    @Override
+    public List<Expense> filter() {
+        return List.of();
     }
 
 

@@ -1,7 +1,10 @@
 package org.dsa.abstractions;
 
+import org.dsa.UIPanels.components.DatePicker;
+import org.dsa.utils.SizesUtil;
+
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -10,11 +13,14 @@ import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 public abstract class AbstractTablePanel<O> extends JPanel {
     protected JTable table;
     protected GenericTableModel<O> tableModel;
+    protected JTextField search = new JTextField(20);
+    protected DatePicker startDate = new DatePicker();
+    protected DatePicker endDate = new DatePicker();
 
     protected ArrayList<JTextField> textFields;
 
@@ -23,6 +29,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         setLayout(new BorderLayout());
         setupTable();
         setupControls();
+        setupFilters();
     }
 
     protected abstract void add();
@@ -34,6 +41,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     public abstract void delete();
 
     protected abstract void showDialog(O obj, boolean isNew);
+
+    public abstract List<O> filter();
 
     public void refresh() {loadData();}
 
@@ -61,6 +70,39 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         panel.add(editButton);
         panel.add(deleteButton);
         add(panel, BorderLayout.SOUTH);
+    }
+
+    protected void setupFilters()
+    {
+        JButton applyButton = new JButton("Apply Filters");
+        applyButton.addActionListener((e->loadData()));
+
+        JLabel startLabel = new JLabel("Range: ");
+        JLabel endLabel = new JLabel(" - ");
+
+        JPanel filter = new JPanel(new FlowLayout((FlowLayout.LEFT), 1, 0));
+        filter.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
+        filter.add(search);
+
+        JPanel DateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 0, 0));
+        DateFilter.add(startLabel);
+        startDate.setDefault(1,1,2000);
+        DateFilter.add(startDate);
+        DateFilter.add(endLabel);
+        endDate.setDefault(31,12,2100);
+        DateFilter.add(endDate);
+        DateFilter.add(applyButton);
+
+        filter.add(DateFilter);
+        add(filter, BorderLayout.NORTH);
+    }
+
+    boolean hasThirtyfirst(int month)
+    {
+        return switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> true;
+            default -> false;
+        };
     }
 
     protected O getAt(int row) {

@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class IncomeTablePanel extends AbstractTablePanel<Income> {
@@ -97,6 +98,11 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         dialog.pack();
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+    }
+
+    @Override
+    public List<Income> filter() {
+        return List.of();
     }
 
     @Override

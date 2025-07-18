@@ -1,6 +1,6 @@
 package org.dsa.models.objects;
 
-import org.dsa.abstractions.objectModel;
+import org.dsa.abstractions.ObjectModel;
 
 import java.sql.Date;
 
@@ -11,7 +11,7 @@ public record Income (
         double amount,
         String note,
         Date date
-) implements objectModel {
+) implements ObjectModel {
 
     @Override
     public boolean validate() {

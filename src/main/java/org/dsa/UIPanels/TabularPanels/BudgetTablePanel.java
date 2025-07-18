@@ -4,6 +4,7 @@ import org.dsa.abstractions.AbstractTablePanel;
 import org.dsa.abstractions.GenericDAO;
 import org.dsa.abstractions.GenericService;
 import org.dsa.models.objects.Budget;
+import org.dsa.models.objects.Expense;
 import org.dsa.models.tableModels.BudgetTableModel;
 import org.dsa.utils.ColorUtil;
 
@@ -19,20 +20,22 @@ import java.awt.GridLayout;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 public class BudgetTablePanel extends AbstractTablePanel<Budget> {
-    private final GenericService<Budget, ? extends GenericDAO<Budget>> service;
+    private final GenericService<Budget, ? extends GenericDAO<Budget>> mainService;
 
-    private ArrayList<Integer> taken = new ArrayList<>();
+//    private ArrayList<Integer> taken = new ArrayList<>();
 
     private String exceedMessage = "";
 
-    public BudgetTablePanel(GenericService<Budget, ? extends GenericDAO<Budget>> service) {
-        super(new BudgetTableModel());
-        if (service == null) throw new IllegalArgumentException("Service cannot be null");
-        this.service = service;
+    public BudgetTablePanel(GenericService<Budget, ? extends GenericDAO<Budget>> mainService, GenericService<Expense, ? extends GenericDAO<Expense>> helperService) {
+        super(new BudgetTableModel(helperService.getAll()));
+        if (mainService == null) throw new IllegalArgumentException("Service cannot be null");
+        this.mainService = mainService;
         loadData();
     }
 
@@ -44,27 +47,19 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
 
     @Override
     protected void loadData() {
-        if (service == null) {
+        if (mainService == null) {
             System.err.println("Service is null during loadData()");
             return;
         }
 
-        ArrayList<Budget> data = service.getAll();
 
-        for(Budget datum : data)
-            addToTaken(datum);
+//        for(Budget datum : data) addToTaken(datum);
+        Map<Integer, String> expenseMap = mainService.getIdNameExpenseCatMap();
 
-        System.out.println("Available: " + getAvailable());
-        System.out.println("Taken: " + taken);
-
-        Map<Integer, String> expenseMap = service.getIdNameExpenseCatMap();
-
-        System.out.println("BUDGETTABLEPANEL: Service returned as expenseMap: " + expenseMap);
+        ArrayList<Budget> data = new ArrayList<>(filter());
 
         tableModel.setCategoryMap(expenseMap);
-
         tableModel.setData(data);
-
         table.clearSelection();
         revalidate();
         repaint();
@@ -82,24 +77,24 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         Budget obj = getSelectedRowObject();
         if (obj == null) return;
         if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            service.delete(obj.id());
+            mainService.delete(obj.id());
             loadData();
         }
     }
 
-    private ArrayList<String> getAvailable()
-    {
-        Map<Integer, String> allMaps = new HashMap<>(service.getIdNameExpenseCatMap());
-        ArrayList<String> available = new ArrayList<>();
-
-        for (int key : allMaps.keySet()) if(!taken.contains(key)) available.add(allMaps.get(key));
-        return available;
-    }
-
-    private void addToTaken(Budget obj)
-    {
-        taken.add(obj.expense_cat());
-    }
+//    private ArrayList<String> getAvailable(int include)
+//    {
+//        Map<Integer, String> allMaps = new HashMap<>(mainService.getIdNameExpenseCatMap());
+//        ArrayList<String> available = new ArrayList<>();
+//
+//        for (int key : allMaps.keySet()) if(!taken.contains(key) || include == key) available.add(allMaps.get(key));
+//        return available;
+//    }
+//
+//    private void addToTaken(Budget obj)
+//    {
+//        taken.add(obj.expense_cat());
+//    }
 
 
     @Override
@@ -107,7 +102,8 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), isNew ? "Add Budget" : "Edit Budget", true);
         dialog.setLayout(new GridLayout(0, 2));
 
-        JComboBox<String> expenseCatSelect = new JComboBox<>(new Vector<>(getAvailable()));
+//        JComboBox<String> expenseCatSelect = new JComboBox<>(new Vector<>(getAvailable(isNew ? -1 : obj.expense_cat())));
+        JComboBox<String> expenseCatSelect = new JComboBox<>(new Vector<>(mainService.getNameIdExpenseCatMap().keySet()));
         JTextField maxAmountField = new JTextField(isNew ? "" : String.valueOf(obj.max_amount()));
         JTextField goalAmountField = new JTextField(isNew ? "" : String.valueOf(obj.goal_amount()));
         JTextField startDateField = new JTextField(isNew || obj.start_date() == null ? "" : obj.start_date().toString());
@@ -127,20 +123,20 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
             }
             try {
                 System.out.println("ExpenseCatBox:" + expenseCatSelect.getSelectedItem());
-                System.out.println("Equivalent to db:" + service.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()));
+                System.out.println("Equivalent to db:" + mainService.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()));
                 Budget newTransaction = new Budget(
                         0, // ID is managed by the DB
-                        service.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()),
+                        mainService.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()),
                         Double.parseDouble(maxAmountField.getText().trim()),
                         Double.parseDouble(goalAmountField.getText().trim()),
                         Date.valueOf(startDateField.getText().trim()),
                         Date.valueOf(endDateField.getText().trim())
                 );
 
-                if (isNew) service.insert(newTransaction);
-                else service.edit(obj.id(), newTransaction);
+                if (isNew) mainService.insert(newTransaction);
+                else mainService.edit(obj.id(), newTransaction);
 
-                addToTaken(newTransaction);
+//                addToTaken(newTransaction);
 
                 loadData();
                 dialog.dispose();
@@ -156,6 +152,24 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         dialog.setVisible(true);
     }
 
+    @Override
+    public List<Budget> filter() {
+        List<Budget> data = mainService.getAll();
+
+        Date startDate = this.startDate.getFullDate();
+        Date endDate = this.endDate.getFullDate();
+        String searchQuery = this.search.getText();
+
+        System.out.println("filter fired");
+        System.out.println("Start date: " + startDate);
+        System.out.println("End date: " + endDate);
+        return data.stream()
+                .filter(d -> d.start_date() != null && d.end_date() != null)
+                .filter(d -> !d.start_date().after(endDate) && !d.end_date().before(startDate))
+                .filter(d -> mainService.getIdNameExpenseCatMap().get(d.expense_cat()).contains(searchQuery))
+                .collect(Collectors.toList());
+    }
+
     protected boolean validateFields(JComboBox cat, JTextField maxAmt, JTextField goalAmt, JTextField startDate, JTextField endDate) {
         boolean valid = true;
         exceedMessage = "";
@@ -166,7 +180,7 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         endDate.setBackground(ColorUtil.BACKGROUND_COLOR);
 
         try {
-            if (service.getNameIdExpenseCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
+            if (mainService.getNameIdExpenseCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
         } catch (Exception e) {
             cat.setBackground(ColorUtil.WARNING_COLOR);
             valid = false;

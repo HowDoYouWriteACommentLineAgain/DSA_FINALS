@@ -1,6 +1,6 @@
 package org.dsa.abstractions;
 
-public interface objectModel {
+public interface ObjectModel {
     boolean validate();
 
 

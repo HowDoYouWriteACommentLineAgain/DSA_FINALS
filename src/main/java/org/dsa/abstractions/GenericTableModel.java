@@ -1,5 +1,7 @@
 package org.dsa.abstractions;
 
+import org.dsa.additionalServices.AnalyzeAdherence;
+
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
@@ -12,10 +14,10 @@ public abstract class GenericTableModel<O> extends AbstractTableModel {
     protected final ArrayList<O> objList;
 
     protected Map<Integer, String> categoryMap = new HashMap<>();
+    protected Map<Integer, Double> ExpenseMap;
 
-    public void setCategoryMap(Map<Integer, String> categoryMap) {
-        this.categoryMap = categoryMap;
-    }
+    public void setCategoryMap(Map<Integer, String> categoryMap) {this.categoryMap = categoryMap;}
+    public void setExpenseMap(Map<Integer, Double> expenseMap) {this.ExpenseMap = expenseMap;}
 
     public GenericTableModel(ArrayList<O> objList)
     {
@@ -32,6 +34,8 @@ public abstract class GenericTableModel<O> extends AbstractTableModel {
         System.out.println("Set Data Called.");
         System.out.println("fireTableDataChanged fired in setData GenericTableModel.");
     }
+
+
 
     public abstract ArrayList<String> returnColumnNames();
 
