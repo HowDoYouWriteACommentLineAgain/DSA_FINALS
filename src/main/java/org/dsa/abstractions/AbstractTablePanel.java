@@ -103,8 +103,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         });
 
         resetBtn.addActionListener(e->{
-            startDate.setFullDate(Date.valueOf(LocalDate.of(2000, 1, 1)));
-            endDate.setFullDate(Date.valueOf(LocalDate.of(2100, 12, 31)));
+            startDate.setDefault(Date.valueOf(LocalDate.of(2000, 1, 1)));
+            endDate.setDefault(Date.valueOf(LocalDate.of(2100, 12, 31)));
             searchField.setText("");
         });
 

@@ -1,5 +1,6 @@
 package org.dsa.UIPanels.TabularPanels;
 
+import org.dsa.UIPanels.components.DatePicker;
 import org.dsa.abstractions.AbstractTablePanel;
 import org.dsa.abstractions.GenericDAO;
 import org.dsa.abstractions.GenericService;
@@ -105,14 +106,14 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         JComboBox<String> expenseCatSelect = new JComboBox<>(new Vector<>(mainService.getNameIdExpenseCatMap().keySet()));
         JTextField maxAmountField = new JTextField(isNew ? "" : String.valueOf(obj.max_amount()));
         JTextField goalAmountField = new JTextField(isNew ? "" : String.valueOf(obj.goal_amount()));
-        JTextField startDateField = new JTextField(isNew || obj.start_date() == null ? "" : obj.start_date().toString());
-        JTextField endDateField = new JTextField(isNew || obj.end_date() == null ? "" : obj.end_date().toString());
+        DatePicker startDateField = isNew ? new DatePicker() : new DatePicker(obj.start_date());
+        DatePicker endDateField = isNew ? new DatePicker() : new DatePicker(obj.end_date());
 
         dialog.add(new JLabel("Category:")); dialog.add(expenseCatSelect);
         dialog.add(new JLabel("Maximum Amount:")); dialog.add(maxAmountField);
         dialog.add(new JLabel("Goal Amount:")); dialog.add(goalAmountField);
-        dialog.add(new JLabel("Start: (YYYY-MM-DD):")); dialog.add(startDateField);
-        dialog.add(new JLabel("End: (YYYY-MM-DD):")); dialog.add(endDateField);
+        dialog.add(new JLabel("Start:")); dialog.add(startDateField);
+        dialog.add(new JLabel("End:")); dialog.add(endDateField);
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
@@ -126,8 +127,8 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
                         mainService.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()),
                         Double.parseDouble(maxAmountField.getText().trim()),
                         Double.parseDouble(goalAmountField.getText().trim()),
-                        Date.valueOf(startDateField.getText().trim()),
-                        Date.valueOf(endDateField.getText().trim())
+                        startDateField.getFullDate(),
+                        endDateField.getFullDate()
                 );
 
                 if (isNew) mainService.insert(newTransaction);
@@ -163,7 +164,7 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
                 .collect(Collectors.toList());
     }
 
-    protected boolean validateFields(JComboBox cat, JTextField maxAmt, JTextField goalAmt, JTextField startDate, JTextField endDate) {
+    protected boolean validateFields(JComboBox cat, JTextField maxAmt, JTextField goalAmt, DatePicker startDate, DatePicker endDate) {
         boolean valid = true;
         exceedMessage = "";
         cat.setBackground(ColorUtil.BACKGROUND_COLOR);
@@ -200,15 +201,17 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         }
 
         try {
-            Date.valueOf(startDate.getText().trim());
+            Date.valueOf(startDate.getFullDate().toLocalDate());
         }
         catch (Exception e) {
-            startDate.setBackground(ColorUtil.WARNING_COLOR); valid = false;
+            startDate.setBackground(ColorUtil.WARNING_COLOR);
+            endDate.setBackground(ColorUtil.WARNING_COLOR);
+            valid = false;
         }
 
         try {
-            Date start = Date.valueOf(startDate.getText().trim());
-            Date end = Date.valueOf(endDate.getText().trim());
+            Date start = Date.valueOf(startDate.getFullDate().toLocalDate());
+            Date end = Date.valueOf(endDate.getFullDate().toLocalDate());
             if(start.compareTo(end) >= 0)
             {
                 exceedMessage = "End date cannot be before start date";
@@ -216,7 +219,9 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
             }
         }
         catch (Exception e) {
-            endDate.setBackground(ColorUtil.WARNING_COLOR); valid = false;
+            endDate.setBackground(ColorUtil.WARNING_COLOR);
+            endDate.setBackground(ColorUtil.WARNING_COLOR);
+            valid = false;
         }
 
         return valid;

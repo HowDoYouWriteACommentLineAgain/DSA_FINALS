@@ -1,5 +1,6 @@
 package org.dsa.UIPanels.TabularPanels;
 
+import org.dsa.UIPanels.components.DatePicker;
 import org.dsa.abstractions.AbstractTablePanel;
 import org.dsa.abstractions.GenericDAO;
 import org.dsa.abstractions.GenericService;
@@ -55,7 +56,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         JComboBox<String> incomeCatSelect = new JComboBox<>(mainService.getNameIdIncomeCatMap().keySet().toArray(new String[0]));
         JTextField amountField = new JTextField(isNew ? "" : String.valueOf(obj.amount()));
         JTextField noteField = new JTextField(isNew || obj.note().isEmpty() ? "" : obj.note());
-        JTextField dateField = new JTextField(isNew || obj.date() == null ? "" : obj.date().toString());
+        DatePicker dateField =isNew ? new DatePicker() : new DatePicker( obj.date());
 
 
 
@@ -64,7 +65,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         dialog.add(new JLabel("Category:")); dialog.add(incomeCatSelect);
         dialog.add(new JLabel("Amount:")); dialog.add(amountField);
         dialog.add(new JLabel("Note:")); dialog.add(noteField);
-        dialog.add(new JLabel("Date (YYYY-MM-DD):")); dialog.add(dateField);
+        dialog.add(new JLabel("Date:")); dialog.add(dateField);
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
@@ -79,7 +80,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
                         mainService.getNameIdIncomeCatMap().get(incomeCatSelect.getSelectedItem()),
                         Double.parseDouble(amountField.getText().trim()),
                         noteField.getText().trim(),
-                        Date.valueOf(dateField.getText().trim())
+                        dateField.getFullDate()
                 );
 
                 if (isNew) mainService.insert(newIncome);
@@ -135,7 +136,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         repaint();
     }
 
-    public boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, JTextField date) {
+    public boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, DatePicker date) {
         boolean valid = true;
         name.setBackground(ColorUtil.BACKGROUND_COLOR);
         cat.setBackground(ColorUtil.BACKGROUND_COLOR);
@@ -161,11 +162,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
             amt.setBackground(ColorUtil.WARNING_COLOR); valid = false;
         }
 
-//        if (note.getText().trim().isEmpty()) {
-//            note.setBackground(ColorUtil.WARNING_COLOR); valid = false;
-//        }
-
-        try { Date.valueOf(date.getText().trim()); }
+        try { Date.valueOf(date.getLocalDate()); }
         catch (Exception e) { date.setBackground(ColorUtil.WARNING_COLOR); valid = false; }
 
         return valid;
