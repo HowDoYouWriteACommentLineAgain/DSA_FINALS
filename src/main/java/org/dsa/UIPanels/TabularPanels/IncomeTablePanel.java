@@ -13,14 +13,15 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class IncomeTablePanel extends AbstractTablePanel<Income> {
-    private final GenericService<Income, ? extends GenericDAO<Income>> service;
+    private final GenericService<Income, ? extends GenericDAO<Income>> mainService;
 
     public IncomeTablePanel(GenericService<Income, ? extends GenericDAO<Income>> service) {
         super(new IncomeTableModel());
         if (service == null) throw new IllegalArgumentException("Service cannot be null");
-        this.service = service;
+        this.mainService = service;
         loadData();
     }
 
@@ -29,7 +30,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         Income obj = getSelectedRowObject();
         if (obj == null) return;
         if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            service.delete(obj.id());
+            mainService.delete(obj.id());
             loadData();
         }
     }
@@ -51,7 +52,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         dialog.setLayout(new GridLayout(0, 2));
 
         JTextField nameField = new JTextField(isNew || obj.name() == null? "" : obj.name());
-        JComboBox<String> incomeCatSelect = new JComboBox<>(service.getNameIdIncomeCatMap().keySet().toArray(new String[0]));
+        JComboBox<String> incomeCatSelect = new JComboBox<>(mainService.getNameIdIncomeCatMap().keySet().toArray(new String[0]));
         JTextField amountField = new JTextField(isNew ? "" : String.valueOf(obj.amount()));
         JTextField noteField = new JTextField(isNew || obj.note().isEmpty() ? "" : obj.note());
         JTextField dateField = new JTextField(isNew || obj.date() == null ? "" : obj.date().toString());
@@ -72,19 +73,17 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
                 return;
             }
             try {
-                System.out.println("IncomeCatBox:" + incomeCatSelect.getSelectedItem());
-                System.out.println("Equivalent to db:" + service.getNameIdIncomeCatMap().get(incomeCatSelect.getSelectedItem()));
                 Income newIncome = new Income(
                         0, // ID is managed by the DB
                         nameField.getText().trim(),
-                        service.getNameIdIncomeCatMap().get(incomeCatSelect.getSelectedItem()),
+                        mainService.getNameIdIncomeCatMap().get(incomeCatSelect.getSelectedItem()),
                         Double.parseDouble(amountField.getText().trim()),
                         noteField.getText().trim(),
                         Date.valueOf(dateField.getText().trim())
                 );
 
-                if (isNew) service.insert(newIncome);
-                else service.edit(obj.id(), newIncome);
+                if (isNew) mainService.insert(newIncome);
+                else mainService.edit(obj.id(), newIncome);
 
                 loadData();
                 dialog.dispose();
@@ -102,22 +101,30 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
 
     @Override
     public List<Income> filter() {
-        return List.of();
+        List<Income> data = mainService.getAll();
+
+        Date startDate = this.startDate.getFullDate();
+        Date endDate = this.endDate.getFullDate();
+        String searchQuery = this.searchField.getText();
+        return data.stream()
+                .filter(d -> d.date() != null)
+                .filter(d -> !d.date().after(endDate) && !d.date().before(startDate))
+                .filter(d -> d.name().contains(searchQuery))
+                .collect(Collectors.toList());
+
     }
 
     @Override
     public void loadData() {
 
-        if (service == null) {
+        if (mainService == null) {
             System.err.println("Service is null during loadData()");
             return;
         }
 
-        ArrayList<Income> data = service.getAll();
+        ArrayList<Income> data = new ArrayList<>(filter());;
 
-        Map<Integer, String> income_map = service.getIdNameIncomeCatMap();
-
-        System.out.println("INCOMETABLEPANEL: Service returned as incomeMap: " + income_map);
+        Map<Integer, String> income_map = mainService.getIdNameIncomeCatMap();
 
         tableModel.setCategoryMap(income_map);
 
@@ -141,7 +148,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         }
 
         try {
-            if (service.getNameIdIncomeCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
+            if (mainService.getNameIdIncomeCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
         } catch (Exception e) {
             cat.setBackground(ColorUtil.WARNING_COLOR);
             valid = false;

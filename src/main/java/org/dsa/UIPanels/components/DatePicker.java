@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class DatePicker extends JPanel {
     JComboBox<Integer> DayBox = new JComboBox<>();
@@ -48,6 +49,14 @@ public class DatePicker extends JPanel {
         String shortDate = STR."\{year}-\{month}-\{day}";
 
         return Date.valueOf(shortDate);
+    }
+
+    public void setFullDate(Date shortdate)
+    {
+        LocalDate locDate = shortdate.toLocalDate();
+        DayBox.setSelectedItem(locDate.getDayOfMonth());
+        MonthBox.setSelectedItem(locDate.getMonthValue());
+        YearBox.setSelectedItem(locDate.getYear());
     }
 
     public void setDefault(int day, int month, int year)

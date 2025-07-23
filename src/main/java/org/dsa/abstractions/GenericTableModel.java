@@ -31,8 +31,6 @@ public abstract class GenericTableModel<O> extends AbstractTableModel {
         this.objList.clear();
         this.objList.addAll(data);
         fireTableDataChanged();
-        System.out.println("Set Data Called.");
-        System.out.println("fireTableDataChanged fired in setData GenericTableModel.");
     }
 
 

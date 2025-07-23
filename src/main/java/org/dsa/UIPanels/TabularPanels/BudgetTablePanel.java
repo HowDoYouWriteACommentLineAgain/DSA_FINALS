@@ -19,7 +19,6 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -122,8 +121,6 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
                 return;
             }
             try {
-                System.out.println("ExpenseCatBox:" + expenseCatSelect.getSelectedItem());
-                System.out.println("Equivalent to db:" + mainService.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()));
                 Budget newTransaction = new Budget(
                         0, // ID is managed by the DB
                         mainService.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()),
@@ -158,11 +155,7 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
 
         Date startDate = this.startDate.getFullDate();
         Date endDate = this.endDate.getFullDate();
-        String searchQuery = this.search.getText();
-
-        System.out.println("filter fired");
-        System.out.println("Start date: " + startDate);
-        System.out.println("End date: " + endDate);
+        String searchQuery = this.searchField.getText();
         return data.stream()
                 .filter(d -> d.start_date() != null && d.end_date() != null)
                 .filter(d -> !d.start_date().after(endDate) && !d.end_date().before(startDate))

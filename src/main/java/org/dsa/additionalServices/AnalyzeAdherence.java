@@ -16,8 +16,6 @@ public class AnalyzeAdherence {
         List<Expense> expenseList = new ArrayList<>(List);
         Map<Integer, Double> idToTotalExpenseMap = new HashMap<>();
 
-        System.out.println( " anaylyze of budget called: " + ++callTimes);
-
         for(Expense expense : expenseList)
         {
             int curr_id = expense.expense_cat();

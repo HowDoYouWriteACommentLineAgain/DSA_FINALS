@@ -21,8 +21,6 @@ public class IncomeTableModel extends GenericTableModel<Income> {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 
-        System.out.println("getValueAt CatMap: "+ categoryMap);
-
         Income i = super.objList.get(rowIndex);
         return switch (columnIndex)
         {

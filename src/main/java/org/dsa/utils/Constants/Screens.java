@@ -14,7 +14,7 @@ public final class Screens {
 
     public static String[] getScreens() {
         return new String[]{
-            DASHBOARD, INCOME,EXPENSE, BUDGET, GOALS,LOGIN,
+            DASHBOARD, INCOME, EXPENSE, BUDGET,LOGIN,
         };
     }
 }

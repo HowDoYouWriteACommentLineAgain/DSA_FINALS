@@ -51,7 +51,6 @@ public class DashboardPanel extends JPanel{
 
     private void load() {
         var data = service.getAll();
-        System.out.println("Dashboard says: Data = " + data);
 
         Map<Integer, String> income_map = service.getIdNameIncomeCatMap();
         model.setCategoryMap(income_map);

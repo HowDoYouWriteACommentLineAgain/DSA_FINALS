@@ -20,14 +20,15 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
-    private final GenericService<Expense, ? extends GenericDAO<Expense>> service;
+    private final GenericService<Expense, ? extends GenericDAO<Expense>> mainService;
 
     public ExpenseTablePanel(GenericService<Expense, ? extends GenericDAO<Expense>> service) {
         super(new ExpenseTableModel());
         if (service == null) throw new IllegalArgumentException("Service cannot be null");
-        this.service = service;
+        this.mainService = service;
         loadData();
     }
 
@@ -45,16 +46,14 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
 
     @Override
     protected void loadData() {
-        if (service == null) {
+        if (mainService == null) {
             System.err.println("Service is null during loadData()");
             return;
         }
 
-        ArrayList<Expense> data = service.getAll();
+        ArrayList<Expense> data = new ArrayList<>(filter());
 
-        Map<Integer, String> expenseMap = service.getIdNameExpenseCatMap();
-
-        System.out.println("INCOMETABLEPANEL: Service returned as expenseMap: " + expenseMap);
+        Map<Integer, String> expenseMap = mainService.getIdNameExpenseCatMap();
 
         tableModel.setCategoryMap(expenseMap);
 
@@ -70,7 +69,7 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         Expense obj = getSelectedRowObject();
         if (obj == null) return;
         if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            service.delete(obj.id());
+            mainService.delete(obj.id());
             loadData();
         }
     }
@@ -81,7 +80,7 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         dialog.setLayout(new GridLayout(0, 2));
 
         JTextField nameField = new JTextField(isNew || obj.name() == null? "" : obj.name());
-        JComboBox<String> expenseCatSelect = new JComboBox<>(service.getNameIdExpenseCatMap().keySet().toArray(new String[0]));
+        JComboBox<String> expenseCatSelect = new JComboBox<>(mainService.getNameIdExpenseCatMap().keySet().toArray(new String[0]));
         JTextField amountField = new JTextField(isNew ? "" : String.valueOf(obj.amount()));
         JTextField noteField = new JTextField(isNew || obj.note().isEmpty() ? "" : obj.note());
         JTextField dateField = new JTextField(isNew || obj.date() == null ? "" : obj.date().toString());
@@ -100,19 +99,17 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
                 return;
             }
             try {
-                System.out.println("ExpenseCatBox:" + expenseCatSelect.getSelectedItem());
-                System.out.println("Equivalent to db:" + service.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()));
                 Expense newTransaction = new Expense(
                         0, // ID is managed by the DB
                         nameField.getText().trim(),
-                        service.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()),
+                        mainService.getNameIdExpenseCatMap().get(expenseCatSelect.getSelectedItem()),
                         Double.parseDouble(amountField.getText().trim()),
                         noteField.getText().trim(),
                         Date.valueOf(dateField.getText().trim())
                 );
 
-                if (isNew) service.insert(newTransaction);
-                else service.edit(obj.id(), newTransaction);
+                if (isNew) mainService.insert(newTransaction);
+                else mainService.edit(obj.id(), newTransaction);
 
                 loadData();
                 dialog.dispose();
@@ -130,7 +127,16 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
 
     @Override
     public List<Expense> filter() {
-        return List.of();
+        List<Expense> data = mainService.getAll();
+
+        Date startDate = this.startDate.getFullDate();
+        Date endDate = this.endDate.getFullDate();
+        String searchQuery = this.searchField.getText();
+        return data.stream()
+                .filter(d -> d.date() != null)
+                .filter(d -> !d.date().after(endDate) && !d.date().before(startDate))
+                .filter(d -> d.name().contains(searchQuery))
+                .collect(Collectors.toList());
     }
 
 
@@ -147,7 +153,7 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         }
 
         try {
-            if (service.getNameIdExpenseCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
+            if (mainService.getNameIdExpenseCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
         } catch (Exception e) {
             cat.setBackground(ColorUtil.WARNING_COLOR);
             valid = false;

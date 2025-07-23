@@ -91,7 +91,6 @@ public class IncomeDAO extends GenericDAO<Income> {
     @Override
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM incomes WHERE id = ?";
-        System.out.println("DELETING ID:" + id);
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1,id);
             ps.executeUpdate();

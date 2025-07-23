@@ -112,7 +112,6 @@ public class BudgetDAO extends GenericDAO<Budget> {
     @Override
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM budgets WHERE id = ?";
-        System.out.println("DELETING ID:" + id);
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1,id);
             ps.executeUpdate();

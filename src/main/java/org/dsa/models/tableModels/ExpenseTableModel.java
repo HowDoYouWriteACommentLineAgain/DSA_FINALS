@@ -20,8 +20,6 @@ public class ExpenseTableModel extends GenericTableModel<Expense> {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 
-        System.out.println("getValueAt CatMap: "+ categoryMap);
-
         Expense i = super.objList.get(rowIndex);
         return switch (columnIndex)
         {
