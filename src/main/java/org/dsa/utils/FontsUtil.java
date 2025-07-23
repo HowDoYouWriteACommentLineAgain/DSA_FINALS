@@ -18,6 +18,7 @@ public class FontsUtil
     public static final Font HEADER_FONT = BASE.deriveFont(Font.BOLD, 16f);
     public static final Font FIELD_FONT = BASE.deriveFont(Font.PLAIN, 13f);
     public static final Font TEXT_FONT = BASE.deriveFont(Font.PLAIN, 13f);
+    public static final Font REGULAR_BOLD = BASE.deriveFont(Font.BOLD, 13f);
 
 
 

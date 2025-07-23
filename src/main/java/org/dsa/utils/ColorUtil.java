@@ -15,6 +15,8 @@ public final class ColorUtil {
     public static final Color ACCENT_COLOR        = new Color(0x4A90E2);
     public static final Color SUCCESS_COLOR       = new Color(0x7ED321);
     public static final Color WARNING_COLOR       = new Color(0xF5A623);
+    public static final Color OVER_THRESHOLD_COLOR       = new Color(0xB0A600);
+    public static final Color OVER_BUDGET_COLOR       = new Color(0xB72020);
     public static final Color ERROR_COLOR         = new Color(0xD0021B);
     public static final Color BORDER_COLOR        = new Color(0xCCCCCC);
 

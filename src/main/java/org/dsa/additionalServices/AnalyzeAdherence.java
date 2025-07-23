@@ -23,6 +23,6 @@ public class AnalyzeAdherence {
             idToTotalExpenseMap.merge(curr_id, curr_amount, Double::sum);
         }
 
-        return idToTotalExpenseMap.get(id)!= null ? idToTotalExpenseMap.get(id) : 0.0d;
+        return idToTotalExpenseMap.get(id)!= null ? idToTotalExpenseMap.get(id) : 0.00d;
     }
 }

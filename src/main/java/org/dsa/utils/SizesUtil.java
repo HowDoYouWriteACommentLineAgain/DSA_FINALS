@@ -10,7 +10,7 @@ public class SizesUtil {
     public static final Dimension DEFAULT_BUTTON_SIZE = new Dimension(100, 30);
     public static final Dimension DEFAULT_FIELD_SIZE  = new Dimension(200, 30);
     public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(800, 600);
-
+    public static final Dimension HALF_WINDOW_WITDH = new Dimension(400, 60);
 
     public static final int TITLE_SIZE  =   FontsUtil.TITLE_FONT.getSize();
     public static final int HEADER_SIZE =   FontsUtil.HEADER_FONT.getSize();

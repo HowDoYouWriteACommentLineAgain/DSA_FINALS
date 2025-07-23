@@ -58,9 +58,6 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         JTextField noteField = new JTextField(isNew || obj.note().isEmpty() ? "" : obj.note());
         DatePicker dateField =isNew ? new DatePicker() : new DatePicker( obj.date());
 
-
-
-
         dialog.add(new JLabel("Name:")); dialog.add(nameField);
         dialog.add(new JLabel("Category:")); dialog.add(incomeCatSelect);
         dialog.add(new JLabel("Amount:")); dialog.add(amountField);

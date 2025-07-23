@@ -25,6 +25,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     protected JTextField searchField = new JTextField(20);
     protected DatePicker startDate = new DatePicker();
     protected DatePicker endDate = new DatePicker();
+//    protected JPanel centerPane = new JPanel(new BorderLayout());
 
     private static boolean isVisible = false;
 
@@ -54,9 +55,11 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         loadData();
         updateVisibility();}
 
+
+
     protected void setupTable() {
         table = new JTable(tableModel);
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        add(new JScrollPane(table));
     }
 
     protected void setupControls() {
@@ -80,8 +83,9 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         add(panel, BorderLayout.SOUTH);
     }
 
-    protected JButton hideBtn = new JButton(isVisible ? "Hide Filter" : "Show Filter");
+    protected JButton hideBtn = new JButton(isVisible ? "Hide Filters" : "Show Filters");
     protected JButton resetBtn = new JButton("Reset");
+    protected JButton applyBtn = new JButton("Apply");
     protected JLabel startLabel = new JLabel("Range: ");
     protected JLabel endLabel = new JLabel(" - ");
     protected JPanel container = new JPanel(new FlowLayout((FlowLayout.LEFT), 4, 2));
@@ -106,6 +110,11 @@ public abstract class AbstractTablePanel<O> extends JPanel {
             startDate.setDefault(Date.valueOf(LocalDate.of(2000, 1, 1)));
             endDate.setDefault(Date.valueOf(LocalDate.of(2100, 12, 31)));
             searchField.setText("");
+            loadData();
+        });
+
+        applyBtn.addActionListener(e->{
+            loadData();
         });
 
         JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
@@ -123,6 +132,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
         container.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
         container.add(filterPanel);
+        container.add(applyBtn);
         container.add(hideBtn);
 
         add(container, BorderLayout.NORTH);

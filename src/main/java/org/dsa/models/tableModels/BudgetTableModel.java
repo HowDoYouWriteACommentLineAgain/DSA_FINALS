@@ -17,8 +17,6 @@ public class BudgetTableModel extends GenericTableModel<Budget> {
         this.records = records;
     }
 
-    private AnalyzeAdherence totalExpenditureService;
-
     @Override
     public ArrayList<String> returnColumnNames() {
         return new ArrayList<>(Arrays.asList("Category", "Max amount", "Goal amount", "Date start", "Date end", "Expenditure"));
@@ -35,7 +33,7 @@ public class BudgetTableModel extends GenericTableModel<Budget> {
             case 2 -> String.format("%.2f", i.goal_amount());
             case 3 -> i.start_date();
             case 4 -> i.end_date();
-            case 5 -> AnalyzeAdherence.ofBudgetWithExpense(i.expense_cat(),records); //map goes into here
+            case 5 -> AnalyzeAdherence.ofBudgetWithExpense(i.expense_cat(),records)/i.max_amount(); //map goes into here
             default -> null;
         };
     }

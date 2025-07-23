@@ -1,6 +1,8 @@
 package org.dsa.UIPanels.TabularPanels;
 
 import org.dsa.UIPanels.components.DatePicker;
+import org.dsa.UIPanels.components.ProgressBarRenderer;
+import org.dsa.UIPanels.components.ProgressBarScrollPanel;
 import org.dsa.abstractions.AbstractTablePanel;
 import org.dsa.abstractions.GenericDAO;
 import org.dsa.abstractions.GenericService;
@@ -14,8 +16,11 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.sql.Date;
@@ -27,18 +32,31 @@ import java.util.stream.Collectors;
 
 public class BudgetTablePanel extends AbstractTablePanel<Budget> {
     private final GenericService<Budget, ? extends GenericDAO<Budget>> mainService;
-
-//    private ArrayList<Integer> taken = new ArrayList<>();
-
+    private ProgressBarScrollPanel progressTable = new ProgressBarScrollPanel();
     private String exceedMessage = "";
+    private ArrayList<Expense> secondaryData;
+
+//    private JButton toggleProgressBar = new JButton("Edit");
+
 
     public BudgetTablePanel(GenericService<Budget, ? extends GenericDAO<Budget>> mainService, GenericService<Expense, ? extends GenericDAO<Expense>> helperService) {
         super(new BudgetTableModel(helperService.getAll()));
+        secondaryData = helperService.getAll();
         if (mainService == null) throw new IllegalArgumentException("Service cannot be null");
         this.mainService = mainService;
+//        centerPane.add(progressTable, BorderLayout.CENTER);
         loadData();
+
+//        editButton.addActionListener(e -> edit());
     }
 
+    @Override
+    protected void setupTable()
+    {
+        table = new JTable(tableModel);
+        table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
+        add(new JScrollPane(table));
+    }
 
     @Override
     protected void add() {
@@ -57,9 +75,11 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         Map<Integer, String> expenseMap = mainService.getIdNameExpenseCatMap();
 
         ArrayList<Budget> data = new ArrayList<>(filter());
-
         tableModel.setCategoryMap(expenseMap);
         tableModel.setData(data);
+        progressTable.setBudgetList(data);
+        progressTable.setExpenseList(secondaryData);
+        progressTable.setIdNameMap(expenseMap);
         table.clearSelection();
         revalidate();
         repaint();
@@ -81,21 +101,6 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
             loadData();
         }
     }
-
-//    private ArrayList<String> getAvailable(int include)
-//    {
-//        Map<Integer, String> allMaps = new HashMap<>(mainService.getIdNameExpenseCatMap());
-//        ArrayList<String> available = new ArrayList<>();
-//
-//        for (int key : allMaps.keySet()) if(!taken.contains(key) || include == key) available.add(allMaps.get(key));
-//        return available;
-//    }
-//
-//    private void addToTaken(Budget obj)
-//    {
-//        taken.add(obj.expense_cat());
-//    }
-
 
     @Override
     protected void showDialog(Budget obj, boolean isNew) {
