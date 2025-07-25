@@ -20,6 +20,10 @@ public class IncomeTableModel extends GenericTableModel<Income> {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        if (objList.isEmpty()) {
+            if (columnIndex == 0) return "No records found";
+            else return "";
+        }
 
         Income i = super.objList.get(rowIndex);
         return switch (columnIndex)

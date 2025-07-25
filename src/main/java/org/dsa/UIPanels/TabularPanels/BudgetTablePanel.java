@@ -45,7 +45,6 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         if (mainService == null) throw new IllegalArgumentException("Service cannot be null");
         this.mainService = mainService;
 //        centerPane.add(progressTable, BorderLayout.CENTER);
-        loadData();
 
 //        editButton.addActionListener(e -> edit());
     }
@@ -98,7 +97,7 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
         if (obj == null) return;
         if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             mainService.delete(obj.id());
-            loadData();
+            refresh();
         }
     }
 
@@ -139,9 +138,7 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
                 if (isNew) mainService.insert(newTransaction);
                 else mainService.edit(obj.id(), newTransaction);
 
-//                addToTaken(newTransaction);
-
-                loadData();
+                refresh();
                 dialog.dispose();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(dialog, "Unexpected error: " + ex.getMessage());
@@ -161,11 +158,11 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
 
         Date startDate = this.startDate.getFullDate();
         Date endDate = this.endDate.getFullDate();
-        String searchQuery = this.searchField.getText();
+        String searchQuery = this.searchField.getText().toLowerCase();
         return data.stream()
                 .filter(d -> d.start_date() != null && d.end_date() != null)
                 .filter(d -> !d.start_date().after(endDate) && !d.end_date().before(startDate))
-                .filter(d -> mainService.getIdNameExpenseCatMap().get(d.expense_cat()).contains(searchQuery))
+                .filter(d -> mainService.getIdNameExpenseCatMap().get(d.expense_cat()).contains(searchQuery.toLowerCase()))
                 .collect(Collectors.toList());
     }
 

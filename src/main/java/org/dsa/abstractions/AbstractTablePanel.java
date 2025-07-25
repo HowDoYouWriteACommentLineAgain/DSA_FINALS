@@ -1,6 +1,10 @@
 package org.dsa.abstractions;
 
+import org.dsa.AppManager;
 import org.dsa.UIPanels.components.DatePicker;
+import org.dsa.utils.ColorUtil;
+import org.dsa.utils.CustomTableCellRenderer;
+import org.dsa.utils.FontsUtil;
 import org.dsa.utils.SizesUtil;
 
 import javax.swing.JButton;
@@ -10,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
@@ -25,6 +31,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     protected JTextField searchField = new JTextField(20);
     protected DatePicker startDate = new DatePicker();
     protected DatePicker endDate = new DatePicker();
+    protected Timer debounceTimer;
 //    protected JPanel centerPane = new JPanel(new BorderLayout());
 
     private static boolean isVisible = false;
@@ -52,13 +59,17 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     public abstract List<O> filter();
 
     public void refresh() {
-        loadData();
-        updateVisibility();}
-
-
+        AppManager.getInstance().runWithLoading(
+                this::loadData,
+                this::updateVisibility
+        );
+    }
 
     protected void setupTable() {
         table = new JTable(tableModel);
+
+        table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+
         add(new JScrollPane(table));
     }
 
@@ -97,8 +108,22 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         searchField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER) loadData();
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) refresh();
             }
+
+            @Override
+            public void keyReleased(KeyEvent e){
+                if (debounceTimer != null && debounceTimer.isRunning()) {
+                    debounceTimer.restart();
+                } else {
+                    debounceTimer = new Timer(300, evt -> {
+                        loadData();
+                    });
+                    debounceTimer.setRepeats(false);
+                    debounceTimer.start();
+                }
+            };
+
         });
 
         hideBtn.addActionListener(e->{
@@ -110,11 +135,11 @@ public abstract class AbstractTablePanel<O> extends JPanel {
             startDate.setDefault(Date.valueOf(LocalDate.of(2000, 1, 1)));
             endDate.setDefault(Date.valueOf(LocalDate.of(2100, 12, 31)));
             searchField.setText("");
-            loadData();
+            refresh();
         });
 
         applyBtn.addActionListener(e->{
-            loadData();
+            refresh();
         });
 
         JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
@@ -141,7 +166,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     private void updateVisibility()
     {
         filterPanel.setVisible(isVisible);
-        hideBtn.setText(isVisible ? "Hide Filter" : "Show Filter");
+        hideBtn.setText(isVisible ? "Hide Filters" : "Show Filters");
     }
 
     boolean hasThirtyfirst(int month)

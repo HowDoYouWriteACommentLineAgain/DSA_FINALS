@@ -16,6 +16,8 @@ public abstract class GenericDAO<T> {
     public abstract boolean update(int id, T obj) throws SQLException;
     public abstract void insert(T obj) throws SQLException;
     public abstract String getTableName();
+    public abstract void delete(int id) throws SQLException;
+//    public abstract T getLargest();
     //    public abstract String[] getColumns();
 
     public GenericDAO(Connection conn)
@@ -30,7 +32,7 @@ public abstract class GenericDAO<T> {
         } catch (Exception ignored) {}
     }
 
-    public abstract void delete(int id) throws SQLException;
+
 
     public ArrayList<String> getIncomeCats() throws SQLException{
         String sql = "Select name from income_categories";

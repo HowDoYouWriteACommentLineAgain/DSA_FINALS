@@ -79,9 +79,6 @@ public class ProgressBarScrollPanel extends JScrollPane {
                     .mapToDouble(Expense::amount)
                     .sum();
             double max = budget.max_amount();
-
-            System.out.println("Progress bar generating");
-            System.out.printf("%s: %.2f/%.2f", idNameMap.get(budget.expense_cat()), totalExpenditure, max);
             String labelText = String.format("%s: %.2f/%.2f", idNameMap.get(budget.expense_cat()), totalExpenditure, max);
 
             JPanel row = new JPanel(new BorderLayout());

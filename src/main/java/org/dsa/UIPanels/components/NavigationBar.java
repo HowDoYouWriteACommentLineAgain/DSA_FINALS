@@ -22,14 +22,10 @@ public class NavigationBar extends JPanel {
             JButton btn = new JButton(screenName);
             btn.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
             buttons[index++] = btn;
-            if(screenName.equals(Screens.LOGIN))
-                btn.addActionListener(e-> AppManager.getInstance().handleLogout());
 
             btn.addActionListener(e -> AppManager.getInstance().handleNavigation(screenName));
             add(btn);
         }
-//        welcomeMessage.setPreferredSize(SizesUtil.DEFAULT_FIELD_SIZE);
-//        add(welcomeMessage);
     }
 
     public void toggleBtnInvisible(String name)

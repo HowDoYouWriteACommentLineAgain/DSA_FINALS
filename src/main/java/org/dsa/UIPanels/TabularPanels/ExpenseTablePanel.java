@@ -30,7 +30,6 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         super(new ExpenseTableModel());
         if (service == null) throw new IllegalArgumentException("Service cannot be null");
         this.mainService = service;
-        loadData();
     }
 
     @Override
@@ -71,7 +70,7 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         if (obj == null) return;
         if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             mainService.delete(obj.id());
-            loadData();
+            refresh();
         }
     }
 
@@ -112,7 +111,7 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
                 if (isNew) mainService.insert(newTransaction);
                 else mainService.edit(obj.id(), newTransaction);
 
-                loadData();
+                refresh();
                 dialog.dispose();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(dialog, "Unexpected error: " + ex.getMessage());
@@ -132,11 +131,16 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
 
         Date startDate = this.startDate.getFullDate();
         Date endDate = this.endDate.getFullDate();
-        String searchQuery = this.searchField.getText();
+        String searchQuery = this.searchField.getText().toLowerCase();
         return data.stream()
                 .filter(d -> d.date() != null)
                 .filter(d -> !d.date().after(endDate) && !d.date().before(startDate))
-                .filter(d -> d.name().contains(searchQuery))
+                .filter(d ->{
+                        String name = d.name() != null ? d.name().toLowerCase() : "";
+                        String note = d.note() != null ? d.note().toLowerCase() : "";
+                        String query = searchQuery.toLowerCase();
+                        return name.contains(query) || note.contains(query);
+                })
                 .collect(Collectors.toList());
     }
 

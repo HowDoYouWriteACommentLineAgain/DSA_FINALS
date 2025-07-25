@@ -19,6 +19,10 @@ public class ExpenseTableModel extends GenericTableModel<Expense> {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        if (objList.isEmpty()) {
+            if (columnIndex == 0) return "No records found";
+            else return "";
+        }
 
         Expense i = super.objList.get(rowIndex);
         return switch (columnIndex)
