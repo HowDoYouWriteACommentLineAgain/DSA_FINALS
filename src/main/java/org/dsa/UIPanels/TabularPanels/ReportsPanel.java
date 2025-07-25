@@ -10,23 +10,16 @@ import org.dsa.models.objects.Expense;
 import org.dsa.models.objects.Income;
 import org.dsa.models.objects.Report;
 import org.dsa.models.tableModels.ReportTableModel;
-import org.dsa.utils.ColorUtil;
 import org.dsa.utils.CustomTableCellRenderer;
-import org.dsa.utils.FontsUtil;
 import org.dsa.utils.SizesUtil;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumnModel;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -55,10 +48,9 @@ public class ReportsPanel extends JPanel{
         this.exSer = exSer;
         this.buSer = buSer;
         startDateBox.setDefault(1,1,2020);
-        endDateBox.setDefault(1,1,2100);
+        endDateBox.setDefault(1,1,2030);
         setupFilters();
         setupTable();
-//        loadData();
     }
 
     public void refresh() {
@@ -157,7 +149,7 @@ public class ReportsPanel extends JPanel{
     }
 
     private static boolean isVisible = true;
-    private final JButton hideBtn = new JButton(isVisible ? "Hide Filters" : "Show Filters");
+    private final JButton hideBtn = new JButton(isVisible ? "Minimize filters" : "Maximize Filters");
     private final JPanel filterPanel = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
 
     private void setupFilters() {

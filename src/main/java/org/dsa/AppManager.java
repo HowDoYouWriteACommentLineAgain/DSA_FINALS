@@ -62,7 +62,7 @@ public class AppManager {
         buSer = new GenericService<>(new BudgetDAO(conn));
 
 //                loginPanel = new LoginPanel();
-        mainFrame = new MainFrame("Financial Assistant");
+        mainFrame = new MainFrame("PESO: Financial Assistant");
         navbar = new NavigationBar();
     }
 
@@ -71,11 +71,11 @@ public class AppManager {
         build();
 
         //starting screens after building
-        mainFrame.showScreen(Screens.DASHBOARD);
+//        mainFrame.showScreen(Screens.DASHBOARD);
         mainFrame.pack();
         mainFrame.setVisible(true);
 
-        System.out.print(exSer.getAll());
+
         refresh(Screens.DASHBOARD);
     }
 
@@ -88,7 +88,7 @@ public class AppManager {
 
         dashboardPanel = new DashboardPanel(inSer);
 
-        mainFrame.addNavbar(navbar);
+//        mainFrame.addNavbar(navbar);
         mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
         mainFrame.addScreen(Screens.INCOME, incomeUIPanel);
         mainFrame.addScreen(Screens.EXPENSE, expenseUIPanel);
@@ -110,7 +110,7 @@ public class AppManager {
     public void handleNavigation(String screenName)
     {
         refresh(screenName);
-        mainFrame.showScreen(screenName);
+//        mainFrame.showScreen(screenName);
     }
 
     private void refresh(String screenName)

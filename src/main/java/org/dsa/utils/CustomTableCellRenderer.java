@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.Component;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 public class CustomTableCellRenderer extends DefaultTableCellRenderer {
@@ -55,9 +56,9 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer {
             }
             case Date d -> {
                 LocalDate ld = d.toLocalDate();
-                label.setText(String.format("%s %d %d", ld.getMonthValue(),ld.getDayOfMonth(), ld.getYear())); // or format as needed
-                label.setFont(FontsUtil.REGULAR); // not bold
-                label.setHorizontalAlignment(SwingConstants.LEFT);
+                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                label.setText(fmt.format(ld));
+                label.setFont(FontsUtil.REGULAR);
             }
             case String s when s.isBlank() ->{
                 label.setText("--LEFT AS EMPTY--");
@@ -65,33 +66,19 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer {
                 label.setFont(FontsUtil.REGULAR_ITALIC);
                 label.setForeground(ColorUtil.SECONDARY_TEXT_COLOR);
             }
-            case Double d -> {
-                label.setText(String.format("%.2f", d));
-                label.setHorizontalAlignment(SwingConstants.RIGHT);
-                label.setFont(FontsUtil.REGULAR_ITALIC);
-                label.setForeground(ColorUtil.PRIMARY_TEXT_COLOR);
-            }
-            case Integer i ->{
-                label.setText(String.format("%d.00", i));
-                label.setHorizontalAlignment(SwingConstants.RIGHT);
-                label.setFont(FontsUtil.REGULAR_ITALIC);
-                label.setForeground(ColorUtil.PRIMARY_TEXT_COLOR);
-            }
             case String s -> {
-                label.setHorizontalAlignment(SwingConstants.LEFT);
                 label.setText(s);
+            }
+            case Number n -> {
+                label.setText(String.format("%.2f", n));
+                label.setHorizontalAlignment(SwingConstants.RIGHT);
+                label.setFont(FontsUtil.REGULAR_ITALIC);
             }
             default -> {
                 label.setFont(FontsUtil.REGULAR_BOLD);
                 label.setText(String.valueOf(value));
             }
         }
-//
-//        if (flaggedColumns.contains(column)) {
-//            label.setFont(FontsUtil.REGULAR_BOLD);
-//            label.setForeground(ColorUtil.WARNING_COLOR);
-//        }
-
         return label;
     }
 }

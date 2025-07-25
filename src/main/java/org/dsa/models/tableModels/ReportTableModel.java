@@ -13,7 +13,7 @@ public class ReportTableModel extends GenericTableModel<Report> {
 
     @Override
     public ArrayList<String> returnColumnNames() {
-        return new ArrayList<>(Arrays.asList("Period", "Total Income", "Total Expense", "Net", "Largest Single Expenditure"));
+        return new ArrayList<>(Arrays.asList("Period", "Total Income", "Total Expense", "Net", "Single Largest Expenditure"));
     }
 
     @Override

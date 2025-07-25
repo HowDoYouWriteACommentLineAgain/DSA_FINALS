@@ -2,11 +2,10 @@ package org.dsa.abstractions;
 
 import org.dsa.AppManager;
 import org.dsa.UIPanels.components.DatePicker;
-import org.dsa.utils.ColorUtil;
 import org.dsa.utils.CustomTableCellRenderer;
-import org.dsa.utils.FontsUtil;
 import org.dsa.utils.SizesUtil;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,7 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
@@ -26,24 +24,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractTablePanel<O> extends JPanel {
+    protected JPanel topPanel;
     protected JTable table;
+    protected JPanel filter;
+//    protected JPanel stackedPanels = new JPanel();
     protected GenericTableModel<O> tableModel;
     protected JTextField searchField = new JTextField(20);
     protected DatePicker startDate = new DatePicker();
     protected DatePicker endDate = new DatePicker();
     protected Timer debounceTimer;
-//    protected JPanel centerPane = new JPanel(new BorderLayout());
 
     private static boolean isVisible = false;
 
-    protected ArrayList<JTextField> textFields;
+    private static final List<AbstractTablePanel<?>> instances = new ArrayList<>();
 
     public AbstractTablePanel(GenericTableModel<O> tableModel) {
         this.tableModel = tableModel;
+        instances.add(this);
         setLayout(new BorderLayout());
+        setupTopPanel();
         setupTable();
-        setupControls();
-        setupFilters();
     }
 
     protected abstract void add();
@@ -67,13 +67,21 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
     protected void setupTable() {
         table = new JTable(tableModel);
-
         table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
-
-        add(new JScrollPane(table));
+        add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
-    protected void setupControls() {
+    protected void setupTopPanel()
+    {
+        topPanel = new JPanel();
+        topPanel.setLayout(new BoxLayout(topPanel,BoxLayout.Y_AXIS));
+        topPanel.add(getCrudControls());
+        topPanel.add(getFilterControls());
+        updateVisibility();
+        add(topPanel, BorderLayout.NORTH);
+    }
+
+    protected JPanel getCrudControls() {
         JButton refresh = new JButton("Refresh");
         refresh.addActionListener(e -> loadData());
 
@@ -86,12 +94,13 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         JButton editButton = new JButton("Edit");
         editButton.addActionListener(e -> edit());
 
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.add(refresh);
         panel.add(addButton);
         panel.add(editButton);
         panel.add(deleteButton);
-        add(panel, BorderLayout.SOUTH);
+        panel.add(hideBtn);
+        return panel;
     }
 
     protected JButton hideBtn = new JButton(isVisible ? "Hide Filters" : "Show Filters");
@@ -99,11 +108,11 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     protected JButton applyBtn = new JButton("Apply");
     protected JLabel startLabel = new JLabel("Range: ");
     protected JLabel endLabel = new JLabel(" - ");
-    protected JPanel container = new JPanel(new FlowLayout((FlowLayout.LEFT), 4, 2));
     protected JPanel filterPanel = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
 
-    protected void setupFilters()
+    protected JPanel getFilterControls()
     {
+        filter = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
         filterPanel.add(searchField);
         searchField.addKeyListener(new KeyAdapter() {
             @Override
@@ -142,7 +151,7 @@ public abstract class AbstractTablePanel<O> extends JPanel {
             refresh();
         });
 
-        JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
+        JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 0, 0));
         dateFilter.add(startLabel);
         startDate.setDefault(1,1,2000);
         dateFilter.add(startDate);
@@ -152,30 +161,28 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
         filterPanel.add(dateFilter);
         filterPanel.add(resetBtn);
-        updateVisibility();
+        filterPanel.add(applyBtn);
 
+        filter.setVisible(isVisible);
+        filter.add(filterPanel);
 
-        container.setPreferredSize(SizesUtil.DEFAULT_BUTTON_SIZE);
-        container.add(filterPanel);
-        container.add(applyBtn);
-        container.add(hideBtn);
-
-        add(container, BorderLayout.NORTH);
+        return filter;
     }
 
     private void updateVisibility()
     {
-        filterPanel.setVisible(isVisible);
-        hideBtn.setText(isVisible ? "Hide Filters" : "Show Filters");
+        System.out.print("UPD");
+        for (AbstractTablePanel<?> panel : instances) {
+            panel.hideBtn.setText(isVisible ? "Minimize Filters" : "Maximize Filters");
+            panel.filter.setVisible(isVisible);
+        }
     }
-
-    boolean hasThirtyfirst(int month)
-    {
-        return switch (month) {
-            case 1, 3, 5, 7, 8, 10, 12 -> true;
-            default -> false;
-        };
-    }
+//
+//    public static void updateAllVisibilities() {
+//        for (AbstractTablePanel<?> panel : instances) {
+//            panel.updateVisibility();
+//        }
+//    }
 
     protected O getAt(int row) {
         return tableModel.getAt(row);
@@ -189,11 +196,4 @@ public abstract class AbstractTablePanel<O> extends JPanel {
             return null;
         }
     }
-
-//    protected abstract boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, JTextField date);
-//    protected abstract boolean validateFields(JComboBox cat, JTextField goalAmt, JTextField maxAmt, JTextField startDate, JTextField endDate);
-//    protected boolean validateDateField()
-//    {
-//
-//    }
 }
