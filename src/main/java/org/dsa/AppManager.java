@@ -1,5 +1,6 @@
 package org.dsa;
 
+import org.dsa.UIPanels.Settings;
 import org.dsa.UIPanels.TabularPanels.BudgetTablePanel;
 import org.dsa.UIPanels.TabularPanels.ExpenseTablePanel;
 import org.dsa.UIPanels.TabularPanels.IncomeTablePanel;
@@ -32,8 +33,7 @@ public class AppManager {
 
     private final Connection conn;
 
-    private final MainFrame mainFrame;
-    private final NavigationBar navbar;
+    private MainFrame mainFrame;
 
     private DashboardPanel dashboardPanel;
 
@@ -44,7 +44,7 @@ public class AppManager {
     private ExpenseTablePanel expenseUIPanel;
     private BudgetTablePanel budgetUIPanel;
     private ReportsPanel reportUIPanel;
-
+    private Settings settings;
 
     private static final AppManager instance = new AppManager();
     public static AppManager getInstance()
@@ -60,27 +60,19 @@ public class AppManager {
         inSer = new GenericService<>(new IncomeDAO(conn));
         exSer = new GenericService<>(new ExpenseDAO(conn));
         buSer = new GenericService<>(new BudgetDAO(conn));
-
-//                loginPanel = new LoginPanel();
-        mainFrame = new MainFrame("PESO: Financial Assistant");
-        navbar = new NavigationBar();
     }
 
     public void start(){
 
-        build();
-
-        //starting screens after building
-//        mainFrame.showScreen(Screens.DASHBOARD);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
-
-
+        buildMainFrame();
         refresh(Screens.DASHBOARD);
     }
 
-    private void build()
+    private void buildMainFrame()
     {
+        if (mainFrame != null) mainFrame.dispose(); // avoid duplicates
+
+        mainFrame = new MainFrame("PESO: Financial Assistant");
         incomeUIPanel = new IncomeTablePanel(inSer);
         expenseUIPanel = new ExpenseTablePanel(exSer);
         budgetUIPanel = new BudgetTablePanel(buSer, exSer);
@@ -88,12 +80,18 @@ public class AppManager {
 
         dashboardPanel = new DashboardPanel(inSer);
 
+        settings = new Settings();
+
 //        mainFrame.addNavbar(navbar);
         mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
         mainFrame.addScreen(Screens.INCOME, incomeUIPanel);
         mainFrame.addScreen(Screens.EXPENSE, expenseUIPanel);
         mainFrame.addScreen(Screens.BUDGET, budgetUIPanel);
         mainFrame.addScreen(Screens.REPORTS, reportUIPanel);
+        mainFrame.addScreen(Screens.SETTINGS, settings);
+
+        mainFrame.pack();
+        mainFrame.setVisible(true);
     }
 
     public void handleLogout()
@@ -110,7 +108,6 @@ public class AppManager {
     public void handleNavigation(String screenName)
     {
         refresh(screenName);
-//        mainFrame.showScreen(screenName);
     }
 
     private void refresh(String screenName)

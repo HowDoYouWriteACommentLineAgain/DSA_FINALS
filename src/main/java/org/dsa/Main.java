@@ -3,7 +3,13 @@ package org.dsa;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatMonocaiIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
+import org.dsa.utils.ThemeManager;
 
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
@@ -15,22 +21,7 @@ public class Main {
 //    public static AppManager app = new AppManager();
     public static void main(String[] args)
     {
-        try {
-            UIManager.setLookAndFeel(new FlatDarkPurpleIJTheme());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-
-        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-
-        for (Object key : defaults.keySet()) {
-            Object value = defaults.get(key);
-            System.out.println(key + " = ");
-//            if (value instanceof Color) {
-//                System.out.println(key + " = " + value);
-//            }
-        }
-
+        ThemeManager.applyTheme();
         javax.swing.SwingUtilities.invokeLater(()-> AppManager.getInstance().start());
     }
 

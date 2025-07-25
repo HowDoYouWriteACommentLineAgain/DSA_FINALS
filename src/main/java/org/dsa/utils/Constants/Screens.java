@@ -9,12 +9,13 @@ public final class Screens {
     public static final String EXPENSE = "Expense";
     public static final String BUDGET = "Budget";
     public static final String REPORTS = "Reports";
+    public static final String SETTINGS = "Settings";
 
     private Screens(){}
 
     public static String[] getScreens() {
         return new String[]{
-            DASHBOARD, INCOME, EXPENSE, BUDGET, REPORTS
+            DASHBOARD, INCOME, EXPENSE, BUDGET, REPORTS, SETTINGS
         };
     }
 }

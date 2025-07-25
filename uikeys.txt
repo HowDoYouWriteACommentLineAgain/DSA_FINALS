@@ -1,0 +1,1146 @@
+"C:\Program Files\Java\jdk-21\bin\java.exe" --enable-preview "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1.3\lib\idea_rt.jar=59598" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\Admin\Documents\ciit_t3_y24-25\DSA\Financial_Tracker\target\classes;C:\Users\Admin\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar;C:\Users\Admin\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar;C:\Users\Admin\.m2\repository\org\jfree\jfreechart\1.5.5\jfreechart-1.5.5.jar;C:\Users\Admin\.m2\repository\com\formdev\flatlaf\3.4\flatlaf-3.4.jar;C:\Users\Admin\.m2\repository\com\formdev\flatlaf-intellij-themes\3.4\flatlaf-intellij-themes-3.4.jar org.dsa.Main
+PopupMenu.consumeEventOnClose = false
+ScrollBar.thumbHighlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+FileChooser.upFolderIcon = com.formdev.flatlaf.icons.FlatFileChooserUpFolderIcon@4fcd19b3
+TextArea.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+InternalFrame.borderLight = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+TabbedPane.contentSeparatorHeight = 1
+ToggleButton.tab.underlineHeight = 2
+ProgressBar.horizontalSize = javax.swing.plaf.DimensionUIResource[width=146,height=4]
+Separator.stripeWidth = 1
+windowText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Button.disabledBorderColor = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+PasswordField.caretBlinkRate = 500
+ProgressBar.selectionForeground = javax.swing.plaf.ColorUIResource[r=29,g=29,b=38]
+TextPane.margin = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+Slider.focusWidth = 4
+Button.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+TabbedPane.underlineColor = javax.swing.plaf.ColorUIResource[r=150,g=73,b=204]
+Text-specific LCD contrast key = 120
+PopupMenu.scrollArrowColor = javax.swing.plaf.ColorUIResource[r=155,g=155,b=155]
+TitlePane.buttonMaximizedHeight = 22
+CheckBox.arc = 4
+menuText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TableHeader.showTrailingVerticalLine = false
+FileChooser.homeFolderIcon = com.formdev.flatlaf.icons.FlatFileChooserHomeFolderIcon@382db087
+Button.borderWidth = 1
+TabbedPane.disabledUnderlineColor = javax.swing.plaf.ColorUIResource[r=94,g=91,b=107]
+MenuItem.margin = javax.swing.plaf.InsetsUIResource[top=3,left=6,bottom=3,right=6]
+ScrollBar.thumbArc = 0
+OptionPane.questionIcon = com.formdev.flatlaf.icons.FlatOptionPaneQuestionIcon@1e4a7dd4
+Tree.textBackground = javax.swing.plaf.ColorUIResource[r=70,g=73,b=75]
+Objects.Green = javax.swing.plaf.ColorUIResource[r=35,g=158,b=98]
+Actions.GreyInline = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+CheckBox.icon[filled].selectedBackground = javax.swing.plaf.ColorUIResource[r=168,g=168,b=168]
+TableHeader.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=95,g=99,b=101]
+lighten(10% autoInverse)
+List.selectionArc = 0
+Table.focusCellBackground = javax.swing.plaf.ColorUIResource[r=70,g=73,b=75]
+CheckBox.icon.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=138,g=100,b=179]
+inactiveCaptionBorder = javax.swing.plaf.ColorUIResource[r=57,g=60,b=61]
+Button.default.boldText = true
+RadioButtonMenuItem.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+Button.default.borderWidth = 1
+ComboBox.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Table.cellFocusColor = javax.swing.plaf.ColorUIResource[r=34,g=34,b=34]
+Button.hoverBorderColor = javax.swing.plaf.ColorUIResource[r=129,g=79,b=158]
+PopupMenu.borderWidth = 1
+RadioButton.margin = javax.swing.plaf.InsetsUIResource[top=2,left=2,bottom=2,right=2]
+List.cellFocusColor = javax.swing.plaf.ColorUIResource[r=34,g=34,b=34]
+InternalFrame.icon = sun.swing.ImageIconUIResource@12028586
+windowBorder = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Objects.BlackText = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+Objects.Blue = javax.swing.plaf.ColorUIResource[r=89,g=139,b=255]
+InternalFrame.borderLineWidth = 1
+MenuItemUI = com.formdev.flatlaf.ui.FlatMenuItemUI
+ToggleButton.textIconGap = 4
+Spinner.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+HelpButton.borderWidth = 1
+CheckBox.icon[filled].hoverSelectedBackground = com.formdev.flatlaf.util.DerivedColor[r=160,g=160,b=160]
+darken(3% autoInverse)
+InternalFrame.titleFont = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Component.innerOutlineWidth = 0
+PasswordField.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TabbedPane.hasFullBorder = false
+[style]ToggleButton.inTextField = focusable: false; toolbar.margin: 1,1,1,1; toolbar.spacingInsets: 1,1,1,1; toolbar.hoverBackground: lighten($TextField.background,5%); toolbar.pressedBackground: lighten($TextField.background,10%); toolbar.selectedBackground: lighten($TextField.background,15%)
+Button.startBackground = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+TitlePane.closePressedBackground = javax.swing.plaf.ColorUIResource[r=196,g=43,b=28]
+[style]Button.clearButton = icon: com.formdev.flatlaf.icons.FlatClearIcon; focusable: false; toolbar.margin: 1,1,1,1; toolbar.spacingInsets: 1,1,1,1; toolbar.hoverBackground: null; toolbar.pressedBackground: null
+ScrollBar.trackArc = 0
+h00.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=36]
+Button.defaultButtonFollowsFocus = false
+Slider.trackWidth = 2
+SplitPaneDivider.gripColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+SeparatorUI = com.formdev.flatlaf.ui.FlatSeparatorUI
+EditorPane.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+HelpButton.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=129,g=79,b=158]
+Button.toolbar.spacingInsets = javax.swing.plaf.InsetsUIResource[top=1,left=2,bottom=1,right=2]
+CheckBox.icon.hoverBorderColor = javax.swing.plaf.ColorUIResource[r=138,g=100,b=179]
+ToolBar.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+TextField.placeholderForeground = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+RadioButton.textIconGap = 4
+RadioButtonMenuItem.margin = javax.swing.plaf.InsetsUIResource[top=3,left=6,bottom=3,right=6]
+ListUI = com.formdev.flatlaf.ui.FlatListUI
+Component.arrowType = triangle
+ScrollBar.minimumThumbSize = javax.swing.plaf.DimensionUIResource[width=10,height=10]
+Component.grayFilter = com.formdev.flatlaf.util.GrayFilter@32a068d1
+RadioButton.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Popup.dropShadowOpacity = 0.25
+InternalFrame.minimizeIcon = com.formdev.flatlaf.icons.FlatInternalFrameRestoreIcon@71a794e5
+Spinner.editorAlignment = 11
+h0.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=30]
+ComboBox.ancestorInputMap = javax.swing.plaf.InputMapUIResource@3ffcd140
+Button.textShiftOffset = 0
+textInactiveText = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+TitlePane.buttonPressedBackground = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=79]
+lighten(10% autoInverse)
+RootPane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ProgressBar.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=10]
+TabbedPane.tabAreaAlignment = leading
+MenuItem.acceleratorDelimiter = +
+ViewportUI = com.formdev.flatlaf.ui.FlatViewportUI
+RadioButtonMenuItem.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TabbedPane.light = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+Menu.icon.disabledArrowColor = javax.swing.plaf.ColorUIResource[r=91,g=91,b=91]
+[style].mini = font: $mini.font
+TitlePane.small.buttonSymbolHeight = 8
+[style].h4 = font: $h4.font
+[style].h3 = font: $h3.font
+[style].h2 = font: $h2.font
+EditorPane.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+[style].h1 = font: $h1.font
+[style].h0 = font: $h0.font
+ScrollBar.allowsAbsolutePositioning = true
+Slider.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+[style]ToolBarSeparator.inTextField = separatorWidth: 3
+Objects.Pink = javax.swing.plaf.ColorUIResource[r=249,g=139,b=158]
+Slider.thumbSize = javax.swing.plaf.DimensionUIResource[width=12,height=12]
+TabbedPane.focus = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Button.default.focusColor = javax.swing.plaf.ColorUIResource[r=120,g=66,b=153]
+MenuItem.selectionInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+ComboBox.buttonDarkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Popup.Header.inactiveBackground = javax.swing.plaf.ColorUIResource[r=69,g=58,b=92]
+controlShadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+RadioButtonMenuItem.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+EditorPaneUI = com.formdev.flatlaf.ui.FlatEditorPaneUI
+FileChooserUI = com.formdev.flatlaf.ui.FlatFileChooserUI
+TextPane.focusInputMap = javax.swing.plaf.InputMapUIResource@23bb8443
+CheckBoxMenuItem.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+OptionPane.buttonAreaBorder = com.formdev.flatlaf.ui.FlatEmptyBorder@3444d69d
+Spinner.ancestorInputMap = javax.swing.plaf.InputMapUIResource@1372ed45
+Tree.wideSelection = true
+Tree.paintLines = false
+Button.default.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+PasswordField.showRevealButton = false
+TitlePane.closeHoverForeground = javax.swing.plaf.ColorUIResource[r=255,g=255,b=255]
+OptionPane.messageAreaBorder = com.formdev.flatlaf.ui.FlatEmptyBorder@6a79c292
+RootPaneUI = com.formdev.flatlaf.ui.FlatRootPaneUI
+ColorChooser.swatchesDefaultRecentColor = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Slider.pressedThumbColor = com.formdev.flatlaf.util.DerivedColor[r=107,g=156,b=210]
+lighten(8% autoInverse)
+controlHighlight = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+Spinner.buttonDisabledSeparatorColor = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+TabbedPane.closeHoverBackground = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=78]
+lighten(5% autoInverse)
+Slider.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ToggleButton.toolbar.selectedBackground = com.formdev.flatlaf.util.DerivedColor[r=95,g=98,b=100]
+lighten(7% autoInverse)
+EditorPane.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+CheckBox.iconTextGap = 4
+TabbedPane.tabRotation = none
+window = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ComboBoxUI = com.formdev.flatlaf.ui.FlatComboBoxUI
+TextComponent.arc = 0
+CheckBoxMenuItem.arrowIcon = com.formdev.flatlaf.icons.FlatMenuItemArrowIcon@5606c0b
+TitlePane.embeddedForeground = javax.swing.plaf.ColorUIResource[r=149,g=149,b=149]
+ToggleButton.toolbar.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=88,g=90,b=92]
+lighten(4% autoInverse)
+TextPane.selectionBackground = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+SplitPaneDivider.gripDotCount = 3
+FormattedTextField.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Button.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ProgressBar.foreground = javax.swing.plaf.ColorUIResource[r=168,g=94,b=214]
+Spinner.arrowButtonSize = java.awt.Dimension[width=16,height=5]
+InternalFrameTitlePane.closeButtonOpacity = true
+Tree.selectionArc = 0
+defaultFont = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TextArea.focusInputMap = javax.swing.plaf.InputMapUIResource@80ec1f8
+Button.shadowWidth = 2
+MenuItem.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+MenuBar.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+ToolBar.isRollover = true
+TableUI = com.formdev.flatlaf.ui.FlatTableUI
+ScrollPane.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+PasswordField.focusInputMap = javax.swing.plaf.InputMapUIResource@1445d7f
+FileChooser.useSystemExtensionHiding = true
+RootPane.activeBorderColor = com.formdev.flatlaf.util.DerivedColor[r=77,g=81,b=84]
+lighten(7% autoInverse)
+Tree.lineTypeDashed = false
+List.timeFactor = 1000
+ToolBar.dockingForeground = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+ToggleButton.margin = javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14]
+CheckBoxMenuItem.icon.checkmarkColor = javax.swing.plaf.ColorUIResource[r=255,g=255,b=255]
+ToggleButton.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+controlLtHighlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+TabbedPane.tabSelectionHeight = 3
+FileView.fileIcon = com.formdev.flatlaf.icons.FlatFileViewFileIcon@314c508a
+TableHeader.ancestorInputMap = javax.swing.plaf.InputMapUIResource@10b48321
+RadioButton.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+MenuItem.acceleratorSelectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Menu.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+MenuItem.iconTextGap = 6
+List.dropCellForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+CheckBox.textShiftOffset = 0
+Spinner.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ScrollBar.thumbDarkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Tree.hoverInactiveBackground = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+Viewport.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ScrollBar.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TabbedPane.tabInsets = javax.swing.plaf.InsetsUIResource[top=4,left=12,bottom=4,right=12]
+ProgressBar.border = com.formdev.flatlaf.ui.FlatEmptyBorder@6b67034
+Table.showTrailingVerticalLine = false
+TabbedPane.closeIcon = com.formdev.flatlaf.icons.FlatTabbedPaneCloseIcon@442675e1
+Menu.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+TabbedPane.focusInputMap = javax.swing.plaf.InputMapUIResource@6166e06f
+Button.toolbar.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=88,g=90,b=92]
+lighten(4% autoInverse)
+Popup.borderCornerRadius = 4
+FormattedTextField.selectionBackground = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+Label.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+CheckBox.icon[filled].pressedSelectedBackground = com.formdev.flatlaf.util.DerivedColor[r=153,g=153,b=153]
+darken(6% autoInverse)
+Menu.border = com.formdev.flatlaf.ui.FlatMenuItemBorder@27c6e487
+Button.default.startBorderColor = javax.swing.plaf.ColorUIResource[r=124,g=81,b=156]
+ScrollBar.hoverTrackColor = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=79]
+lighten(4%)
+[style].h2.regular = font: $h2.regular.font
+ProgressBar.failedColor = javax.swing.plaf.ColorUIResource[r=189,g=60,b=95]
+MenuBar.selectionEmbeddedInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+InternalFrame.border = com.formdev.flatlaf.ui.FlatInternalFrameUI$FlatInternalFrameBorder@516be40f
+Table.stripeColor = javax.swing.plaf.ColorUIResource[r=50,g=50,b=66]
+TextField.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+ScrollBar.ancestorInputMap = javax.swing.plaf.InputMapUIResource@3c0a50da
+SplitPane.centerOneTouchButtons = true
+Separator.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ToggleButton.selectedBackground = com.formdev.flatlaf.util.DerivedColor[r=115,g=118,b=121]
+lighten(15% autoInverse)
+Slider.onlyLeftMouseButtonDrag = true
+monospaced.font = javax.swing.plaf.FontUIResource[family=Monospaced,name=Monospaced,style=plain,size=12]
+InternalFrame.dropShadowPainted = true
+TextPane.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TabbedPane.selectedTabPadInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+CheckBox.margin = javax.swing.plaf.InsetsUIResource[top=2,left=2,bottom=2,right=2]
+FileView.fullRowSelection = true
+AuditoryCues.cueList = [Ljava.lang.Object;@646be2c3
+Table.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TabbedPane.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+h1.font = javax.swing.plaf.FontUIResource[family=Segoe UI Semibold,name=Segoe UI Semibold,style=plain,size=24]
+InternalFrame.activeDropShadowInsets = javax.swing.plaf.InsetsUIResource[top=5,left=5,bottom=6,right=6]
+RadioButton.icon = com.formdev.flatlaf.icons.FlatRadioButtonIcon@255b53dc
+CheckBoxMenuItem.opaque = false
+Menu.cancelMode = hideLastSubmenu
+ToggleButton.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+ToggleButton.tab.underlineColor = javax.swing.plaf.ColorUIResource[r=150,g=73,b=204]
+ProgressBar.cellSpacing = 0
+RadioButton.icon[filled].centerDiameter = 5
+Menu.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TextArea.inactiveForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+ToggleButton.light = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+MenuItem.checkBackground = com.formdev.flatlaf.util.DerivedColor[r=60,g=88,b=139]
+darken(10%)
+TabbedPane.tabRunOverlay = 0
+Spinner.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TitlePane.showIcon = true
+SearchField.searchIconHoverColor = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+Spinner.buttonPressedArrowColor = com.formdev.flatlaf.util.DerivedColor[r=206,g=206,b=206]
+lighten(20%)
+List.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Tree.showDefaultIcons = false
+Tree.expandedIcon = com.formdev.flatlaf.icons.FlatTreeExpandedIcon@491666ad
+TabbedPane.showTabSeparators = false
+Spinner.buttonSeparatorColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+Popup.dropShadowColor = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+TabbedPane.tabArc = 0
+TextArea.selectionBackground = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+PasswordField.showCapsLock = true
+CheckBox.icon[filled].focusedSelectedBackground = javax.swing.plaf.ColorUIResource[r=168,g=168,b=168]
+ScrollBar.buttonDisabledArrowColor = javax.swing.plaf.ColorUIResource[r=91,g=91,b=91]
+ProgressBar.cycleTime = 4000
+ToolBar.separatorWidth = 7
+ToggleButton.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+Separator.height = 3
+Table.sortIconColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+MenuItem.underlineSelectionCheckBackground = com.formdev.flatlaf.util.DerivedColor[r=60,g=88,b=139]
+darken(10%)
+TitlePane.buttonSymbolHeight = 10
+DesktopIconUI = com.formdev.flatlaf.ui.FlatDesktopIconUI
+FileChooser.newFolderIcon = com.formdev.flatlaf.icons.FlatFileChooserNewFolderIcon@2b4a2ec7
+HelpButton.questionMarkColor = javax.swing.plaf.ColorUIResource[r=168,g=168,b=168]
+CheckBox.icon.pressedBorderColor = javax.swing.plaf.ColorUIResource[r=68,g=110,b=158]
+Popup.inactiveBorderColor = javax.swing.plaf.ColorUIResource[r=52,g=49,b=66]
+Slider.focusedColor = com.formdev.flatlaf.util.DerivedColor[r=60,g=98,b=140]
+fade(70%)
+PopupMenuSeparatorUI = com.formdev.flatlaf.ui.FlatPopupMenuSeparatorUI
+TitlePane.small.buttonSize = javax.swing.plaf.DimensionUIResource[width=30,height=20]
+PasswordField.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+InternalFrameTitlePane.border = com.formdev.flatlaf.ui.FlatEmptyBorder@564718df
+TextPane.border = com.formdev.flatlaf.ui.FlatMarginBorder@51b7e5df
+PopupMenu.borderInsets = javax.swing.plaf.InsetsUIResource[top=4,left=1,bottom=4,right=1]
+TreeUI = com.formdev.flatlaf.ui.FlatTreeUI
+CheckBoxMenuItem.icon.disabledCheckmarkColor = javax.swing.plaf.ColorUIResource[r=91,g=91,b=91]
+InternalFrame.borderDarkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Tree.rendererMargins = javax.swing.plaf.InsetsUIResource[top=1,left=2,bottom=1,right=2]
+TextField.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TabbedPane.closeCrossLineWidth = 1
+CheckBoxMenuItem.acceleratorSelectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TextPane.caretBlinkRate = 500
+Slider.tickColor = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+TabbedPane.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Button.textIconGap = 4
+Table.dropLineShortColor = javax.swing.plaf.ColorUIResource[r=187,g=145,b=211]
+Component.accentColor = javax.swing.plaf.ColorUIResource[r=168,g=94,b=214]
+SearchField.searchIconColor = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+PasswordField.revealIcon = com.formdev.flatlaf.icons.FlatRevealIcon@6279cee3
+CheckBox.icon.focusColor = javax.swing.plaf.ColorUIResource[r=114,g=59,b=148]
+ToolBar.focusableButtons = false
+Table.selectionInactiveForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+Tree.selectionInactiveForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+TabbedPane.tabsOverlapBorder = false
+ColorChooser.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TabbedPane.buttonHoverBackground = com.formdev.flatlaf.util.DerivedColor[r=48,g=50,b=52]
+darken(5%)
+Button.disabledSelectedBackground = com.formdev.flatlaf.util.DerivedColor[r=85,g=88,b=90]
+lighten(3% autoInverse)
+OptionPane.sameSizeButtons = true
+TabbedPane.tabWidthMode = preferred
+SliderUI = com.formdev.flatlaf.ui.FlatSliderUI
+MenuItem.border = com.formdev.flatlaf.ui.FlatMenuItemBorder@4206a205
+TitlePane.foreground = javax.swing.plaf.ColorUIResource[r=109,g=106,b=128]
+Slider.trackValueColor = javax.swing.plaf.ColorUIResource[r=168,g=94,b=214]
+CheckBox.disabledText = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+CheckBox.icon.background = javax.swing.plaf.ColorUIResource[r=52,g=52,b=69]
+MenuItem.underlineSelectionColor = javax.swing.plaf.ColorUIResource[r=150,g=73,b=204]
+MenuBar.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+InternalFrame.closeHoverForeground = javax.swing.plaf.ColorUIResource[r=255,g=255,b=255]
+TableHeader.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+MenuItem.verticallyAlignText = true
+FileChooser.detailsViewIcon = com.formdev.flatlaf.icons.FlatFileChooserDetailsViewIcon@c540f5a
+ComboBox.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+Button.default.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=64,g=105,b=150]
+lighten(6% autoInverse)
+Popup.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=75,b=97]
+Component.minimumWidth = 64
+ComboBox.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+RadioButton.border = com.formdev.flatlaf.ui.FlatMarginBorder@770c2e6b
+Slider.focus = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Spinner.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TitlePane.inactiveForeground = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+EditorPane.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ComboBox.buttonBackground = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+FormattedTextField.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ToolBarSeparatorUI = com.formdev.flatlaf.ui.FlatToolBarSeparatorUI
+Table.ancestorInputMap = javax.swing.plaf.InputMapUIResource@1a052a00
+InternalFrame.activeTitleForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+laf.dark = true
+SplitPaneDivider.gripDotSize = 3
+SearchField.clearIconPressedColor = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+ScrollPane.arc = 0
+RadioButtonMenuItem.acceleratorSelectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+MenuItem.acceleratorFont = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ScrollPane.ancestorInputMap = javax.swing.plaf.InputMapUIResource@4d826d77
+ToggleButton.offBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Table.dropCellForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ToggleButton.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ComboBox.maximumRowCount = 15
+OptionPane.warningIcon = com.formdev.flatlaf.icons.FlatOptionPaneWarningIcon@1a38c59b
+TitlePane.maximizeIcon = com.formdev.flatlaf.icons.FlatWindowMaximizeIcon@15bb6bea
+Tree.icon.collapsedColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+TabbedPane.tabsPopupPolicy = asNeeded
+Button.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=85,g=88,b=90]
+lighten(3% autoInverse)
+mini.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=9]
+OptionPane.windowBindings = [Ljava.lang.Object;@8b96fde
+Panel.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+RadioButtonMenuItem.checkIcon = com.formdev.flatlaf.icons.FlatRadioButtonMenuItemIcon@667a738
+CheckBox.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+List.cellRenderer = javax.swing.DefaultListCellRenderer$UIResource[List.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=com.formdev.flatlaf.ui.FlatListCellBorder$Default@12d3a4e9,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
+ProgressBar.failedEndColor = javax.swing.plaf.ColorUIResource[r=71,g=44,b=51]
+CheckBox.icon.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=85,g=88,b=91]
+lighten(6% autoInverse)
+RadioButton.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+Label.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TextField.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+TabbedPane.selectedLabelShift = -1
+Button.endBorderColor = javax.swing.plaf.ColorUIResource[r=84,g=79,b=112]
+ProgressBar.indeterminateEndColor = javax.swing.plaf.ColorUIResource[r=64,g=46,b=77]
+ToolBar.light = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+ComboBox.buttonShadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+FormattedTextField.inactiveForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+ComboBox.selectionArc = 0
+HelpButton.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=85,g=88,b=90]
+lighten(3% autoInverse)
+TabbedPane.textIconGap = 4
+RadioButtonMenuItem.border = com.formdev.flatlaf.ui.FlatMenuItemBorder@5ad851c9
+Tree.border = com.formdev.flatlaf.ui.FlatEmptyBorder@6156496
+ScrollBar.pressedThumbColor = com.formdev.flatlaf.util.DerivedColor[r=122,g=131,b=135]
+lighten(15%)
+PopupMenu.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TitlePane.centerTitle = false
+Spinner.buttonBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Table.editorSelectAllOnStartEditing = true
+OptionPane.messagePadding = 3
+Table.hoverBackground = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+PopupMenuSeparator.stripeIndent = 4
+OptionPane.buttonClickThreshhold = 500
+TitlePane.menuBarTitleGap = 40
+info = javax.swing.plaf.ColorUIResource[r=70,g=63,b=87]
+PopupMenuUI = com.formdev.flatlaf.ui.FlatPopupMenuUI
+h2.font = javax.swing.plaf.FontUIResource[family=Segoe UI Semibold,name=Segoe UI Semibold,style=plain,size=18]
+EditorPane.selectionBackground = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+Table.ascendingSortIcon = com.formdev.flatlaf.icons.FlatAscendingSortIcon@3e3047e6
+FileView.computerIcon = com.formdev.flatlaf.icons.FlatFileViewComputerIcon@6107227e
+Actions.Grey = javax.swing.plaf.ColorUIResource[r=164,g=161,b=179]
+ToggleButton.startBackground = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+RootPane.border = com.formdev.flatlaf.ui.FlatRootPaneUI$FlatWindowBorder@327b636c
+ComboBox.border = com.formdev.flatlaf.ui.FlatRoundBorder@1a0dcaa
+ToolBar.arrowKeysOnlyNavigation = true
+ToolTip.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ProgressBar.passedEndColor = javax.swing.plaf.ColorUIResource[r=43,g=66,b=66]
+ScrollPane.smoothScrolling = true
+Table.dropLineColor = javax.swing.plaf.ColorUIResource[r=141,g=73,b=181]
+SearchField.clearIconHoverColor = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+Button.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=129,g=79,b=158]
+[style]Button.inTextField = focusable: false; toolbar.margin: 1,1,1,1; toolbar.spacingInsets: 1,1,1,1; toolbar.hoverBackground: lighten($TextField.background,5%); toolbar.pressedBackground: lighten($TextField.background,10%); toolbar.selectedBackground: lighten($TextField.background,15%)
+List.focusCellHighlightBorder = com.formdev.flatlaf.ui.FlatListCellBorder$Focused@a4102b8
+InternalFrame.borderShadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+ToolTipUI = com.formdev.flatlaf.ui.FlatToolTipUI
+TextField.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Component.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=129,g=79,b=158]
+ToolTip.shortcutForeground = javax.swing.plaf.ColorUIResource[r=137,g=133,b=161]
+activeCaption = javax.swing.plaf.ColorUIResource[r=67,g=78,b=96]
+FileView.hardDriveIcon = com.formdev.flatlaf.icons.FlatFileViewHardDriveIcon@78047b92
+PasswordField.inactiveForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+TextField.focusInputMap = javax.swing.plaf.InputMapUIResource@8909f18
+Component.focusColor = javax.swing.plaf.ColorUIResource[r=105,g=54,b=135]
+ComboBox.buttonArrowColor = javax.swing.plaf.ColorUIResource[r=154,g=151,b=168]
+TabbedPane.selectionFollowsFocus = true
+ProgressBarUI = com.formdev.flatlaf.ui.FlatProgressBarUI
+HelpButton.hoverBorderColor = javax.swing.plaf.ColorUIResource[r=129,g=79,b=158]
+ToggleButton.textShiftOffset = 0
+OptionPane.buttonPadding = 8
+ToolBar.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+h2.regular.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=18]
+TextField.selectionBackground = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+PasswordField.margin = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+TextField.margin = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+ComboBox.buttonHoverArrowColor = com.formdev.flatlaf.util.DerivedColor[r=181,g=181,b=181]
+lighten(10%)
+ScrollBar.hoverButtonBackground = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=78]
+lighten(5%)
+desktop = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+Desktop.ancestorInputMap = javax.swing.plaf.InputMapUIResource@79ca92b9
+Table.gridColor = javax.swing.plaf.ColorUIResource[r=26,g=23,b=33]
+FileView.directoryIcon = com.formdev.flatlaf.icons.FlatFileViewDirectoryIcon@6e75aa0d
+ProgressBar.background = javax.swing.plaf.ColorUIResource[r=29,g=29,b=38]
+Menu.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Popup.paintBorder = true
+ProgressBar.cellLength = 1
+ToolBar.spacingBorder = com.formdev.flatlaf.ui.FlatEmptyBorder@7fc229ab
+large.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=14]
+Slider.minimumVerticalSize = java.awt.Dimension[width=21,height=36]
+Tree.showCellFocusIndicator = false
+TextPaneUI = com.formdev.flatlaf.ui.FlatTextPaneUI
+TabbedPane.tabAreaInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+SplitPaneDivider.oneTouchArrowColor = javax.swing.plaf.ColorUIResource[r=155,g=155,b=155]
+ComboBox.buttonSeparatorColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+Spinner.buttonArrowColor = javax.swing.plaf.ColorUIResource[r=154,g=151,b=168]
+ToggleButton.tab.focusBackground = javax.swing.plaf.ColorUIResource[r=82,g=51,b=102]
+CheckBoxMenuItem.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+InternalFrame.closePressedForeground = javax.swing.plaf.ColorUIResource[r=255,g=255,b=255]
+MenuBar.itemMargins = javax.swing.plaf.InsetsUIResource[top=3,left=8,bottom=3,right=8]
+ToggleButton.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Button.default.endBorderColor = javax.swing.plaf.ColorUIResource[r=124,g=81,b=156]
+SplitPane.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+Component.warning.borderColor = javax.swing.plaf.ColorUIResource[r=71,g=68,b=31]
+Table.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ToggleButton.border = com.formdev.flatlaf.ui.FlatButtonBorder@7ff95560
+Objects.YellowDark = javax.swing.plaf.ColorUIResource[r=152,g=140,b=38]
+InternalFrame.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+TextPane.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Tree.rendererFillBackground = false
+ComboBox.buttonStyle = auto
+TitlePane.small.iconifyIcon = com.formdev.flatlaf.icons.FlatWindowIconifyIcon@78dd667e
+InternalFrame.maximizeIcon = com.formdev.flatlaf.icons.FlatInternalFrameMaximizeIcon@6b4a4e18
+MenuBarUI = com.formdev.flatlaf.ui.FlatMenuBarUI
+ToolBarUI = com.formdev.flatlaf.ui.FlatToolBarUI
+TitlePane.small.showIcon = false
+Tree.hash = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+ComboBox.editorColumns = 0
+small.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=10]
+Viewport.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TabbedPane.inactiveUnderlineColor = javax.swing.plaf.ColorUIResource[r=135,g=115,b=153]
+ToolBar.border = com.formdev.flatlaf.ui.FlatToolBarBorder@79ad8b2f
+ScrollBar.squareButtons = false
+TitlePane.small.maximizeIcon = com.formdev.flatlaf.icons.FlatWindowMaximizeIcon@1df82230
+RootPane.cornerDragWidth = 16
+Tree.focusInputMap = javax.swing.plaf.InputMapUIResource@22635ba0
+Button.toolbar.selectedBackground = com.formdev.flatlaf.util.DerivedColor[r=95,g=98,b=100]
+lighten(7% autoInverse)
+Button.default.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=132,g=101,b=166]
+List.border = com.formdev.flatlaf.ui.FlatEmptyBorder@13c10b87
+FormattedTextField.caretForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+Desktop.background = javax.swing.plaf.ColorUIResource[r=55,g=55,b=74]
+ToggleButton.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+activeCaptionBorder = javax.swing.plaf.ColorUIResource[r=67,g=78,b=96]
+List.focusInputMap = javax.swing.plaf.InputMapUIResource@6a01e23
+menu = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Table.consistentHomeEndKeyBehavior = true
+Tree.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ToggleButton.toolbar.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=80,g=83,b=85]
+lighten(1% autoInverse)
+List.selectionInactiveBackground = javax.swing.plaf.ColorUIResource[r=61,g=57,b=82]
+Tree.textForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+TabbedPane.tabHeight = 32
+DesktopPaneUI = com.formdev.flatlaf.ui.FlatDesktopPaneUI
+DesktopIcon.background = com.formdev.flatlaf.util.DerivedColor[r=85,g=92,b=104]
+lighten(10% autoInverse)
+ToggleButton.focusInputMap = javax.swing.plaf.InputMapUIResource@5a955565
+Menu.shortcutKeys = [I@6293abcc
+ToolBar.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+Slider.disabledThumbColor = javax.swing.plaf.ColorUIResource[r=84,g=89,b=92]
+Tree.focusInputMap.RightToLeft = javax.swing.plaf.InputMapUIResource@7995092a
+InternalFrame.inactiveTitleForeground = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+Tree.changeSelectionWithFocus = true
+ProgressBar.passedColor = javax.swing.plaf.ColorUIResource[r=35,g=158,b=98]
+Table.cellMargins = javax.swing.plaf.InsetsUIResource[top=2,left=3,bottom=2,right=3]
+MenuBar.windowBindings = [Ljava.lang.Object;@7fc2413d
+RadioButtonMenuItem.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ComboBox.noActionOnKeyNavigation = false
+FileChooser.listViewIcon = com.formdev.flatlaf.icons.FlatFileChooserListViewIcon@4c15e7fd
+Menu.menuPopupOffsetY = 0
+Menu.menuPopupOffsetX = 0
+OptionPane.iconMessageGap = 16
+List.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ToggleButton.disabledText = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+List.selectionInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+Component.hoverIconColor = javax.swing.plaf.ColorUIResource[r=139,g=133,b=166]
+TabbedPane.contentAreaColor = javax.swing.plaf.ColorUIResource[r=26,g=23,b=33]
+CheckBox.border = com.formdev.flatlaf.ui.FlatMarginBorder@23986957
+TabbedPane.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ComboBox.timeFactor = 1000
+textHighlight = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+PasswordField.echoChar = •
+RadioButtonMenuItem.arrowIcon = com.formdev.flatlaf.icons.FlatMenuItemArrowIcon@23f7d05d
+Slider.thumbColor = javax.swing.plaf.ColorUIResource[r=168,g=94,b=214]
+ToggleButton.buttonColor = javax.swing.plaf.ColorUIResource[r=102,g=99,b=128]
+Tree.editorBorder = com.formdev.flatlaf.ui.FlatLineBorder@1e730495
+TextPane.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Spinner.editorBorderPainted = false
+Slider.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TextArea.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+[style].semibold = font: $semibold.font
+Menu.preserveTopLevelSelection = false
+MenuBar.borderColor = javax.swing.plaf.ColorUIResource[r=26,g=23,b=33]
+List.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+List.hoverInactiveBackground = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+ComboBox.minimumWidth = 72
+List.cellMargins = javax.swing.plaf.InsetsUIResource[top=1,left=6,bottom=1,right=6]
+ToggleButton.tab.hoverBackground = javax.swing.plaf.ColorUIResource[r=223,g=179,b=255]
+TitlePane.unifiedBackground = true
+h3.font = javax.swing.plaf.FontUIResource[family=Segoe UI Semibold,name=Segoe UI Semibold,style=plain,size=15]
+TextArea.caretForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+Popup.Advertiser.foreground = javax.swing.plaf.ColorUIResource[r=135,g=133,b=166]
+PopupMenu.selectedWindowInputMapBindings.RightToLeft = [Ljava.lang.Object;@7d3a22a9
+MenuUI = com.formdev.flatlaf.ui.FlatMenuUI
+Table.focusCellHighlightBorder = com.formdev.flatlaf.ui.FlatTableCellBorder$Focused@7f1302d6
+ToggleButtonUI = com.formdev.flatlaf.ui.FlatToggleButtonUI
+EditorPane.inactiveForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+TabbedPane.closePressedForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+ScrollBar.buttonArrowColor = javax.swing.plaf.ColorUIResource[r=155,g=155,b=155]
+RadioButton.disabledText = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+SplitPaneDivider.draggingColor = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+Button.endBackground = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+Menu.arrowIcon = com.formdev.flatlaf.icons.FlatMenuArrowIcon@2805c96b
+RadioButton.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+[style].h1.regular = font: $h1.regular.font
+MenuItem.minimumIconSize = javax.swing.plaf.DimensionUIResource[width=16,height=16]
+TitlePane.iconifyIcon = com.formdev.flatlaf.icons.FlatWindowIconifyIcon@184cf7cf
+InternalFrameTitlePane.iconifyButtonOpacity = true
+DesktopIcon.border = com.formdev.flatlaf.ui.FlatEmptyBorder@2fd6b6c7
+ToggleButton.borderColor = javax.swing.plaf.ColorUIResource[r=102,g=99,b=128]
+MenuItem.borderPainted = true
+List.focusInputMap.RightToLeft = javax.swing.plaf.InputMapUIResource@5bfa9431
+RadioButtonMenuItem.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+PopupMenu.selectedWindowInputMapBindings = [Ljava.lang.Object;@5db250b4
+TextArea.margin = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+PasswordField.selectionBackground = javax.swing.plaf.ColorUIResource[r=105,g=65,b=140]
+CheckBox.rollover = true
+ToggleButton.iconTextGap = 4
+Component.isIntelliJTheme = true
+Button.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=93,g=95,b=98]
+lighten(6% autoInverse)
+InternalFrameUI = com.formdev.flatlaf.ui.FlatInternalFrameUI
+ToolBar.floatable = false
+Menu.crossMenuMnemonic = true
+Component.innerFocusWidth = 0
+Objects.Red = javax.swing.plaf.ColorUIResource[r=198,g=58,b=93]
+RadioButtonMenuItem.acceleratorForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+CheckBox.icon.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=77,g=81,b=83]
+lighten(3% autoInverse)
+Component.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+Button.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ComboBox.buttonHighlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+MenuBar.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+PopupMenuSeparator.height = 9
+ToolTip.borderCornerRadius = 4
+TextArea.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Button.margin = javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14]
+Tree.rightChildIndent = 11
+CheckBoxMenuItem.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Button.default.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+RadioButton.iconTextGap = 4
+RootPane.inactiveBorderColor = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=78]
+lighten(5% autoInverse)
+Component.arc = 5
+OptionPane.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+MenuBar.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+laf.scaleFactor = 1.0
+TextAreaUI = com.formdev.flatlaf.ui.FlatTextAreaUI
+ToggleButton.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TextField.iconTextGap = 4
+TextArea.caretBlinkRate = 500
+TitlePane.iconMargins = javax.swing.plaf.InsetsUIResource[top=3,left=8,bottom=3,right=8]
+TableHeader.height = 25
+[style].h00 = font: $h00.font
+TextPane.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Spinner.buttonStyle = button
+PasswordField.capsLockIconColor = javax.swing.plaf.ColorUIResource[r=255,g=255,b=255]
+EditorPane.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+ToolBar.hoverButtonGroupArc = 8
+FormattedTextField.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+TitlePane.buttonSize = javax.swing.plaf.DimensionUIResource[width=44,height=30]
+TitlePane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+MenuItem.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Button.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+RadioButton.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Tree.rowHeight = 0
+TextField.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Menu.acceleratorForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+MenuItem.underlineSelectionBackground = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=79]
+lighten(10% autoInverse)
+ScrollBar.hoverThumbColor = com.formdev.flatlaf.util.DerivedColor[r=110,g=118,b=122]
+lighten(10%)
+PopupMenu.borderCornerRadius = 4
+TitlePane.showIconInDialogs = true
+TabbedPane.scrollButtonsPolicy = asNeededSingle
+Objects.RedStatus = javax.swing.plaf.ColorUIResource[r=221,g=57,b=98]
+CheckBox.icon.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Button.toolbar.margin = javax.swing.plaf.InsetsUIResource[top=3,left=3,bottom=3,right=3]
+Panel.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+CheckBox.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+DesktopIcon.closeSize = javax.swing.plaf.DimensionUIResource[width=20,height=20]
+MenuItem.acceleratorArrowGap = 2
+CheckBoxMenuItem.acceleratorForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Tree.icon.closedColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+TableHeader.bottomSeparatorColor = javax.swing.plaf.ColorUIResource[r=40,g=36,b=48]
+Tree.ancestorInputMap = javax.swing.plaf.InputMapUIResource@223f3642
+TextField.caretBlinkRate = 500
+TitlePane.showIconBesideTitle = false
+InternalFrame.activeBorderColor = javax.swing.plaf.ColorUIResource[r=43,g=45,b=46]
+ComboBox.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ToggleButton.onForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Menu.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Menu.icon.arrowColor = javax.swing.plaf.ColorUIResource[r=155,g=155,b=155]
+ScrollBar.thumb = com.formdev.flatlaf.util.DerivedColor[r=86,g=92,b=95]
+lighten(10%)
+Component.custom.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+CheckBox.icon.selectedBackground = javax.swing.plaf.ColorUIResource[r=52,g=52,b=69]
+OptionPane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ToolBar.floatingForeground = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+Menu.opaque = false
+Button.toolbar.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=80,g=83,b=85]
+lighten(1% autoInverse)
+Tree.openIcon = com.formdev.flatlaf.icons.FlatTreeOpenIcon@233fe9b6
+OptionPane.buttonMinimumWidth = 72
+ScrollBar.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ComboBox.borderCornerRadius = 4
+TableHeader.separatorColor = javax.swing.plaf.ColorUIResource[r=26,g=23,b=33]
+FormattedTextField.placeholderForeground = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+List.focusSelectedCellHighlightBorder = com.formdev.flatlaf.ui.FlatListCellBorder$Selected@60dcc9fe
+MenuBar.selectionArc = 0
+HelpButton.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+PopupMenuSeparator.stripeWidth = 1
+CheckBoxMenuItem.margin = javax.swing.plaf.InsetsUIResource[top=3,left=6,bottom=3,right=6]
+PopupMenu.hoverScrollArrowBackground = javax.swing.plaf.ColorUIResource[r=72,g=76,b=78]
+HelpButton.disabledQuestionMarkColor = javax.swing.plaf.ColorUIResource[r=119,g=121,b=122]
+List.hoverBackground = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+ComboBox.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ToolTip.background = javax.swing.plaf.ColorUIResource[r=70,g=63,b=87]
+TableHeader.cellBorder = com.formdev.flatlaf.ui.FlatEmptyBorder@222114ba
+ScrollPane.ancestorInputMap.RightToLeft = javax.swing.plaf.InputMapUIResource@16e7dcfd
+Tree.selectionInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+ToolBar.hoverButtonGroupBackground = com.formdev.flatlaf.util.DerivedColor[r=67,g=71,b=73]
+lighten(3% autoInverse)
+TitlePane.icon = sun.swing.ImageIconUIResource@3d121db3
+MenuItem.arrowIcon = com.formdev.flatlaf.icons.FlatMenuItemArrowIcon@3b07a0d6
+HelpButton.icon = com.formdev.flatlaf.icons.FlatHelpButtonIcon@12d4bf7e
+Tree.timeFactor = 1000
+ScrollBar.showButtons = false
+PopupMenu.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Tree.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TextField.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+List.showCellFocusIndicator = false
+CheckBoxMenuItem.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Button.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+FileView.floppyDriveIcon = com.formdev.flatlaf.icons.FlatFileViewFloppyDriveIcon@45018215
+CheckBox.icon.selectedBorderColor = javax.swing.plaf.ColorUIResource[r=117,g=107,b=140]
+Button.focusInputMap = javax.swing.plaf.InputMapUIResource@65d6b83b
+h4.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=bold,size=12]
+controlText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+PasswordField.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ProgressBar.selectionBackground = javax.swing.plaf.ColorUIResource[r=168,g=94,b=214]
+PasswordField.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Actions.Yellow = javax.swing.plaf.ColorUIResource[r=202,g=186,b=45]
+SplitPaneDivider.oneTouchPressedArrowColor = com.formdev.flatlaf.util.DerivedColor[r=206,g=206,b=206]
+lighten(20%)
+ScrollPane.fillUpperCorner = true
+ToolTip.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+InternalFrame.closeIcon = com.formdev.flatlaf.icons.FlatInternalFrameCloseIcon@2928854b
+Table.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Separator.stripeIndent = 1
+SplitPaneDivider.oneTouchHoverArrowColor = com.formdev.flatlaf.util.DerivedColor[r=181,g=181,b=181]
+lighten(10%)
+TableHeader.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+SearchField.clearIconColor = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+PasswordField.border = com.formdev.flatlaf.ui.FlatTextBorder@4278a03f
+TextField.border = com.formdev.flatlaf.ui.FlatTextBorder@147ed70f
+TabbedPane.tabSeparatorsFullHeight = false
+CheckBox.icon.checkmarkColor = javax.swing.plaf.ColorUIResource[r=164,g=161,b=179]
+ScrollBar.pressedButtonBackground = com.formdev.flatlaf.util.DerivedColor[r=84,g=89,b=92]
+lighten(10%)
+TabbedPane.buttonArc = 6
+SplitPane.oneTouchButtonOffset = 2
+PasswordField.iconTextGap = 4
+ScrollPane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TitlePane.restoreIcon = com.formdev.flatlaf.icons.FlatWindowRestoreIcon@77167fb7
+RootPane.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Spinner.padding = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+Actions.Red = javax.swing.plaf.ColorUIResource[r=198,g=58,b=93]
+medium.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=11]
+CheckBoxMenuItem.checkIcon = com.formdev.flatlaf.icons.FlatCheckBoxMenuItemIcon@1fe20588
+Table.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+RootPane.borderDragThickness = 5
+ProgressBar.verticalSize = javax.swing.plaf.DimensionUIResource[width=4,height=146]
+TextField.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+control = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+RadioButtonMenuItem.acceleratorFont = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+InternalFrame.closePressedBackground = javax.swing.plaf.ColorUIResource[r=159,g=46,b=74]
+Button.selectedForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+[style].large = font: $large.font
+Table.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+ColorChooser.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Tree.closedIcon = com.formdev.flatlaf.icons.FlatTreeClosedIcon@229d10bd
+MenuItem.acceleratorForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Objects.Grey = javax.swing.plaf.ColorUIResource[r=151,g=144,b=173]
+OptionPane.border = com.formdev.flatlaf.ui.FlatEmptyBorder@47542153
+PasswordField.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+ScrollBar.pressedThumbWithTrack = false
+Tree.selectionBorderColor = javax.swing.plaf.ColorUIResource[r=34,g=34,b=34]
+RadioButton.textShiftOffset = 0
+TabbedPane.buttonInsets = javax.swing.plaf.InsetsUIResource[top=2,left=1,bottom=2,right=1]
+MenuItem.opaque = false
+Component.error.borderColor = javax.swing.plaf.ColorUIResource[r=82,g=37,b=48]
+PasswordField.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TitlePane.titleMargins = javax.swing.plaf.InsetsUIResource[top=3,left=0,bottom=3,right=0]
+Menu.acceleratorFont = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+SearchField.searchIconPressedColor = javax.swing.plaf.ColorUIResource[r=159,g=153,b=191]
+ToggleButton.rollover = true
+Component.error.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=153,g=55,b=80]
+EditorPane.caretBlinkRate = 500
+SplitPane.continuousLayout = true
+CheckBox.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+MenuBar.selectionInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+Label.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+CheckBox.icon.focusedSelectedBorderColor = javax.swing.plaf.ColorUIResource[r=138,g=100,b=179]
+MenuItem.textAcceleratorGap = 24
+InternalFrame.buttonSize = javax.swing.plaf.DimensionUIResource[width=24,height=24]
+TextFieldUI = com.formdev.flatlaf.ui.FlatTextFieldUI
+ScrollPane.border = com.formdev.flatlaf.ui.FlatScrollPaneBorder@56a6d5a6
+CheckBoxMenuItem.acceleratorFont = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Button.default.startBackground = javax.swing.plaf.ColorUIResource[r=107,g=56,b=143]
+OptionPane.errorIcon = com.formdev.flatlaf.icons.FlatOptionPaneErrorIcon@25d250c6
+FormattedTextField.border = com.formdev.flatlaf.ui.FlatTextBorder@4df50bcc
+CheckBox.textIconGap = 4
+html.pendingImage = sun.swing.ImageIconUIResource@6b26e945
+RootPane.ancestorInputMap = javax.swing.plaf.InputMapUIResource@63a65a25
+TabbedPane.shadow = javax.swing.plaf.ColorUIResource[r=60,g=63,b=65]
+Slider.focusInputMap.RightToLeft = javax.swing.plaf.InputMapUIResource@54c562f7
+Text-specific antialiasing enable key = LCD HRGB antialiasing text mode
+Button.light = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+RadioButton.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+ColorChooser.swatchesRecentSwatchSize = javax.swing.plaf.DimensionUIResource[width=16,height=16]
+CheckBox.icon.disabledCheckmarkColor = javax.swing.plaf.ColorUIResource[r=86,g=80,b=115]
+InternalFrame.inactiveTitleBackground = javax.swing.plaf.ColorUIResource[r=48,g=50,b=51]
+Component.focusWidth = 2
+ComboBox.popupInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+ComboBox.editableBackground = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+InternalFrame.inactiveDropShadowInsets = javax.swing.plaf.InsetsUIResource[top=3,left=3,bottom=4,right=4]
+ScrollBar.maximumThumbSize = javax.swing.plaf.DimensionUIResource[width=100000,height=100000]
+OptionPaneUI = com.formdev.flatlaf.ui.FlatOptionPaneUI
+ToolTipManager.enableToolTipMode = activeApplication
+TableHeader.focusCellBackground = javax.swing.plaf.ColorUIResource[r=70,g=73,b=75]
+Component.hideMnemonics = true
+PasswordField.caretForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+ComboBox.padding = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+ToolBar.borderMargins = javax.swing.plaf.InsetsUIResource[top=2,left=2,bottom=2,right=2]
+ToggleButton.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=93,g=95,b=98]
+lighten(6% autoInverse)
+Popup.dropShadowPainted = true
+Menu.acceleratorSelectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+PasswordField.capsLockIcon = com.formdev.flatlaf.icons.FlatCapsLockIcon@43301423
+TabbedPaneUI = com.formdev.flatlaf.ui.FlatTabbedPaneUI
+Slider.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+TabbedPane.arrowType = chevron
+Slider.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Table.showHorizontalLines = false
+ToggleButton.offForeground = javax.swing.plaf.ColorUIResource[r=159,g=159,b=166]
+light.font = javax.swing.plaf.FontUIResource[family=Segoe UI Light,name=Segoe UI Light,style=plain,size=12]
+Button.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+TabbedPane.scrollButtonsPlacement = both
+Objects.Yellow = javax.swing.plaf.ColorUIResource[r=202,g=186,b=45]
+CheckBox.icon[filled].selectedBorderColor = javax.swing.plaf.ColorUIResource[r=168,g=168,b=168]
+RadioButtonMenuItem.opaque = false
+CheckBoxMenuItem.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+TabbedPane.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+HelpButton.pressedBackground = com.formdev.flatlaf.util.DerivedColor[r=93,g=95,b=98]
+lighten(6% autoInverse)
+ScrollBar.trackInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+Tree.dropCellForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Separator.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+Button.iconTextGap = 4
+CheckBox.icon.borderColor = javax.swing.plaf.ColorUIResource[r=117,g=107,b=140]
+Popup.Advertiser.borderInsets = javax.swing.plaf.InsetsUIResource[top=4,left=8,bottom=3,right=0]
+TextArea.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TitlePane.closeHoverBackground = javax.swing.plaf.ColorUIResource[r=196,g=43,b=28]
+FlatLaf.internal.variables = {@disabledForeground=shade(@foreground,25%), @buttonArrowColor=shade(@foreground,17%), @cellFocusColor=#222, @accentUnderlineColor=if(@accentColor, @accentColor, @accentBase2Color), @Monocai.selectionBackground=lazy(TextField.selectionBackground), @ijTextBackgroundL3=lighten(Panel.background,3%,lazy), @selectionBackground=@accentSelectionBackground, @ijMenuCheckBackgroundD10=darken(@selectionBackground,10%,derived noAutoInverse), @componentBackground=tint(@background,5%), @selectionInactiveForeground=@foreground, @ijTextBackgroundL4=lighten(Panel.background,4%,lazy), @icon=shade(@foreground,7%), @menuBackground=darken(@background,5%), @dropLineShortColor=lighten(List.selectionBackground,30%,lazy), @ijMenuCheckBackgroundL10=lighten(@selectionBackground,10%,derived noAutoInverse), @buttonHoverArrowColor=lighten(@buttonArrowColor,10%,derived noAutoInverse), @menuCheckBackground=darken(@menuSelectionBackground,10%,derived noAutoInverse), @accentSliderColor=if(@accentColor, @accentColor, @accentBase2Color), @Monocai.acceleratorForeground=lazy(MenuItem.disabledForeground), @accentLinkColor=if(@accentColor, @accentColor, lighten(saturate(spin(@accentBaseColor,-5),50%),16%)), @accentBase2Color=lighten(saturate(spin(@accentBaseColor,-8),13%),5%), @selectionInactiveBackground=spin(saturate(shade(@selectionBackground,70%),20%),-15), @disabledBackground=@background, @accentFocusColor=if(@accentColor, darken(@accentColor,20%), shade(spin(@accentBaseColor,-8),20%)), @accentBaseColor=#4B6EAF, @dropCellForeground=lazy(List.selectionForeground), @buttonBackground=tint(@background,9%), @background=#3c3f41, @buttonPressedArrowColor=lighten(@buttonArrowColor,20%,derived noAutoInverse), @selectionForeground=contrast(@selectionBackground, @background, @foreground, 25%), @Monocai.selectionInactiveBackground=lazy(MenuItem.selectionBackground), @componentMargin=2,6,2,6, @accentColor=null, @ijMenuCheckBackgroundL20=lighten(@selectionBackground,20%,derived noAutoInverse), @dropCellBackground=darken(List.selectionBackground,10%,lazy), @menuAcceleratorForeground=darken(@foreground,15%), @Monocai.acceleratorSelectionForeground=lighten(MenuItem.disabledForeground,10%,lazy), @menuAcceleratorSelectionForeground=@selectionForeground, @foreground=#bbb, @buttonDisabledArrowColor=darken(@buttonArrowColor,25%), @menuItemMargin=3,6,3,6, @menuSelectionBackground=@selectionBackground, @accentSelectionBackground=if(@accentColor, @accentColor, @accentBaseColor), @accentButtonDefaultBackground=if(@accentColor, @accentColor, darken(spin(@accentBaseColor,-8),13%)), @menuHoverBackground=lighten(@menuBackground,10%,derived), @dropLineColor=lighten(List.selectionBackground,10%,lazy)}
+TitledBorder.titleColor = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+infoText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Component.linkColor = javax.swing.plaf.ColorUIResource[r=112,g=148,b=255]
+Spinner.buttonDisabledArrowColor = javax.swing.plaf.ColorUIResource[r=69,g=69,b=84]
+InternalFrame.buttonPressedBackground = com.formdev.flatlaf.util.DerivedColor[r=86,g=88,b=90]
+lighten(20% autoInverse)
+TabbedPane.closePressedBackground = com.formdev.flatlaf.util.DerivedColor[r=84,g=89,b=92]
+lighten(10% autoInverse)
+TabbedPane.closeArc = 4
+Button.default.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+CheckBox.icon = com.formdev.flatlaf.icons.FlatCheckBoxIcon@4e91d63f
+TextComponent.selectAllOnMouseClick = false
+TitlePane.menuBarTitleMinimumGap = 12
+PopupMenu.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=76,b=99]
+EditorPane.margin = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+InternalFrameTitlePane.maximizeButtonOpacity = true
+[style].monospaced = font: $monospaced.font
+Slider.verticalSize = java.awt.Dimension[width=21,height=200]
+Slider.disabledTrackColor = javax.swing.plaf.ColorUIResource[r=84,g=89,b=92]
+MenuItem.checkMargins = javax.swing.plaf.InsetsUIResource[top=2,left=2,bottom=2,right=2]
+HelpButton.borderColor = javax.swing.plaf.ColorUIResource[r=84,g=79,b=112]
+SplitPane.ancestorInputMap = javax.swing.plaf.InputMapUIResource@d4342c2
+MenuItem.minimumWidth = 72
+ScrollBarUI = com.formdev.flatlaf.ui.FlatScrollBarUI
+TitledBorder.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TextField.caretForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+TitlePane.buttonMinimumWidth = 30
+PasswordFieldUI = com.formdev.flatlaf.ui.FlatPasswordFieldUI
+Tree.hoverBackground = javax.swing.plaf.ColorUIResource[r=0,g=0,b=0]
+[style].light = font: $light.font
+InternalFrame.borderHighlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+TabbedPane.tabSelectionArc = 0
+RootPane.honorDialogMinimumSizeOnResize = true
+TextArea.border = com.formdev.flatlaf.ui.FlatMarginBorder@2bbf180e
+RadioButtonUI = com.formdev.flatlaf.ui.FlatRadioButtonUI
+Table.paintOutsideAlternateRows = false
+Actions.Blue = javax.swing.plaf.ColorUIResource[r=77,g=133,b=255]
+Popup.Header.activeBackground = javax.swing.plaf.ColorUIResource[r=69,g=58,b=92]
+MenuItem.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+ScrollBar.trackHighlight = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+[style].small = font: $small.font
+[style].medium = font: $medium.font
+Slider.trackColor = javax.swing.plaf.ColorUIResource[r=29,g=29,b=38]
+List.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+InternalFrame.buttonHoverBackground = com.formdev.flatlaf.util.DerivedColor[r=61,g=63,b=64]
+lighten(10% autoInverse)
+textHighlightText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+SplitPaneDivider.style = grip
+ToolBar.dockingBackground = javax.swing.plaf.ColorUIResource[r=48,g=50,b=52]
+SplitPaneDivider.gripGap = 2
+TitlePane.noIconLeftGap = 8
+Separator.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+RootPane.defaultButtonWindowKeyBindings = [Ljava.lang.Object;@163e4e87
+h3.regular.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=15]
+SplitPane.dividerSize = 5
+List.dropCellBackground = javax.swing.plaf.ColorUIResource[r=85,g=43,b=109]
+Button.border = com.formdev.flatlaf.ui.FlatButtonBorder@56de5251
+PanelUI = com.formdev.flatlaf.ui.FlatPanelUI
+SplitPane.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+InternalFrame.iconifyIcon = com.formdev.flatlaf.icons.FlatInternalFrameIconifyIcon@5276e6b0
+Actions.Green = javax.swing.plaf.ColorUIResource[r=37,g=173,b=107]
+InternalFrame.inactiveBorderColor = javax.swing.plaf.ColorUIResource[r=53,g=55,b=57]
+FormattedTextField.focusInputMap = javax.swing.plaf.InputMapUIResource@71b1176b
+TitlePane.small.closeIcon = com.formdev.flatlaf.icons.FlatWindowCloseIcon@78aab498
+DesktopIcon.iconSize = javax.swing.plaf.DimensionUIResource[width=64,height=64]
+html.missingImage = sun.swing.ImageIconUIResource@5dd6264
+EditorPane.caretForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+SplitPane.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+MenuBar.border = com.formdev.flatlaf.ui.FlatMenuBarBorder@12e61fe6
+Tree.collapsedIcon = com.formdev.flatlaf.icons.FlatTreeCollapsedIcon@7ee955a8
+TextField.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+OptionPane.showIcon = false
+PasswordField.revealIconColor = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+Component.iconColor = javax.swing.plaf.ColorUIResource[r=119,g=114,b=143]
+ProgressBar.indeterminateStartColor = javax.swing.plaf.ColorUIResource[r=168,g=94,b=214]
+ToolBar.darkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+SpinnerUI = com.formdev.flatlaf.ui.FlatSpinnerUI
+FormattedTextField.margin = javax.swing.plaf.InsetsUIResource[top=2,left=6,bottom=2,right=6]
+ComboBox.selectionInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+PasswordField.placeholderForeground = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+Button.shadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+MenuItem.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+SplitPaneUI = com.formdev.flatlaf.ui.FlatSplitPaneUI
+Menu.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+RadioButton.light = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+PopupMenu.border = com.formdev.flatlaf.ui.FlatPopupMenuBorder@5e316c74
+CheckBoxUI = com.formdev.flatlaf.ui.FlatCheckBoxUI
+Button.arc = 6
+ToolTip.Actions.background = javax.swing.plaf.ColorUIResource[r=50,g=50,b=69]
+ScrollBar.thumbInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+CheckBox.icon[filled].checkmarkColor = javax.swing.plaf.ColorUIResource[r=70,g=73,b=75]
+TabbedPane.focusColor = javax.swing.plaf.ColorUIResource[r=82,g=51,b=102]
+TabbedPane.hoverColor = javax.swing.plaf.ColorUIResource[r=223,g=179,b=255]
+textText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Table.focusCellForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+ColorChooser.swatchesSwatchSize = javax.swing.plaf.DimensionUIResource[width=16,height=16]
+TabbedPane.labelShift = 1
+ColorChooserUI = com.formdev.flatlaf.ui.FlatColorChooserUI
+MenuItem.underlineSelectionHeight = 3
+TextPane.caretForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+TextPane.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+ScrollBar.width = 10
+RadioButton.rollover = true
+Spinner.buttonHoverArrowColor = com.formdev.flatlaf.util.DerivedColor[r=181,g=181,b=181]
+lighten(10%)
+OptionPane.informationIcon = com.formdev.flatlaf.icons.FlatOptionPaneInformationIcon@4313f5bc
+TextField.light = javax.swing.plaf.ColorUIResource[r=47,g=48,b=49]
+ScrollBar.track = com.formdev.flatlaf.util.DerivedColor[r=62,g=66,b=68]
+lighten(1%)
+CheckBoxMenuItem.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+InternalFrame.activeDropShadowOpacity = 0.5
+Slider.minimumHorizontalSize = java.awt.Dimension[width=36,height=21]
+Tree.icon.openColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+ComboBox.buttonPressedArrowColor = com.formdev.flatlaf.util.DerivedColor[r=206,g=206,b=206]
+lighten(20%)
+Component.disabledBorderColor = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+TextPane.inactiveForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+ComboBox.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+ToggleButton.onBackground = javax.swing.plaf.ColorUIResource[r=84,g=48,b=115]
+MenuBar.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=72,g=76,b=79]
+lighten(10% autoInverse)
+ToggleButton.tab.disabledUnderlineColor = javax.swing.plaf.ColorUIResource[r=94,g=91,b=107]
+[style]ToolBar.inTextField = floatable: false; opaque: false; borderMargins: 0,0,0,0
+ToolBar.floatingBackground = javax.swing.plaf.ColorUIResource[r=60,g=63,b=65]
+ScrollBar.minimumButtonSize = javax.swing.plaf.DimensionUIResource[width=12,height=12]
+TextPane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Button.innerFocusWidth = 0
+Spinner.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+InternalFrame.borderMargins = javax.swing.plaf.InsetsUIResource[top=6,left=6,bottom=6,right=6]
+inactiveCaption = javax.swing.plaf.ColorUIResource[r=57,g=60,b=61]
+TitlePane.closePressedForeground = javax.swing.plaf.ColorUIResource[r=255,g=255,b=255]
+EditorPane.focusInputMap = javax.swing.plaf.InputMapUIResource@7f010382
+Button.paintShadow = true
+Panel.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+RadioButton.icon.centerDiameter = 5
+Button.minimumWidth = 72
+Table.showVerticalLines = false
+Button.shadowColor = javax.swing.plaf.ColorUIResource[r=39,g=40,b=43]
+HelpButton.innerFocusWidth = 0
+Component.borderWidth = 1
+Tree.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+CheckBoxMenuItem.border = com.formdev.flatlaf.ui.FlatMenuItemBorder@1e802ef9
+TabbedPane.tabsOpaque = true
+CheckBox.icon.disabledBorderColor = javax.swing.plaf.ColorUIResource[r=76,g=71,b=102]
+Tree.leftChildIndent = 7
+FileChooser.readOnly = false
+TabbedPane.closeCrossPlainSize = 7.5
+Tree.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+LabelUI = com.formdev.flatlaf.ui.FlatLabelUI
+text = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+List.selectionInactiveForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+DesktopIcon.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TabbedPane.tabType = underlined
+Tree.selectionBackground = javax.swing.plaf.ColorUIResource[r=113,g=58,b=145]
+Popup.Advertiser.borderColor = javax.swing.plaf.ColorUIResource[r=78,g=75,b=97]
+HelpButton.disabledBorderColor = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+Button.default.shadowColor = javax.swing.plaf.ColorUIResource[r=39,g=40,b=43]
+ScrollBar.ancestorInputMap.RightToLeft = javax.swing.plaf.InputMapUIResource@2b6faea6
+RadioButtonMenuItem.borderPainted = true
+Button.disabledText = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+ProgressBar.arc = 4
+InternalFrame.inactiveDropShadowOpacity = 0.75
+Tree.dropLineColor = javax.swing.plaf.ColorUIResource[r=141,g=73,b=181]
+TabbedPane.closeCrossFilledSize = 7.5
+TabbedPane.cardTabSelectionHeight = 3
+Tree.repaintWholeRow = true
+TabbedPane.hiddenTabsNavigation = moreTabsButton
+MenuBar.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+ToolBar.gripColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+TextField.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+FormattedTextField.caretBlinkRate = 500
+TableHeader.background = javax.swing.plaf.ColorUIResource[r=54,g=52,b=69]
+Menu.borderPainted = true
+List.dropLineColor = javax.swing.plaf.ColorUIResource[r=141,g=73,b=181]
+DesktopIcon.closeIcon = com.formdev.flatlaf.icons.FlatInternalFrameCloseIcon@778d1062
+Button.default.endBackground = javax.swing.plaf.ColorUIResource[r=107,g=56,b=143]
+Caret.width = 1
+List.cellNoFocusBorder = com.formdev.flatlaf.ui.FlatListCellBorder$Default@12d3a4e9
+Tree.icon.leafColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+TableHeader.cellMargins = javax.swing.plaf.InsetsUIResource[top=2,left=3,bottom=2,right=3]
+TabbedPane.selectedInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+Button.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Table.selectionInactiveBackground = javax.swing.plaf.ColorUIResource[r=61,g=57,b=82]
+Tree.selectionInactiveBackground = javax.swing.plaf.ColorUIResource[r=61,g=57,b=82]
+RadioButtonMenuItem.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+ScrollBar.hoverThumbWithTrack = false
+TabbedPane.closeSize = javax.swing.plaf.DimensionUIResource[width=16,height=16]
+RootPane.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Tree.drawsFocusBorderAroundIcon = false
+TitlePane.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+scrollbar = com.formdev.flatlaf.util.DerivedColor[r=62,g=66,b=68]
+lighten(1%)
+Tree.leafIcon = com.formdev.flatlaf.icons.FlatTreeLeafIcon@56528192
+AuditoryCues.allAuditoryCues = [Ljava.lang.Object;@646be2c3
+Table.scrollPaneBorder = com.formdev.flatlaf.ui.FlatScrollPaneBorder@6e0dec4a
+Desktop.minOnScreenInsets = javax.swing.plaf.InsetsUIResource[top=3,left=3,bottom=3,right=3]
+ScrollPaneUI = com.formdev.flatlaf.ui.FlatScrollPaneUI
+InternalFrame.closeHoverBackground = javax.swing.plaf.ColorUIResource[r=198,g=58,b=93]
+TabbedPane.closeHoverForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+Table.intercellSpacing = javax.swing.plaf.DimensionUIResource[width=0,height=0]
+Table.ancestorInputMap.RightToLeft = javax.swing.plaf.InputMapUIResource@96def03
+Button.rollover = true
+Button.selectedBackground = com.formdev.flatlaf.util.DerivedColor[r=103,g=106,b=108]
+lighten(10% autoInverse)
+ComboBox.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ColorChooser.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TitlePane.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Popup.Toolbar.borderColor = javax.swing.plaf.ColorUIResource[r=26,g=23,b=33]
+ToolTip.border = com.formdev.flatlaf.ui.FlatEmptyBorder@5ccddd20
+InternalFrame.activeTitleBackground = javax.swing.plaf.ColorUIResource[r=36,g=37,b=38]
+AuditoryCues.noAuditoryCues = [Ljava.lang.Object;@1ed1993a
+FormattedTextField.iconTextGap = 4
+TabbedPane.tabAlignment = center
+TitlePane.small.restoreIcon = com.formdev.flatlaf.icons.FlatWindowRestoreIcon@1f3f4916
+ButtonUI = com.formdev.flatlaf.ui.FlatButtonUI
+ComboBox.buttonDisabledArrowColor = javax.swing.plaf.ColorUIResource[r=69,g=69,b=84]
+TabbedPane.tabSelectionInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+ComboBox.buttonDisabledSeparatorColor = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+[style].h3.regular = font: $h3.regular.font
+Table.dropCellBackground = javax.swing.plaf.ColorUIResource[r=85,g=43,b=109]
+TitlePane.closeIcon = com.formdev.flatlaf.icons.FlatWindowCloseIcon@794cb805
+Slider.hoverThumbColor = com.formdev.flatlaf.util.DerivedColor[r=96,g=148,b=206]
+lighten(5% autoInverse)
+TabbedPane.buttonPressedBackground = com.formdev.flatlaf.util.DerivedColor[r=40,g=42,b=44]
+darken(8%)
+ScrollPane.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+activeCaptionText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TitlePane.iconSize = javax.swing.plaf.DimensionUIResource[width=16,height=16]
+Label.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+MenuItem.disabledForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+inactiveCaptionText = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+Label.disabledShadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+MenuItem.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+ToolBar.separatorColor = javax.swing.plaf.ColorUIResource[r=78,g=75,b=97]
+TabbedPane.ancestorInputMap = javax.swing.plaf.InputMapUIResource@4b5a5ed1
+FormattedTextField.inactiveBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ToolBar.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+FormattedTextFieldUI = com.formdev.flatlaf.ui.FlatFormattedTextFieldUI
+TabbedPane.closeForeground = javax.swing.plaf.ColorUIResource[r=140,g=140,b=140]
+PopupMenu.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+TabbedPane.highlight = javax.swing.plaf.ColorUIResource[r=35,g=35,b=36]
+TitlePane.menuBarEmbedded = true
+ScrollBar.thumbShadow = javax.swing.plaf.ColorUIResource[r=97,g=99,b=101]
+RadioButtonMenuItemUI = com.formdev.flatlaf.ui.FlatRadioButtonMenuItemUI
+SplitPane.oneTouchButtonSize = 6
+Table.cellNoFocusBorder = com.formdev.flatlaf.ui.FlatTableCellBorder$Default@3967e60c
+Button.default.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=60,g=97,b=140]
+lighten(3% autoInverse)
+Menu.submenuPopupOffsetY = -4
+Menu.submenuPopupOffsetX = -4
+TabbedPane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+RadioButton.focusInputMap = javax.swing.plaf.InputMapUIResource@48aaecc3
+TitlePane.useWindowDecorations = true
+Objects.Purple = javax.swing.plaf.ColorUIResource[r=175,g=113,b=224]
+OptionPane.buttonOrientation = 4
+Popup.dropShadowInsets = javax.swing.plaf.InsetsUIResource[top=-4,left=-4,bottom=4,right=4]
+OptionPane.foreground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TitlePane.titleMinimumWidth = 60
+TableHeaderUI = com.formdev.flatlaf.ui.FlatTableHeaderUI
+Table.rowHeight = 20
+FileChooser.ancestorInputMap = javax.swing.plaf.InputMapUIResource@7c0c77c7
+Objects.GreenAndroid = javax.swing.plaf.ColorUIResource[r=120,g=194,b=87]
+Slider.focusInputMap = javax.swing.plaf.InputMapUIResource@7adda9cc
+FormattedTextField.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+MenuItem.textNoAcceleratorGap = 6
+HelpButton.background = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+Slider.focusInsets = javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=0,right=0]
+MenuItem.selectionArc = 0
+Component.warning.focusedBorderColor = javax.swing.plaf.ColorUIResource[r=140,g=129,b=43]
+TextComponent.selectAllOnFocusPolicy = once
+Menu.margin = javax.swing.plaf.InsetsUIResource[top=3,left=6,bottom=3,right=6]
+semibold.font = javax.swing.plaf.FontUIResource[family=Segoe UI Semibold,name=Segoe UI Semibold,style=plain,size=12]
+RootPane.honorFrameMinimumSizeOnResize = false
+TextField.inactiveForeground = javax.swing.plaf.ColorUIResource[r=100,g=96,b=120]
+OptionPane.setButtonMargin = false
+TitlePane.centerTitleIfMenuBarEmbedded = true
+TitlePane.small.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=11]
+Tree.scrollsOnExpand = true
+ToolTip.infoForeground = javax.swing.plaf.ColorUIResource[r=137,g=133,b=161]
+OptionPane.maxCharactersPerLine = 80
+Viewport.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+TabbedPane.cardTabArc = 12
+Tree.dropCellBackground = javax.swing.plaf.ColorUIResource[r=85,g=43,b=109]
+CheckBoxMenuItem.borderPainted = true
+SplitPane.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Separator.foreground = javax.swing.plaf.ColorUIResource[r=78,g=75,b=97]
+OptionPane.minimumSize = javax.swing.plaf.DimensionUIResource[width=262,height=90]
+CheckBox.focusInputMap = javax.swing.plaf.InputMapUIResource@5cee5251
+ToggleButton.selectedForeground = javax.swing.plaf.ColorUIResource[r=187,g=187,b=187]
+Table.focusSelectedCellHighlightBorder = com.formdev.flatlaf.ui.FlatTableCellBorder$Selected@65466a6a
+Spinner.border = com.formdev.flatlaf.ui.FlatRoundBorder@4ddced80
+TextArea.background = javax.swing.plaf.ColorUIResource[r=58,g=56,b=77]
+ComboBox.isEnterSelectablePopup = false
+Slider.horizontalSize = java.awt.Dimension[width=200,height=21]
+ToolBar.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ToggleButton.endBackground = javax.swing.plaf.ColorUIResource[r=69,g=64,b=92]
+List.noFocusBorder = javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1534f01b
+CheckBoxMenuItemUI = com.formdev.flatlaf.ui.FlatCheckBoxMenuItemUI
+EditorPane.border = com.formdev.flatlaf.ui.FlatMarginBorder@78e117e3
+TitledBorder.border = com.formdev.flatlaf.ui.FlatLineBorder@2ea227af
+TitlePane.buttonHoverBackground = com.formdev.flatlaf.util.DerivedColor[r=85,g=88,b=92]
+lighten(15% autoInverse)
+FormattedTextField.disabledBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+FileChooser.usesSingleFilePane = true
+ComboBox.buttonEditableBackground = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+ToggleButton.disabledSelectedBackground = com.formdev.flatlaf.util.DerivedColor[r=90,g=93,b=95]
+lighten(5% autoInverse)
+controlDkShadow = javax.swing.plaf.ColorUIResource[r=122,g=125,b=127]
+Tree.icon.expandedColor = javax.swing.plaf.ColorUIResource[r=174,g=174,b=174]
+EditorPane.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+h1.regular.font = javax.swing.plaf.FontUIResource[family=Segoe UI,name=Segoe UI,style=plain,size=24]
+ToolBar.ancestorInputMap = javax.swing.plaf.InputMapUIResource@4386f16
+Table.descendingSortIcon = com.formdev.flatlaf.icons.FlatDescendingSortIcon@3eb7fc54
+TableHeader.hoverBackground = com.formdev.flatlaf.util.DerivedColor[r=82,g=86,b=88]
+lighten(5% autoInverse)
+TextArea.selectionForeground = javax.swing.plaf.ColorUIResource[r=208,g=208,b=217]
+TabbedPane.contentOpaque = true
+ProgressBar.repaintInterval = 15
+List.background = javax.swing.plaf.ColorUIResource[r=44,g=44,b=59]
+Button.startBorderColor = javax.swing.plaf.ColorUIResource[r=84,g=79,b=112]
+UPDUPDUPD
