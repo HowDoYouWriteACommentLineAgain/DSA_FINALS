@@ -11,10 +11,12 @@ public final class ColorUtil {
     public static final Color TERTIARY_COLOR = new Color(0x6610F2);
 
     public static final Color BACKGROUND_COLOR    = UIManager.getColor("Panel.background");
+    public static final Color BACKGROUND_COLOR_DARKER    = UIManager.getColor("Panel.background").darker();
     public static final Color PRIMARY_TEXT_COLOR  = UIManager.getColor("Label.Foreground");
     public static final Color SECONDARY_TEXT_COLOR= UIManager.getColor("Label.disabledForeground");
     public static final Color ACCENT_COLOR        = UIManager.getColor("Component.accentColor");
     public static final Color BORDER_COLOR        =  UIManager.getColor("Separator.foreground");
+    public static final Color HEADER_COLOR        =  UIManager.getColor("TableHeader.background");
 
     public static final Color SUCCESS_COLOR       = new Color(0x28A745);
     public static final Color WARNING_COLOR       = new Color(0xFFC107);

@@ -6,7 +6,6 @@ import org.dsa.UIPanels.TabularPanels.ExpenseTablePanel;
 import org.dsa.UIPanels.TabularPanels.IncomeTablePanel;
 import org.dsa.UIPanels.TabularPanels.ReportsPanel;
 import org.dsa.UIPanels.components.LoadingDialog;
-import org.dsa.UIPanels.components.NavigationBar;
 import org.dsa.abstractions.GenericService;
 import org.dsa.dao.BudgetDAO;
 import org.dsa.dao.ExpenseDAO;
@@ -64,18 +63,18 @@ public class AppManager {
 
     public void start(){
 
-        buildMainFrame();
+        build();
         refresh(Screens.DASHBOARD);
     }
 
-    private void buildMainFrame()
+    private void build()
     {
         if (mainFrame != null) mainFrame.dispose(); // avoid duplicates
 
         mainFrame = new MainFrame("PESO: Financial Assistant");
-        incomeUIPanel = new IncomeTablePanel(inSer);
-        expenseUIPanel = new ExpenseTablePanel(exSer);
-        budgetUIPanel = new BudgetTablePanel(buSer, exSer);
+        incomeUIPanel = new IncomeTablePanel(inSer, Screens.INCOME);
+        expenseUIPanel = new ExpenseTablePanel(exSer, Screens.EXPENSE);
+        budgetUIPanel = new BudgetTablePanel(buSer, exSer, Screens.BUDGET);
         reportUIPanel = new ReportsPanel(inSer,exSer,buSer);
 
         dashboardPanel = new DashboardPanel(inSer);

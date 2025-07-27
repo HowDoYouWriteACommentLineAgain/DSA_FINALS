@@ -1,10 +1,14 @@
 package org.dsa.abstractions;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import org.dsa.AppManager;
 import org.dsa.UIPanels.components.DatePicker;
+import org.dsa.utils.ColorUtil;
 import org.dsa.utils.CustomTableCellRenderer;
-import org.dsa.utils.SizesUtil;
+import org.dsa.utils.DateUtil;
+import org.dsa.utils.FontsUtil;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,49 +18,74 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.JTableHeader;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractTablePanel<O> extends JPanel {
+    protected JPanel contentPanel = new JPanel(new BorderLayout());
+    JLabel titleLabel;
+    JPanel titlePanel = new JPanel(new BorderLayout());
     protected JPanel topPanel;
     protected JTable table;
     protected JPanel filter;
-//    protected JPanel stackedPanels = new JPanel();
     protected GenericTableModel<O> tableModel;
     protected JTextField searchField = new JTextField(20);
-    protected DatePicker startDate = new DatePicker();
-    protected DatePicker endDate = new DatePicker();
+    protected DatePicker startDate = new DatePicker(DateUtil.sixMonthsBefore);
+    protected DatePicker endDate = new DatePicker(DateUtil.sixMonthsLater);
     protected Timer debounceTimer;
+
+    protected abstract void add();
+    protected abstract void loadData();
+    protected abstract void edit();
+    public abstract void delete();
+    protected abstract void showDialog(O obj, boolean isNew);
+    public abstract List<O> filter();
 
     private static boolean isVisible = false;
 
     private static final List<AbstractTablePanel<?>> instances = new ArrayList<>();
 
-    public AbstractTablePanel(GenericTableModel<O> tableModel) {
+    public AbstractTablePanel(GenericTableModel<O> tableModel, String title) {
         this.tableModel = tableModel;
         instances.add(this);
         setLayout(new BorderLayout());
-        setupTopPanel();
+        if(title == null || title.isEmpty()) throw new IllegalArgumentException("NO TITLE");
+        setContentPanel(title);
         setupTable();
+        setupTopPanel();
+        setStyles();
     }
 
-    protected abstract void add();
+    public void setContentPanel(String title)
+    {
+        titleLabel = new JLabel(title);
+        titleLabel.setFont(FontsUtil.TITLE_FONT);
+        titlePanel.add(titleLabel, BorderLayout.WEST);
+        add(titlePanel, BorderLayout.NORTH);
+        add(contentPanel, BorderLayout.CENTER);
+    }
 
-    protected abstract void loadData();
+    private void setStyles()
+    {
+//        topPanel.setBorder(BorderFactory.createTitledBorder("Controls"));
+        contentPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-    protected abstract void edit();
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        titlePanel.setOpaque(true);
+        titlePanel.setBackground(ColorUtil.BACKGROUND_COLOR_DARKER);
+        titleLabel.setForeground(ColorUtil.PRIMARY_TEXT_COLOR);
 
-    public abstract void delete();
-
-    protected abstract void showDialog(O obj, boolean isNew);
-
-    public abstract List<O> filter();
+        JTableHeader header = table.getTableHeader();
+        header.setFont(FontsUtil.TITLE_FONT.deriveFont(14f));
+        header.setBackground(ColorUtil.HEADER_COLOR);
+    }
 
     public void refresh() {
         AppManager.getInstance().runWithLoading(
@@ -66,9 +95,10 @@ public abstract class AbstractTablePanel<O> extends JPanel {
     }
 
     protected void setupTable() {
+        if (table != null) return;
         table = new JTable(tableModel);
         table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        contentPanel.add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
     protected void setupTopPanel()
@@ -78,29 +108,29 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         topPanel.add(getCrudControls());
         topPanel.add(getFilterControls());
         updateVisibility();
-        add(topPanel, BorderLayout.NORTH);
+        contentPanel.add(topPanel, BorderLayout.NORTH);
     }
 
     protected JPanel getCrudControls() {
-        JButton refresh = new JButton("Refresh");
+        JButton refresh = new JButton("Refresh", new FlatSVGIcon("icons/renew.svg"));
         refresh.addActionListener(e -> loadData());
 
-        JButton addButton = new JButton("Add");
+        JButton addButton = new JButton("Add", new FlatSVGIcon("icons/list_alt_add.svg"));
         addButton.addActionListener(e -> add());
 
-        JButton deleteButton = new JButton("Delete");
+        JButton deleteButton = new JButton("Delete", new FlatSVGIcon("icons/delete.svg"));
         deleteButton.addActionListener(e -> delete());
 
-        JButton editButton = new JButton("Edit");
+        JButton editButton = new JButton("Edit", new FlatSVGIcon("icons/edit.svg"));
         editButton.addActionListener(e -> edit());
 
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panel.add(refresh);
-        panel.add(addButton);
-        panel.add(editButton);
-        panel.add(deleteButton);
-        panel.add(hideBtn);
-        return panel;
+        JPanel crudPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        crudPanel.add(refresh);
+        crudPanel.add(addButton);
+        crudPanel.add(editButton);
+        crudPanel.add(deleteButton);
+        crudPanel.add(hideBtn);
+        return crudPanel;
     }
 
     protected JButton hideBtn = new JButton(isVisible ? "Hide Filters" : "Show Filters");
@@ -141,8 +171,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
         });
 
         resetBtn.addActionListener(e->{
-            startDate.setDefault(Date.valueOf(LocalDate.of(2000, 1, 1)));
-            endDate.setDefault(Date.valueOf(LocalDate.of(2100, 12, 31)));
+            startDate.setDefault(Date.valueOf(DateUtil.yesterdayDate));
+            endDate.setDefault(Date.valueOf(DateUtil.tomorrowDate));
             searchField.setText("");
             refresh();
         });
@@ -153,11 +183,12 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
         JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 0, 0));
         dateFilter.add(startLabel);
-        startDate.setDefault(1,1,2000);
         dateFilter.add(startDate);
         dateFilter.add(endLabel);
-        endDate.setDefault(31,12,2100);
         dateFilter.add(endDate);
+
+        startDate.setBorder(BorderFactory.createTitledBorder("Start Date"));
+        endDate.setBorder(BorderFactory.createTitledBorder("End Date"));
 
         filterPanel.add(dateFilter);
         filterPanel.add(resetBtn);
@@ -165,6 +196,8 @@ public abstract class AbstractTablePanel<O> extends JPanel {
 
         filter.setVisible(isVisible);
         filter.add(filterPanel);
+
+        filter.setBorder(BorderFactory.createTitledBorder("Filters"));
 
         return filter;
     }

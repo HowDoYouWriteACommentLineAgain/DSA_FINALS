@@ -33,7 +33,7 @@ public final class ThemeManager {
                 case THEME_ONE_DARK -> new FlatOneDarkIJTheme().setup();
                 case THEME_CYAN_LIGHT -> new FlatCyanLightIJTheme().setup();
                 default -> FlatLightLaf.setup();
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

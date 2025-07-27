@@ -79,6 +79,11 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer {
                 label.setText(String.valueOf(value));
             }
         }
+
+        if (row % 2 == 0)
+            label.setBackground(ColorUtil.BACKGROUND_COLOR_DARKER);
+        else
+            label.setBackground(ColorUtil.BACKGROUND_COLOR);
         return label;
     }
 }

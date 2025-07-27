@@ -29,7 +29,7 @@ public class DashboardPanel extends JPanel{
         this.service = service;
         this.model = new IncomeTableModel();
         setStyles();
-        setupTables();
+        Panel1();
     }
 
     private void setStyles()
@@ -40,7 +40,7 @@ public class DashboardPanel extends JPanel{
         add(title, BorderLayout.NORTH);
     }
 
-    private void setupTables() {
+    private void Panel1() {
         JTable table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
 

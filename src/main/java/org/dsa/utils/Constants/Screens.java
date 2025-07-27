@@ -5,10 +5,10 @@ public final class Screens {
     public static final String REGISTER = "Register";
     public static final String DASHBOARD = "Dashboard";
 //    public static final String TRANSACTION = "Ledger";
-    public static final String INCOME = "Income";
-    public static final String EXPENSE = "Expense";
-    public static final String BUDGET = "Budget";
-    public static final String REPORTS = "Reports";
+    public static final String INCOME = "Income manager";
+    public static final String EXPENSE = "Expense manager";
+    public static final String BUDGET = "Budget manager";
+    public static final String REPORTS = "Goals Reports";
     public static final String SETTINGS = "Settings";
 
     private Screens(){}

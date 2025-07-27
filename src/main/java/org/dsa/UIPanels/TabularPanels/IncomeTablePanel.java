@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class IncomeTablePanel extends AbstractTablePanel<Income> {
     private final GenericService<Income, ? extends GenericDAO<Income>> mainService;
 
-    public IncomeTablePanel(GenericService<Income, ? extends GenericDAO<Income>> service) {
-        super(new IncomeTableModel());
+    public IncomeTablePanel(GenericService<Income, ? extends GenericDAO<Income>> service, String title) {
+        super(new IncomeTableModel(), title);
         if (service == null) throw new IllegalArgumentException("Service cannot be null");
         this.mainService = service;
     }

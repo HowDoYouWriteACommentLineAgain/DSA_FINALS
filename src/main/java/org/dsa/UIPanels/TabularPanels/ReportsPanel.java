@@ -11,6 +11,7 @@ import org.dsa.models.objects.Income;
 import org.dsa.models.objects.Report;
 import org.dsa.models.tableModels.ReportTableModel;
 import org.dsa.utils.CustomTableCellRenderer;
+import org.dsa.utils.DateUtil;
 import org.dsa.utils.SizesUtil;
 
 import javax.swing.JButton;
@@ -25,6 +26,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ReportsPanel extends JPanel{
     private final ArrayList<Report> reList = new ArrayList<>();
@@ -35,8 +37,8 @@ public class ReportsPanel extends JPanel{
     private final GenericService<Expense, ExpenseDAO> exSer;
     private final GenericService<Budget, BudgetDAO> buSer;
 
-    private final DatePicker startDateBox = new DatePicker();
-    private final DatePicker endDateBox = new DatePicker();
+    private final DatePicker startDateBox = new DatePicker(DateUtil.yesterdayDate);
+    private final DatePicker endDateBox = new DatePicker(DateUtil.dateOneYearLater);
     public JComboBox<Period> periodPicker = new JComboBox<>(Period.values());
 
     private Date startDate;
@@ -47,13 +49,19 @@ public class ReportsPanel extends JPanel{
         this.inSer = inSer;
         this.exSer = exSer;
         this.buSer = buSer;
-        startDateBox.setDefault(1,1,2020);
-        endDateBox.setDefault(1,1,2030);
         setupFilters();
         setupTable();
     }
 
     public void refresh() {
+        if(!(((Period) Objects.requireNonNull(periodPicker.getSelectedItem()))).isTooSpecific())
+            AppManager.getInstance().runWithLoading(
+                    this::loadData,
+                    this::updateVisibility
+            );
+    }
+
+    private void refresh(boolean calledByReportsPanel) {
         AppManager.getInstance().runWithLoading(
                 this::loadData,
                 this::updateVisibility
@@ -165,25 +173,23 @@ public class ReportsPanel extends JPanel{
         });
 
         resetBtn.addActionListener(e -> {
-            startDateBox.setDefault(Date.valueOf(LocalDate.of(2000, 1, 1)));
-            endDateBox.setDefault(Date.valueOf(LocalDate.of(2100, 12, 31)));
+            startDateBox.setDefault(DateUtil.yesterdayDate);
+            endDateBox.setDefault(DateUtil.dateOneYearLater);
             refresh();
         });
 
-        applyBtn.addActionListener(e -> {refresh();});
+        applyBtn.addActionListener(e -> {refresh(true);});
 
         JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
         dateFilter.add(startLabel);
-        startDateBox.setDefault(1,1,2000);
         dateFilter.add(startDateBox);
 
         dateFilter.add(endLabel);
-        endDateBox.setDefault(31,12,2100);
         dateFilter.add(endDateBox);
 
         filterPanel.add(dateFilter);
         filterPanel.add(resetBtn);
-        periodPicker.setSelectedItem(Period._10YEARS);
+        periodPicker.setSelectedItem(Period._30DAYS);
 
         updateVisibility();
 
@@ -212,17 +218,26 @@ public class ReportsPanel extends JPanel{
 }
 
 enum Period {
-    DAILY("Daily"),
-    WEEKLY("Weekly"),
-    FORTNIGHTLY("Fortnightly (14d)"),
-    _30DAYS("30 Days"),
-    _365DAYS("1 Year (365d)"),
-    _5YEARS("5 Years (365d)"),
-    _10YEARS("10 Years (365d)");
+    DAILY("Daily", true),
+    WEEKLY("Weekly", true),
+    FORTNIGHTLY("Fortnightly (14d)", true),
+    _30DAYS("30 Days", true),
+    _365DAYS("1 Year (365d)", false),
+    _5YEARS("5 Years (365d)", false),
+    _10YEARS("10 Years (365d)", false);
 
+    private boolean isTooSpecific;
     private final String label;
-    Period(String label) {
+    Period(String label, boolean isTooSpecific) {
         this.label = label;
+        this.isTooSpecific = isTooSpecific;
+    }
+
+
+
+    public boolean isTooSpecific()
+    {
+        return isTooSpecific;
     }
 
     @Override

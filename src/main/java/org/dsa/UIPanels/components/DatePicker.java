@@ -1,5 +1,7 @@
 package org.dsa.UIPanels.components;
 
+import org.dsa.utils.DateUtil;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,22 +11,28 @@ import java.awt.LayoutManager;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import static org.dsa.utils.SizesUtil.SMALL_DAY_BOX;
+import static org.dsa.utils.SizesUtil.SMALL_YEAR_BOX;
+
 public class DatePicker extends JPanel {
     JComboBox<Integer> dayBox = new JComboBox<>();
     JComboBox<Integer> monthBox = new JComboBox<>();
     JComboBox<Integer> yearBox = new JComboBox<>();
+
     public DatePicker()
     {
         super(new FlowLayout(FlowLayout.LEFT,2,0));
         fillDateBoxes();
+        setupSizes();
         setupLayout();
-        setDefault(1,1, 2025);
+        setDefault(DateUtil.yesterdayDate);
     }
 
     public DatePicker(int day, int month, int year)
     {
         super(new FlowLayout(FlowLayout.LEFT,2,0));
         fillDateBoxes();
+        setupSizes();
         setupLayout();
         setDefault(day,month, year);
     }
@@ -33,8 +41,18 @@ public class DatePicker extends JPanel {
     {
         super(new FlowLayout(FlowLayout.LEFT,2,0));
         fillDateBoxes();
+        setupSizes();
         setupLayout();
         setDefault(shortdate);
+    }
+
+    public DatePicker(LocalDate shortDate)
+    {
+        super(new FlowLayout(FlowLayout.LEFT,2,0));
+        fillDateBoxes();
+        setupSizes();
+        setupLayout();
+        setDefault(shortDate);
     }
 
     public DatePicker(LayoutManager lm)
@@ -42,7 +60,8 @@ public class DatePicker extends JPanel {
         super(lm);
         fillDateBoxes();
         setupLayout();
-        setDefault(1,1, 2025);
+        setDefault(DateUtil.yesterdayDate);
+
     }
 
     private void fillDateBoxes()
@@ -50,6 +69,13 @@ public class DatePicker extends JPanel {
         for(int d = 1; d <= 31; d++) dayBox.addItem(d);
         for(int m = 1; m <= 12; m++) monthBox.addItem(m);
         for(int y = 2000; y <= 2100; y++) yearBox.addItem(y);
+    }
+
+    private void setupSizes()
+    {
+        dayBox.setPreferredSize(SMALL_DAY_BOX);
+        monthBox.setPreferredSize(SMALL_DAY_BOX);
+        yearBox.setPreferredSize(SMALL_YEAR_BOX);
     }
 
     private void setupLayout()
@@ -82,6 +108,14 @@ public class DatePicker extends JPanel {
         String shortDate = STR."\{year}-\{month}-\{day}";
 
         return Date.valueOf(shortDate).toLocalDate();
+    }
+
+    public void setDefault(LocalDate shortDate)
+    {
+
+        dayBox.setSelectedItem(shortDate.getDayOfMonth());
+        monthBox.setSelectedItem(shortDate.getMonthValue());
+        yearBox.setSelectedItem(shortDate.getYear());
     }
 
     public void setDefault(Date shortdate)

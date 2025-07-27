@@ -13,7 +13,7 @@ public class FontsUtil
         return (lafFont != null) ? lafFont : new JLabel().getFont();
     }
 
-    public static final Font TITLE_FONT = BASE.deriveFont(Font.BOLD, 36f);
+    public static final Font TITLE_FONT = BASE.deriveFont(Font.BOLD, 18f);
     public static final Font HEADER_FONT = BASE.deriveFont(Font.BOLD, 16f);
     public static final Font FIELD_FONT = BASE.deriveFont(Font.PLAIN, 13f);
     public static final Font REGULAR = BASE.deriveFont(Font.PLAIN, 13f);

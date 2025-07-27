@@ -10,6 +10,7 @@ import org.dsa.models.objects.Budget;
 import org.dsa.models.objects.Expense;
 import org.dsa.models.tableModels.BudgetTableModel;
 import org.dsa.utils.ColorUtil;
+import org.dsa.utils.CustomTableCellRenderer;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -39,23 +40,24 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
 //    private JButton toggleProgressBar = new JButton("Edit");
 
 
-    public BudgetTablePanel(GenericService<Budget, ? extends GenericDAO<Budget>> mainService, GenericService<Expense, ? extends GenericDAO<Expense>> helperService) {
-        super(new BudgetTableModel(helperService.getAll()));
+    public BudgetTablePanel(GenericService<Budget, ? extends GenericDAO<Budget>> mainService, GenericService<Expense, ? extends GenericDAO<Expense>> helperService, String title) {
+        super(new BudgetTableModel(helperService.getAll()), title);
         secondaryData = helperService.getAll();
         if (mainService == null) throw new IllegalArgumentException("Service cannot be null");
         this.mainService = mainService;
-//        centerPane.add(progressTable, BorderLayout.CENTER);
 
-//        editButton.addActionListener(e -> edit());
     }
 
-    @Override
-    protected void setupTable()
-    {
-        table = new JTable(tableModel);
-        table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
-        add(new JScrollPane(table));
-    }
+//    @Override
+//    protected void setupTable()
+//    {
+//        table = new JTable(tableModel);
+//        table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
+//        table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+//        contentPanel.removeAll(); // clear old content
+//        contentPanel.setLayout(new BorderLayout());
+//        contentPanel.add(new JScrollPane(table), BorderLayout.CENTER);
+//    }
 
     @Override
     protected void add() {
