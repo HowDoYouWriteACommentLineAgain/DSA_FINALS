@@ -1,9 +1,11 @@
 package org.dsa.UIPanels.components;
 
+import org.dsa.utils.ColorUtil;
+import org.dsa.utils.FontsUtil;
+
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
-import java.awt.Color;
 import java.awt.Component;
 
 public class ProgressBarRenderer extends JProgressBar implements TableCellRenderer {
@@ -20,12 +22,17 @@ public class ProgressBarRenderer extends JProgressBar implements TableCellRender
         setMaximum(100);
         setValue(progress);
 
-        if (progress >= 90) {
-            setForeground(Color.RED);
-        } else if (progress >= 60) {
-            setForeground(Color.ORANGE);
+        setForeground(ColorUtil.getPrimaryTextColor());
+        setFont(FontsUtil.HEADER_FONT_BOLD);
+
+        if(progress > 100) {
+          setForeground(ColorUtil.OVER_BUDGET_COLOR);
+        } else if (progress >= 80) {
+            setForeground(ColorUtil.OVER_THRESHOLD_COLOR);
+        } else if (progress >= 70) {
+            setForeground(ColorUtil.WARNING_COLOR);
         } else {
-            setForeground(new Color(0, 128, 0)); // dark green
+            setForeground(ColorUtil.SUCCESS_COLOR); // dark green
         }
 
         return this;

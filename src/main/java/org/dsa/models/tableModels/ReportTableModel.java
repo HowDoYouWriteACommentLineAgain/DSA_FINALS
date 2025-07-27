@@ -24,10 +24,7 @@ public class ReportTableModel extends GenericTableModel<Report> {
             else return "";
         }
 
-        Report r = objList.get(rowIndex);
-        System.out.println("REPORTS TABLE MODEL:");
-        System.out.printf("p: %d in: %.2f ex: %.2f net: %.2f lar:%.2f\n", r.period(), r.totalIncome(), r.totalExpense(), r.netSavings(), r.largestExpense());
-        return switch (columnIndex)
+        Report r = objList.get(rowIndex);return switch (columnIndex)
         {
             case 0 -> rowIndex;
             case 1 -> r.totalIncome() == 0.00d ? "" : r.totalIncome();

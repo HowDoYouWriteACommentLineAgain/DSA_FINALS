@@ -10,15 +10,7 @@ public class SizesUtil {
     public static final Dimension DEFAULT_FIELD_SIZE  = new Dimension(200, 30);
     public static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(1000, 600);
     public static final Dimension HALF_WINDOW_WITDH = new Dimension(500, 80);
-    public static final Dimension SMALL_DAY_BOX = new Dimension(new Dimension(50, 25));
-    public static final Dimension SMALL_YEAR_BOX = new Dimension(new Dimension(70, 25));
-
-    public static final int TITLE_SIZE  =   FontsUtil.TITLE_FONT.getSize();
-    public static final int HEADER_SIZE =   FontsUtil.HEADER_FONT.getSize();
-    public static final int FIELD_SIZE  =   FontsUtil.FIELD_FONT.getSize();
-    public static final int TEXT_SIZE   =   FontsUtil.REGULAR.getSize();
-
-
-
+    public static final Dimension SMALL_DAY_BOX = new Dimension(50, 25);
+    public static final Dimension SMALL_YEAR_BOX = new Dimension(70, 25);
     private SizesUtil(){};
 }

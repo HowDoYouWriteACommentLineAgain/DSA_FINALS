@@ -51,10 +51,7 @@ public class LabeledInputField extends JPanel {
         pField.setMinimumSize(SizesUtil.DEFAULT_FIELD_SIZE);
 
 //        setMinimumSize(new Dimension(200, 80));
-        if (Main.debugColors) setBorder(ColorUtil.debugBorder0);
-        if (Main.debugColors) field.setBorder(ColorUtil.debugBorder1);
-        if (Main.debugColors) pField.setBorder(ColorUtil.debugBorder1);
-        if (Main.debugColors) label.setBorder(ColorUtil.debugBorder1);
+
 
         setLayout(isHori ? horizontal : vertical);
 

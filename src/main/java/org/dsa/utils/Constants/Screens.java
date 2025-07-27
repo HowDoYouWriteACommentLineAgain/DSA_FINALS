@@ -7,8 +7,8 @@ public final class Screens {
 //    public static final String TRANSACTION = "Ledger";
     public static final String INCOME = "Income manager";
     public static final String EXPENSE = "Expense manager";
-    public static final String BUDGET = "Budget manager";
-    public static final String REPORTS = "Goals Reports";
+    public static final String BUDGET = "Budget and Goals manager";
+    public static final String REPORTS = "Periodical reports";
     public static final String SETTINGS = "Settings";
 
     private Screens(){}

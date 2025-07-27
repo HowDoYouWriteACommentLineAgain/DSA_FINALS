@@ -7,14 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class MainFrame extends JFrame
 {
-    private final CardLayout cardLayout = new CardLayout();
     private final JTabbedPane tabbedPane = new JTabbedPane();
 
     public MainFrame(String txt){
@@ -32,7 +29,7 @@ public class MainFrame extends JFrame
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-        tabbedPane.addChangeListener(e -> {
+        tabbedPane.addChangeListener(_ -> {
             int index = tabbedPane.getSelectedIndex();
             String title = tabbedPane.getTitleAt(index);
             AppManager.getInstance().handleNavigation(title); // triggers refresh

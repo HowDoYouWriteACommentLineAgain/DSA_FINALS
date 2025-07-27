@@ -3,8 +3,6 @@ package org.dsa.utils;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.*;
-
-import javax.swing.*;
 import java.util.prefs.Preferences;
 
 public final class ThemeManager {
@@ -33,17 +31,17 @@ public final class ThemeManager {
                 case THEME_ONE_DARK -> new FlatOneDarkIJTheme().setup();
                 case THEME_CYAN_LIGHT -> new FlatCyanLightIJTheme().setup();
                 default -> FlatLightLaf.setup();
-
-        } catch (Exception e) {
+            }
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public static String getCurrentTheme() {
+    public static String getCurrentTheme () {
         return Preferences.userRoot().node(PREF_NODE).get(PREF_KEY, THEME_LIGHT);
     }
 
-    public static void setTheme(String theme) {
+    public static void setTheme (String theme){
         Preferences.userRoot().node(PREF_NODE).put(PREF_KEY, theme);
     }
 }

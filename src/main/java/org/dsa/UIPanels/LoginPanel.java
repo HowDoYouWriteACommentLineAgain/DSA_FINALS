@@ -41,16 +41,6 @@ public class LoginPanel extends JPanel
         loginButton.setMinimumSize(SizesUtil.DEFAULT_BUTTON_SIZE);
         setMaximumSize(SizesUtil.DEFAULT_WINDOW_SIZE);
         setMinimumSize(SizesUtil.DEFAULT_WINDOW_SIZE);
-//        usernameGroup.setPreferredSize(new Dimension(200, SizesUtil.HEADER_SIZE));
-//        passwordGroup.setPreferredSize(new Dimension(200, SizesUtil.HEADER_SIZE));
-        if (Main.debugColors)
-        {
-            setBorder(ColorUtil.debugBorder0);
-            title.setBorder(ColorUtil.debugBorder1);
-            usernameGroup.setBorder(ColorUtil.debugBorder1);
-            passwordGroup.setBorder(ColorUtil.debugBorder1);
-            loginButton.setBorder(ColorUtil.debugBorder1);
-        }
     }
 
     public void setGBC(){

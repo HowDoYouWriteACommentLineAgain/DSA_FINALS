@@ -1,8 +1,13 @@
-package org.dsa.utils;
+package org.dsa.tableUtils;
 
+import org.dsa.utils.ColorUtil;
+import org.dsa.utils.FontsUtil;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.Component;
 import java.sql.Date;
@@ -13,7 +18,7 @@ import java.util.Set;
 public class CustomTableCellRenderer extends DefaultTableCellRenderer {
 
     private final Set<Integer> flaggedColumns;
-    private final boolean highlightHeaderCol;
+    protected final boolean highlightHeaderCol;
 
     public CustomTableCellRenderer(Set<Integer> flaggedColumns, boolean highlightHeaderCol) {
         this.flaggedColumns = flaggedColumns;
@@ -34,13 +39,12 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer {
         this.highlightHeaderCol = bool;
     }
 
-
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
         label.setFont(FontsUtil.REGULAR);
-        label.setForeground(ColorUtil.PRIMARY_TEXT_COLOR);
+        label.setForeground(ColorUtil.getPrimaryTextColor());
         label.setHorizontalAlignment(SwingConstants.LEFT);
 
         switch (value) {
@@ -64,7 +68,7 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer {
                 label.setText("--LEFT AS EMPTY--");
                 label.setHorizontalAlignment(SwingConstants.CENTER);
                 label.setFont(FontsUtil.REGULAR_ITALIC);
-                label.setForeground(ColorUtil.SECONDARY_TEXT_COLOR);
+                label.setForeground(ColorUtil.getSecondaryTextColor());
             }
             case String s -> {
                 label.setText(s);
@@ -80,10 +84,22 @@ public class CustomTableCellRenderer extends DefaultTableCellRenderer {
             }
         }
 
-        if (row % 2 == 0)
-            label.setBackground(ColorUtil.BACKGROUND_COLOR_DARKER);
-        else
-            label.setBackground(ColorUtil.BACKGROUND_COLOR);
+        if (isSelected) {
+            label.setBackground(table.getSelectionBackground());
+            label.setForeground(table.getSelectionForeground());
+        } else {
+            if (row % 2 == 0) label.setBackground(ColorUtil.getBackgroundColorDarker());
+            else label.setBackground(ColorUtil.getBackgroundColor());
+        }
+
+
+        // Outer: subtle border line
+        Border lineBorder = BorderFactory.createMatteBorder(0, 0, 1, 1, ColorUtil.getBackgroundColorBrighter());
+
+        // Inner: padding
+        Border padding = BorderFactory.createEmptyBorder(5, 10, 10, 5);
+
+        label.setBorder(BorderFactory.createCompoundBorder(lineBorder, padding));
         return label;
     }
 }

@@ -17,29 +17,23 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class IncomeTablePanel extends AbstractTablePanel<Income> {
-    private final GenericService<Income, ? extends GenericDAO<Income>> mainService;
 
     public IncomeTablePanel(GenericService<Income, ? extends GenericDAO<Income>> service, String title) {
-        super(new IncomeTableModel(), title);
+        super(new IncomeTableModel(), title, service);
         if (service == null) throw new IllegalArgumentException("Service cannot be null");
-        this.mainService = service;
     }
 
     @Override
     public void delete() {
-        Income obj = getSelectedRowObject();
-        if (obj == null) return;
-        if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            mainService.delete(obj.id());
+        List<Income> list = getSelectedRowObjects();
+        Income first = list.getFirst();
+        if (list == null) return;
+        if (JOptionPane.showConfirmDialog(this,
+                "Delete "+first.name()+", and " + list.size()+ "more ... item permanently?", "Confirm deletion",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            for(Income item : list) mainService.delete(item.id());
             refresh();
         }
-    }
-
-    @Override
-    public void edit() {
-        Income obj = getSelectedRowObject();
-        if (obj == null) return; // prevent double-triggered calls
-        showDialog(obj, false);
     }
 
     @Override
@@ -99,6 +93,7 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
     @Override
     public List<Income> filter() {
         List<Income> data = mainService.getAll();
+        Map<Integer, String> map = mainService.getIdNameIncomeCatMap();
         Date startDate = this.startDate.getFullDate();
         Date endDate = this.endDate.getFullDate();
         String searchQuery = this.searchField.getText();
@@ -108,8 +103,9 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
                 .filter(d ->{
                     String name = d.name() != null ? d.name().toLowerCase() : "";
                     String note = d.note() != null ? d.note().toLowerCase() : "";
+                    String cat = map.get(d.income_cat()) != null ? map.get(d.income_cat()) : "";
                     String query = searchQuery.toLowerCase();
-                    return name.contains(query) || note.contains(query);
+                    return name.contains(query) || note.contains(query) || cat.contains(query);
                 })
                 .collect(Collectors.toList());
 
@@ -130,19 +126,31 @@ public class IncomeTablePanel extends AbstractTablePanel<Income> {
         tableModel.setCategoryMap(income_map);
 
         tableModel.setData(data);
-
         table.clearSelection();
         revalidate();
         repaint();
     }
 
+    @Override
+    protected void appendStatusInfo(StringBuilder builder) {
+        int[] rows = table.getSelectedRows();
+        if (rows.length > 0) {
+            double sum = 0;
+            for (int row : rows) {
+                Income e = tableModel.getAt(row);
+                sum += e.amount();
+            }
+            builder.append(" | Total Selected Amount: ₱").append(String.format("%.2f", sum));
+        }
+    }
+
     public boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, DatePicker date) {
         boolean valid = true;
-        name.setBackground(ColorUtil.BACKGROUND_COLOR);
-        cat.setBackground(ColorUtil.BACKGROUND_COLOR);
-        amt.setBackground(ColorUtil.BACKGROUND_COLOR);
-        note.setBackground(ColorUtil.BACKGROUND_COLOR);
-        date.setBackground(ColorUtil.BACKGROUND_COLOR);
+        name.setBackground(ColorUtil.getBackgroundColor());
+        cat.setBackground(ColorUtil.getBackgroundColor());
+        amt.setBackground(ColorUtil.getBackgroundColor());
+        note.setBackground(ColorUtil.getBackgroundColor());
+        date.setBackground(ColorUtil.getBackgroundColor());
 
         if (name.getText().trim().isEmpty()) {
             name.setBackground(ColorUtil.WARNING_COLOR); valid = false;

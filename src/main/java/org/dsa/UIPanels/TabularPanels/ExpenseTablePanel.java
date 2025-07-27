@@ -24,20 +24,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
-    private final GenericService<Expense, ? extends GenericDAO<Expense>> mainService;
+//    private final GenericService<Expense, ? extends GenericDAO<Expense>> mainService;
 
     public ExpenseTablePanel(GenericService<Expense, ? extends GenericDAO<Expense>> service, String title) {
-        super(new ExpenseTableModel(), title);
+        super(new ExpenseTableModel(), title, service);
         if (service == null) throw new IllegalArgumentException("Service cannot be null");
-        this.mainService = service;
+//        this.mainService = service;
     }
 
-    @Override
-    protected void edit() {
-        Expense obj = getSelectedRowObject();
-        if (obj == null) return; // prevent double-triggered calls
-        showDialog(obj, false);
-    }
+//    @Override
+//    protected void edit() {
+//        Expense obj = getSelectedRowObject();
+//        if (obj == null) return; // prevent double-triggered calls
+//        showDialog(obj, false);
+//    }
 
     @Override
     protected void add() {
@@ -58,7 +58,6 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
         tableModel.setCategoryMap(expenseMap);
 
         tableModel.setData(data);
-
         table.clearSelection();
         revalidate();
         repaint();
@@ -66,10 +65,13 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
 
     @Override
     public void delete() {
-        Expense obj = getSelectedRowObject();
-        if (obj == null) return;
-        if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            mainService.delete(obj.id());
+        List<Expense> list = getSelectedRowObjects();
+        Expense first = list.getFirst();
+        if (list == null) return;
+        if (JOptionPane.showConfirmDialog(this,
+                "Delete "+first.name()+", and " + list.size()+ "more ... item permanently?", "Confirm deletion",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            for(Expense item : list) mainService.delete(item.id());
             refresh();
         }
     }
@@ -128,7 +130,7 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
     @Override
     public List<Expense> filter() {
         List<Expense> data = mainService.getAll();
-
+        Map<Integer, String> map = mainService.getIdNameExpenseCatMap();
         Date startDate = this.startDate.getFullDate();
         Date endDate = this.endDate.getFullDate();
         String searchQuery = this.searchField.getText().toLowerCase();
@@ -138,20 +140,34 @@ public class ExpenseTablePanel extends AbstractTablePanel<Expense> {
                 .filter(d ->{
                         String name = d.name() != null ? d.name().toLowerCase() : "";
                         String note = d.note() != null ? d.note().toLowerCase() : "";
+                        String cat = map.get(d.expense_cat()) != null ? map.get(d.expense_cat()) : "";
                         String query = searchQuery.toLowerCase();
                         return name.contains(query) || note.contains(query);
                 })
                 .collect(Collectors.toList());
     }
 
+    @Override
+    protected void appendStatusInfo(StringBuilder builder) {
+        int[] rows = table.getSelectedRows();
+        if (rows.length > 0) {
+            double sum = 0;
+            for (int row : rows) {
+                Expense e = tableModel.getAt(row);
+                sum += e.amount();
+            }
+            builder.append(" | Total Selected Amount: ₱").append(String.format("%.2f", sum));
+        }
+    }
+
 
     public boolean validateFields(JTextField name, JComboBox cat, JTextField amt, JTextField note, DatePicker date) {
         boolean valid = true;
-        name.setBackground(ColorUtil.BACKGROUND_COLOR);
-        cat.setBackground(ColorUtil.BACKGROUND_COLOR);
-        amt.setBackground(ColorUtil.BACKGROUND_COLOR);
-        note.setBackground(ColorUtil.BACKGROUND_COLOR);
-        date.setBackground(ColorUtil.BACKGROUND_COLOR);
+        name.setBackground(ColorUtil.getBackgroundColor());
+        cat.setBackground(ColorUtil.getBackgroundColor());
+        amt.setBackground(ColorUtil.getBackgroundColor());
+        note.setBackground(ColorUtil.getBackgroundColor());
+        date.setBackground(ColorUtil.getBackgroundColor());
 
         if (name.getText().trim().isEmpty()) {
             name.setBackground(ColorUtil.WARNING_COLOR); valid = false;

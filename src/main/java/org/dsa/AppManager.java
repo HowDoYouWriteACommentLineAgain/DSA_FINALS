@@ -7,6 +7,7 @@ import org.dsa.UIPanels.TabularPanels.IncomeTablePanel;
 import org.dsa.UIPanels.TabularPanels.ReportsPanel;
 import org.dsa.UIPanels.components.LoadingDialog;
 import org.dsa.abstractions.GenericService;
+import org.dsa.abstractions.GenericTableModel;
 import org.dsa.dao.BudgetDAO;
 import org.dsa.dao.ExpenseDAO;
 import org.dsa.dao.IncomeDAO;
@@ -75,9 +76,9 @@ public class AppManager {
         incomeUIPanel = new IncomeTablePanel(inSer, Screens.INCOME);
         expenseUIPanel = new ExpenseTablePanel(exSer, Screens.EXPENSE);
         budgetUIPanel = new BudgetTablePanel(buSer, exSer, Screens.BUDGET);
-        reportUIPanel = new ReportsPanel(inSer,exSer,buSer);
+        reportUIPanel = new ReportsPanel(inSer,exSer,buSer, Screens.REPORTS);
 
-        dashboardPanel = new DashboardPanel(inSer);
+        dashboardPanel = new DashboardPanel(inSer, exSer, buSer, Screens.DASHBOARD);
 
         settings = new Settings();
 

@@ -85,7 +85,7 @@ public class ProgressBarScrollPanel extends JScrollPane {
             JLabel info = new JLabel(labelText);
             info.setMinimumSize(SizesUtil.HALF_WINDOW_WITDH);
             row.add(info, BorderLayout.WEST);
-            row.setBorder(BorderFactory.createMatteBorder(0, 4, 1, 4, ColorUtil.BORDER_COLOR));
+            row.setBorder(BorderFactory.createMatteBorder(0, 4, 1, 4, ColorUtil.getBorderColor()));
 
             JProgressBar bar = new JProgressBar(0, (int) max);
             bar.setPreferredSize(new Dimension(1200, 40));
@@ -93,7 +93,7 @@ public class ProgressBarScrollPanel extends JScrollPane {
             bar.setValue((int) totalExpenditure);
             bar.setStringPainted(true);
             bar.setFont(FontsUtil.REGULAR_BOLD);
-            bar.setForeground(ColorUtil.PRIMARY_TEXT_COLOR);
+            bar.setForeground(ColorUtil.getPrimaryTextColor());
 
             double ratio = totalExpenditure/max;
             if( ratio >= 1.0 )
@@ -106,7 +106,7 @@ public class ProgressBarScrollPanel extends JScrollPane {
             }
             else
             {
-                bar.setForeground(ColorUtil.ACCENT_COLOR);
+                bar.setForeground(ColorUtil.getAccentColor());
             }
 
             row.add(bar, BorderLayout.EAST);

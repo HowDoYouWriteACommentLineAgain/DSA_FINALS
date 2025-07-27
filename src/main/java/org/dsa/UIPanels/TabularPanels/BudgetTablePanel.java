@@ -10,18 +10,15 @@ import org.dsa.models.objects.Budget;
 import org.dsa.models.objects.Expense;
 import org.dsa.models.tableModels.BudgetTableModel;
 import org.dsa.utils.ColorUtil;
-import org.dsa.utils.CustomTableCellRenderer;
+import org.dsa.tableUtils.CustomTableCellRenderer;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.sql.Date;
@@ -32,32 +29,22 @@ import java.util.Vector;
 import java.util.stream.Collectors;
 
 public class BudgetTablePanel extends AbstractTablePanel<Budget> {
-    private final GenericService<Budget, ? extends GenericDAO<Budget>> mainService;
     private ProgressBarScrollPanel progressTable = new ProgressBarScrollPanel();
     private String exceedMessage = "";
     private ArrayList<Expense> secondaryData;
 
-//    private JButton toggleProgressBar = new JButton("Edit");
-
-
     public BudgetTablePanel(GenericService<Budget, ? extends GenericDAO<Budget>> mainService, GenericService<Expense, ? extends GenericDAO<Expense>> helperService, String title) {
-        super(new BudgetTableModel(helperService.getAll()), title);
+        super(new BudgetTableModel(helperService.getAll()), title, mainService);
         secondaryData = helperService.getAll();
-        if (mainService == null) throw new IllegalArgumentException("Service cannot be null");
-        this.mainService = mainService;
-
     }
 
-//    @Override
-//    protected void setupTable()
-//    {
-//        table = new JTable(tableModel);
-//        table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
-//        table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
-//        contentPanel.removeAll(); // clear old content
-//        contentPanel.setLayout(new BorderLayout());
-//        contentPanel.add(new JScrollPane(table), BorderLayout.CENTER);
-//    }
+    @Override
+    protected void setupTable()
+    {
+        super.setupTable();
+        table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
+        table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+    }
 
     @Override
     protected void add() {
@@ -87,21 +74,30 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
     }
 
     @Override
-    protected void edit() {
-        Budget obj = getSelectedRowObject();
-        if (obj == null) return; // prevent double-triggered calls
-        showDialog(obj, false);
-    }
-
-    @Override
     public void delete() {
-        Budget obj = getSelectedRowObject();
-        if (obj == null) return;
-        if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            mainService.delete(obj.id());
+        List<Budget> list = getSelectedRowObjects();
+        Budget first = list.getFirst();
+        Budget last = list.getLast();
+        if (list == null) return;
+        if (JOptionPane.showConfirmDialog(this,
+                "Delete "+mainService.getIdNameExpenseCatMap().get(first.expense_cat())+", and " + list.size()+ "more ... item permanently?", "Confirm deletion",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            for(Budget item : list) mainService.delete(item.id());
             refresh();
         }
     }
+
+//    @Override
+//    public void delete() {
+//        Budget obj = getSelectedRowObject();
+//
+//        if (obj == null) return;
+//
+//        if (JOptionPane.showConfirmDialog(this, "Delete item permanently?", "Confirm deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+//            mainService.delete(obj.id());
+//            refresh();
+//        }
+//    }
 
     @Override
     protected void showDialog(Budget obj, boolean isNew) {
@@ -157,7 +153,6 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
     @Override
     public List<Budget> filter() {
         List<Budget> data = mainService.getAll();
-
         Date startDate = this.startDate.getFullDate();
         Date endDate = this.endDate.getFullDate();
         String searchQuery = this.searchField.getText().toLowerCase();
@@ -168,14 +163,30 @@ public class BudgetTablePanel extends AbstractTablePanel<Budget> {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    protected void appendStatusInfo(StringBuilder builder) {
+        int[] rows = table.getSelectedRows();
+        if (rows.length > 0) {
+            double mSum = 0;
+            double gSum = 0;
+            for (int row : rows) {
+                Budget e = tableModel.getAt(row);
+                mSum += e.max_amount();
+                gSum += e.goal_amount();
+            }
+            builder.append(" | Total Max Amount: ₱").append(String.format("%.2f", mSum))
+                    .append(" | Total Goal Amount: ₱").append(String.format("%.2f", gSum));
+        }
+    }
+
     protected boolean validateFields(JComboBox cat, JTextField maxAmt, JTextField goalAmt, DatePicker startDate, DatePicker endDate) {
         boolean valid = true;
         exceedMessage = "";
-        cat.setBackground(ColorUtil.BACKGROUND_COLOR);
-        goalAmt.setBackground(ColorUtil.BACKGROUND_COLOR);
-        maxAmt.setBackground(ColorUtil.BACKGROUND_COLOR);
-        startDate.setBackground(ColorUtil.BACKGROUND_COLOR);
-        endDate.setBackground(ColorUtil.BACKGROUND_COLOR);
+        cat.setBackground(ColorUtil.getBackgroundColor());
+        goalAmt.setBackground(ColorUtil.getBackgroundColor());
+        maxAmt.setBackground(ColorUtil.getBackgroundColor());
+        startDate.setBackground(ColorUtil.getBackgroundColor());
+        endDate.setBackground(ColorUtil.getBackgroundColor());
 
         try {
             if (mainService.getNameIdExpenseCatMap().get((String) cat.getSelectedItem()) == null) throw new IllegalArgumentException();
