@@ -12,28 +12,22 @@ import org.dsa.models.objects.Expense;
 import org.dsa.models.objects.Income;
 import org.dsa.models.objects.Report;
 import org.dsa.models.tableModels.ReportTableModel;
-import org.dsa.utils.ColorUtil;
 import org.dsa.tableUtils.CustomTableCellRenderer;
+import org.dsa.utils.ColorUtil;
 import org.dsa.utils.DateUtil;
 import org.dsa.utils.FontsUtil;
 import org.dsa.utils.SizesUtil;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.JTableHeader;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportsPanel extends JPanel{
+public class ReportsPanel extends JPanel {
     protected JPanel contentPanel = new JPanel(new BorderLayout());
     protected JLabel titleLabel;
     protected JPanel titlePanel = new JPanel(new BorderLayout());
@@ -52,8 +46,8 @@ public class ReportsPanel extends JPanel{
     private Date startDate;
     private Date endDate;
 
-
-    public ReportsPanel(GenericService<Income, IncomeDAO>  inSer, GenericService<Expense, ExpenseDAO> exSer, GenericService<Budget, BudgetDAO> buSer, String title) {
+    public ReportsPanel(GenericService<Income, IncomeDAO> inSer, GenericService<Expense, ExpenseDAO> exSer,
+                        GenericService<Budget, BudgetDAO> buSer, String title) {
         this.inSer = inSer;
         this.exSer = exSer;
         this.buSer = buSer;
@@ -65,14 +59,10 @@ public class ReportsPanel extends JPanel{
     }
 
     public void refresh() {
-        AppManager.getInstance().runWithLoading(
-                this::loadData,
-                this::updateVisibility
-        );
+        AppManager.getInstance().runWithLoading(this::loadData, this::updateVisibility);
     }
 
-    public void setContentPanel(String title)
-    {
+    public void setContentPanel(String title) {
         titleLabel = new JLabel(title);
         titleLabel.setFont(FontsUtil.TITLE_FONT);
         titlePanel.add(titleLabel, BorderLayout.WEST);
@@ -80,36 +70,31 @@ public class ReportsPanel extends JPanel{
         add(contentPanel, BorderLayout.CENTER);
     }
 
-    public void loadData()
-    {
-
+    public void loadData() {
         reList.clear();
         startDate = startDateBox.getFullDate();
         endDate = endDateBox.getFullDate();
 
-        if(inSer == null || exSer == null || buSer == null) return;
+        if (inSer == null || exSer == null || buSer == null) return;
         ArrayList<Income> inList = inSer.getAll();
         ArrayList<Expense> exList = exSer.getAll();
 
         List<Income> inListFiltered = inList.stream().filter(i -> !i.date().before(startDate) && !i.date().after(endDate)).toList();
         List<Expense> exListFiltered = exList.stream().filter(i -> !i.date().before(startDate) && !i.date().after(endDate)).toList();
 
-        int periodLength = switch ((Period) periodPicker.getSelectedItem())
-        {
-            case DAILY  -> 1;
-            case WEEKLY  -> 7;
-            case FORTNIGHTLY  -> 14;
-            case _30DAYS  -> 30;
-            case _365DAYS  -> 365;
-            case _5YEARS  -> 365 * 5;
-            case _10YEARS   -> 365 * 10;
-//            case null ->  365 * 10;
+        int periodLength = switch ((Period) periodPicker.getSelectedItem()) {
+            case DAILY -> 1;
+            case WEEKLY -> 7;
+            case FORTNIGHTLY -> 14;
+            case _30DAYS -> 30;
+            case _365DAYS -> 365;
+            case _5YEARS -> 365 * 5;
+            case _10YEARS -> 365 * 10;
         };
 
         LocalDate localDatePeriodStart = startDate.toLocalDate();
         int period = 1;
-        while(Date.valueOf(localDatePeriodStart).before(endDate)) {
-
+        while (Date.valueOf(localDatePeriodStart).before(endDate)) {
             LocalDate localDatePeriodEnd = localDatePeriodStart.plusDays(periodLength);
             Date sqlStart = Date.valueOf(localDatePeriodStart);
             Date sqlEnd = Date.valueOf(localDatePeriodEnd);
@@ -134,7 +119,7 @@ public class ReportsPanel extends JPanel{
 
             reList.add(new Report(period, totalIncome, totalExpense, netSavings, singleLargestExpense));
             localDatePeriodStart = localDatePeriodStart.plusDays(periodLength);
-            period += 1;
+            period++;
         }
 
         repTModel.setData(reList);
@@ -169,14 +154,11 @@ public class ReportsPanel extends JPanel{
             refresh();
         });
 
-        applyBtn.addActionListener(_ -> {
-            refresh();
-        });
+        applyBtn.addActionListener(_ -> refresh());
 
         JPanel dateFilter = new JPanel(new FlowLayout((FlowLayout.LEFT), 2, 0));
         dateFilter.add(startLabel);
         dateFilter.add(startDateBox);
-
         dateFilter.add(endLabel);
         dateFilter.add(endDateBox);
 
@@ -194,12 +176,9 @@ public class ReportsPanel extends JPanel{
         contentPanel.add(container, BorderLayout.NORTH);
     }
 
-    private void setStyles()
-    {
-//        topPanel.setBorder(BorderFactory.createTitledBorder("Controls"));
+    private void setStyles() {
         contentPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
-
-        titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        titlePanel.setBorder(new EmptyBorder(10, 30, 10, 30));
         titlePanel.setOpaque(true);
         titlePanel.setBackground(ColorUtil.getBackgroundColorDarker());
         titleLabel.setForeground(ColorUtil.getPrimaryTextColor());
@@ -209,8 +188,7 @@ public class ReportsPanel extends JPanel{
         header.setBackground(ColorUtil.getHeaderColor());
     }
 
-    public void updateVisibility()
-    {
+    public void updateVisibility() {
         filterPanel.setVisible(isVisible);
         hideBtn.setText(isVisible ? "Hide Range" : "Show Range");
     }

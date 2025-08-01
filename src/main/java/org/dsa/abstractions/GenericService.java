@@ -5,19 +5,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenericService<O extends ObjectModel, DAO extends GenericDAO<O>>{
+public class GenericService<O extends ObjectModel, DAO extends GenericDAO<O>> {
     public DAO dao;
 
-    public GenericService(DAO dao){
+    public GenericService(DAO dao) {
         this.dao = dao;
     }
 
     public O getById(int id) {
         try {
             return dao.getOneById(id);
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch records" + e.getMessage(), e);
         }
     }
@@ -25,69 +23,56 @@ public class GenericService<O extends ObjectModel, DAO extends GenericDAO<O>>{
     public ArrayList<O> getAll() {
         try {
             return dao.getAll();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch records" + e.getMessage(), e);
         }
     }
 
-    public boolean edit(int id, O obj)
-    {
-
-        if(id < 0)
+    public boolean edit(int id, O obj) {
+        if (id < 0)
             throw new IllegalArgumentException("id invalid");
 
-        if(obj.validate() == false)
+        if (!obj.validate())
             throw new IllegalArgumentException("Invalid transaction arguments");
 
         try {
             return dao.update(id, obj);
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to update Record" + e.getMessage(), e);
         }
     }
 
     public void delete(int id) {
-
-        if(id < 0)
+        if (id < 0)
             throw new IllegalArgumentException("id invalid");
 
         try {
             dao.delete(id);
-        }catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to delete Record");
         }
     }
 
-    public void insert(O obj){
-        if(obj.validate() == false)
+    public void insert(O obj) {
+        if (!obj.validate())
             throw new IllegalArgumentException("Invalid transaction arguments ");
-        try{
+        try {
             dao.insert(obj);
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to save record:" + e.getMessage(), e);
         }
     }
 
-    public Map<Integer, String> getIdNameIncomeCatMap(){
-
-        try{
+    public Map<Integer, String> getIdNameIncomeCatMap() {
+        try {
             return dao.getIncomeCatMap();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
     }
 
     public Map<String, Integer> getNameIdIncomeCatMap() {
-        try{
+        try {
             Map<Integer, String> idToName;
             Map<String, Integer> nameToId = new HashMap<>();
 
@@ -97,22 +82,21 @@ public class GenericService<O extends ObjectModel, DAO extends GenericDAO<O>>{
                 nameToId.put(entry.getValue(), entry.getKey());
             }
             return nameToId;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
-        catch (SQLException e) {throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);}
     }
 
-    public Map<Integer, String> getIdNameExpenseCatMap(){
-        try{
+    public Map<Integer, String> getIdNameExpenseCatMap() {
+        try {
             return dao.getExpenseCatMap();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
     }
 
     public Map<String, Integer> getNameIdExpenseCatMap() {
-        try{
+        try {
             Map<Integer, String> idToName;
             Map<String, Integer> nameToId = new HashMap<>();
 
@@ -122,8 +106,12 @@ public class GenericService<O extends ObjectModel, DAO extends GenericDAO<O>>{
                 nameToId.put(entry.getValue(), entry.getKey());
             }
             return nameToId;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);
         }
-        catch (SQLException e) {throw new RuntimeException("Failed to fetch map:" + e.getMessage(), e);}
     }
 
+    public DAO getDao() {
+        return dao;
+    }
 }

@@ -19,7 +19,7 @@ public class BudgetTableModel extends GenericTableModel<Budget> {
 
     @Override
     public ArrayList<String> returnColumnNames() {
-        return new ArrayList<>(Arrays.asList("Category", "Max amount", "Goal amount", "Date start", "Date end", "Expenditure"));
+        return new ArrayList<>(Arrays.asList("Category", "Max Amount", "Goal Amount", "Date Start", "Date End", "Expenditure"));
     }
 
     @Override

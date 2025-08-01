@@ -52,7 +52,7 @@ public class DashboardPanel extends JPanel {
         setLayout(new BorderLayout());
 
         titleLabel.setText(title);
-        titleLabel.setFont(FontsUtil.TITLE_FONT);
+        titleLabel.setFont(FontsUtil.MANROPE_BOLD.deriveFont(36f));
         titleLabel.setForeground(ColorUtil.getPrimaryTextColor());
         titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
         titlePanel.setBackground(ColorUtil.getBackgroundColorDarker());
@@ -72,8 +72,8 @@ public class DashboardPanel extends JPanel {
     public void newPanel(String headerTitle, JPanel content) {
         JPanel wrapper = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         wrapper.add(content);
-        wrapper.setFont(FontsUtil.REGULAR);
-        setFontRecursive(wrapper, FontsUtil.REGULAR);
+        wrapper.setFont(FontsUtil.MANROPE_REGULAR);
+        setFontRecursive(wrapper, FontsUtil.MANROPE_REGULAR);
         wrapper.setBackground(content.getBackground());
         wrapper.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
 
@@ -81,7 +81,7 @@ public class DashboardPanel extends JPanel {
         sectionPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
 
         JLabel sectionTitle = new JLabel(headerTitle);
-        sectionTitle.setFont(FontsUtil.TITLE_FONT);
+        sectionTitle.setFont(FontsUtil.MANROPE_BOLD.deriveFont(26f));
         sectionTitle.setForeground(ColorUtil.getPrimaryTextColor());
 
         JPanel sectionHeader = new JPanel(new BorderLayout());
@@ -112,20 +112,20 @@ public class DashboardPanel extends JPanel {
         Date monthAgo = DateUtil.toDate(DateUtil.thirtyDaysBefore);
 
         inSer.getAll().stream()
-                .filter(i -> !i.date().before(monthAgo))
-                .max(Comparator.comparing(Income::date))
-                .ifPresentOrElse(
-                        i -> panel.add(new JLabel(String.format("<html><b>Recent Income stream:</b> %s - %.2f</html>", i.name(), i.amount()))),
-                        () -> panel.add(new JLabel("No recent income found."))
-                );
+            .filter(i -> i.date() != null && !i.date().before(monthAgo))
+            .max(Comparator.comparing(Income::date))
+            .ifPresentOrElse(
+                i -> panel.add(new JLabel(String.format("<html><b>Recent Income stream:</b> %s - %.2f</html>", i.name(), i.amount()))),
+                () -> panel.add(new JLabel("No recent income found."))
+            );
 
         exSer.getAll().stream()
-                .filter(e -> !e.date().before(monthAgo))
-                .max(Comparator.comparing(Expense::date))
-                .ifPresentOrElse(
-                        e -> panel.add(new JLabel(String.format("<html><b>Recent Expense:</b> %s - %.2f</html>", e.name(), e.amount()))),
-                        () -> panel.add(new JLabel("No recent expense found."))
-                );
+            .filter(e -> e.date() != null && !e.date().before(monthAgo))
+            .max(Comparator.comparing(Expense::date))
+            .ifPresentOrElse(
+                e -> panel.add(new JLabel(String.format("<html><b>Recent Expense:</b> %s - %.2f</html>", e.name(), e.amount()))),
+                () -> panel.add(new JLabel("No recent expense found."))
+            );
 
         newPanel("At a Glance", panel);
     }
@@ -137,7 +137,7 @@ public class DashboardPanel extends JPanel {
 
         Date weekAgo = DateUtil.toDate(DateUtil.weekBeforeDate);
         List<Expense> recent = exSer.getAll().stream()
-                .filter(e -> !e.date().before(weekAgo))
+                .filter(e -> e.date() != null && !e.date().before(weekAgo))
                 .sorted(Comparator.comparing(Expense::date).reversed())
                 .limit(5)
                 .collect(Collectors.toList());
@@ -153,7 +153,7 @@ public class DashboardPanel extends JPanel {
 
         Date sixMonthsAgo = DateUtil.toDate(DateUtil.sixMonthsBefore);
         List<Expense> topExpenses = exSer.getAll().stream()
-                .filter(e -> !e.date().before(sixMonthsAgo))
+                .filter(e -> e.date() != null && !e.date().before(weekAgo))
                 .sorted(Comparator.comparingDouble(Expense::amount).reversed())
                 .limit(5)
                 .collect(Collectors.toList());
@@ -240,5 +240,4 @@ public class DashboardPanel extends JPanel {
             }
         }
     }
-
 }

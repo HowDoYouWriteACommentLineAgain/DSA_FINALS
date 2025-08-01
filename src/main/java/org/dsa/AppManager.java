@@ -7,10 +7,7 @@ import org.dsa.UIPanels.TabularPanels.IncomeTablePanel;
 import org.dsa.UIPanels.TabularPanels.ReportsPanel;
 import org.dsa.UIPanels.components.LoadingDialog;
 import org.dsa.abstractions.GenericService;
-import org.dsa.abstractions.GenericTableModel;
-import org.dsa.dao.BudgetDAO;
-import org.dsa.dao.ExpenseDAO;
-import org.dsa.dao.IncomeDAO;
+import org.dsa.dao.*;
 import org.dsa.models.objects.Budget;
 import org.dsa.models.objects.Expense;
 import org.dsa.models.objects.Income;
@@ -22,12 +19,6 @@ import org.dsa.utils.DatabaseConnectionManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import java.sql.Connection;
-
-/*TODOS:
-* Add more panels
-*
-*
-* */
 
 public class AppManager {
 
@@ -47,42 +38,45 @@ public class AppManager {
     private Settings settings;
 
     private static final AppManager instance = new AppManager();
-    public static AppManager getInstance()
-    {
+    public static AppManager getInstance() {
         return instance;
     }
 
-    /*
-     * static constants of the singleton App Manager
-     */
-    private AppManager(){
+    private AppManager() {
         conn = DatabaseConnectionManager.getConnection();
         inSer = new GenericService<>(new IncomeDAO(conn));
         exSer = new GenericService<>(new ExpenseDAO(conn));
         buSer = new GenericService<>(new BudgetDAO(conn));
     }
 
-    public void start(){
-
+    public void start() {
         build();
         refresh(Screens.DASHBOARD);
     }
 
-    private void build()
-    {
+    private void build() {
         if (mainFrame != null) mainFrame.dispose(); // avoid duplicates
 
         mainFrame = new MainFrame("PESO: Financial Assistant");
         incomeUIPanel = new IncomeTablePanel(inSer, Screens.INCOME);
         expenseUIPanel = new ExpenseTablePanel(exSer, Screens.EXPENSE);
         budgetUIPanel = new BudgetTablePanel(buSer, exSer, Screens.BUDGET);
-        reportUIPanel = new ReportsPanel(inSer,exSer,buSer, Screens.REPORTS);
+        reportUIPanel = new ReportsPanel(inSer, exSer, buSer, Screens.REPORTS);
 
         dashboardPanel = new DashboardPanel(inSer, exSer, buSer, Screens.DASHBOARD);
 
-        settings = new Settings();
+        // NEW: Add IncomeCatDAO and ExpenseCatDAO for Settings panel
+        IncomeCatDAO incomeCatDAO = new IncomeCatDAO(conn);
+        ExpenseCatDAO expenseCatDAO = new ExpenseCatDAO(conn);
 
-//        mainFrame.addNavbar(navbar);
+        settings = new Settings(
+            inSer.getDao(),
+            exSer.getDao(),
+            buSer.getDao(),
+            incomeCatDAO,
+            expenseCatDAO
+        );
+
         mainFrame.addScreen(Screens.DASHBOARD, dashboardPanel);
         mainFrame.addScreen(Screens.INCOME, incomeUIPanel);
         mainFrame.addScreen(Screens.EXPENSE, expenseUIPanel);
@@ -94,42 +88,46 @@ public class AppManager {
         mainFrame.setVisible(true);
     }
 
-    public void handleLogout()
-    {
+    public void handleLogout() {
         shutdown();
     }
 
-    private void shutdown()
-    {
-        int i = JOptionPane.showConfirmDialog(mainFrame,"Are you sure?", "Exiting", JOptionPane.YES_NO_OPTION);
-        if(i == 0) System.exit(0);
+    private void shutdown() {
+        int i = JOptionPane.showConfirmDialog(mainFrame, "Are you sure?", "Exiting", JOptionPane.YES_NO_OPTION);
+        if (i == 0) System.exit(0);
     }
 
-    public void handleNavigation(String screenName)
-    {
+    public void handleNavigation(String screenName) {
         refresh(screenName);
     }
 
-    private void refresh(String screenName)
-    {
-        switch (screenName)
-        {
-            case Screens.DASHBOARD ->dashboardPanel.refresh();
-            case Screens.INCOME ->incomeUIPanel.refresh();
+    private void refresh(String screenName) {
+        switch (screenName) {
+            case Screens.DASHBOARD -> dashboardPanel.refresh();
+            case Screens.INCOME -> incomeUIPanel.refresh();
             case Screens.EXPENSE -> expenseUIPanel.refresh();
             case Screens.BUDGET -> budgetUIPanel.refresh();
             case Screens.REPORTS -> reportUIPanel.refresh();
         }
     }
 
+    public IncomeTablePanel getIncomePanel() {
+        return incomeUIPanel;
+    }
+
+    public ExpenseTablePanel getExpensePanel() {
+        return expenseUIPanel;
+    }
+
     public void runWithLoading(Runnable backgroundTask, Runnable onDone) {
-        var loading = new LoadingDialog(mainFrame); // your modal "loading..." panel
+        var loading = new LoadingDialog(mainFrame);
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
                 backgroundTask.run();
                 return null;
             }
+
             @Override
             protected void done() {
                 loading.dispose();
